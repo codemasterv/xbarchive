@@ -17,7 +17,9 @@ HowTo:
     
     sh mogi_xbox.sh
     
-Select a number 0-7 and hit enter. **HINT: You need to hit 0 first**
+Select a number 0-7 and hit enter. 
+
+**HINT: You need to hit 0 first**
 
 The program will create and download the files in the created directory.
 
