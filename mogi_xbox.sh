@@ -50,7 +50,7 @@ while [ $opt != '' ]
 	    0) clear;
 			option_picked "Download setup files and setup";
 			printf "Downloading DB Files";
-            sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo apt install -y git&&git clone https://github.com/codemasterv/xbarchive.git&&sudo dos2unix xbarchive/*.txt&&sudo dos2unix *.sh;
+            sudo apt install subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.txt&&sudo dos2unix *.sh;
             show_menu;
         ;;
         1) clear;
