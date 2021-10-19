@@ -1,4 +1,5 @@
-#!/#!bin/bash
+#!bin/bash
+sudo mkdir xbarchive
 show_menu(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #Blue
@@ -50,37 +51,37 @@ while [ $opt != '' ]
 	    0) clear;
 			option_picked "Download setup files and setup";
 			printf "Downloading DB Files";
-            sudo apt install subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.txt&&sudo dos2unix *.sh;
+            sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/aria2files.sh;
             show_menu;
         ;;
         1) clear;
             option_picked "Xbox 360 XBLA Games";
             printf "Downloading 360 XBLA Games";
-			./xbarchive/aria2files.sh xbarchive/360LA_GAMES_links.txt;
+			sudo touch xbarchive/XBOX_360_XBLA.txt&&sudo lynx -dump -listonly https://archive.org/download/XBOX_360_XBLA | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA.txt&&sed -i '1 i\XBOX_360_XBLA' xbarchive/XBOX_360_XBLA.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA.txt;
             show_menu;
         ;;
         2) clear;
             option_picked "Xbox 360 XBLA Game DLCs";
 			printf "Downloading 360 XBLA Game DLC";
-            ./xbarchive/aria2files.sh xbarchive/360LA_DLC_links.txt;
+            sudo touch xbarchive/XBOX_360_XBLA_DLC.txt&&sudo lynx -dump -listonly http://archive.org/download/XBOX_360_XBLA_DLC | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA_DLC.txt&&sed -i '1 i\XBOX_360_XBLA_DLC' xbarchive/XBOX_360_XBLA_DLC.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA_DLC.txt;
             show_menu;
         ;;
         3) clear;
             option_picked "Xbox Games # - I";
             printf "Downloading OG Xbox Games # - I";
-			./xbarchive/aria2files.sh xbarchive/OG_hddready#-I.txt;
+			sudo touch xbarchive/XBOX_HDD_READY_#-I.txt&&sudo lynx -dump -listonly https://archive.org/download/XBOX_HDD_READY | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_#-I.txt&&sed -i '1 i\XBOX_HDD_READY_#-I' xbarchive/XBOX_HDD_READY_#-I.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_#-I.txt;
             show_menu;
         ;;
         4) clear;
             option_picked "Xbox Games J - Q";
             printf "Downloading OG Xbox Games J - Q";
-			./xbarchive/aria2files.sh xbarchive/OG_hddreadyJ-Q.txt;
+			sudo touch xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo lynx -dump -listonly https://archive.org/download/XBOX_HDD_READY_2 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_J-Q.txt&&sed -i '1 i\XBOX_HDD_READY_J-Q' xbarchive/XBOX_HDD_READY_J-Q.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_J-Q.txt;
             show_menu;
         ;;
 		5) clear;
             option_picked "Xbox Games R - Z";
             printf "Downloading OG Xbox Games R - Z";
-			./xbarchive/aria2files.sh xbarchive/OG_hddreadyR-Z.txt;
+			sudo touch xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo lynx -dump -listonly https://archive.org/download/XBOX_HDD_READY_2_201710 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_R-Z.txt&&sed -i '1 i\XBOX_HDD_READY_R-Z' xbarchive/XBOX_HDD_READY_R-Z.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_R-Z.txt;
             show_menu;
         ;;
 		6) clear;
