@@ -5,6 +5,8 @@ This is a helper tool to access Archive.org files
 This is early in build so its pretty basic.
 It will allow you to get xbox stuff in bulk from archive.org
 
+You will need ubuntu or deb based linux. Windows Subsystem Linux will work but you will need to install that yourself.
+
 HowTo:
 
     git clone https://github.com/codemasterv/xbarchive.git
