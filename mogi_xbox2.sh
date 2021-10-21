@@ -38,7 +38,7 @@ show_menu(){
 	    0) clear;
 			option_picked "Download setup files and setup";
 			printf "Downloading DB Files";
-            sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/aria2files.sh;
+            sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo apt install -y build-essential&&sudo apt install -y cmake&&sudo apt install -y flex&&sudo apt install -y bison&&sudo apt install -y clang&&sudo apt install -y lld&&sudo apt install -y git&&sudo apt install -y llvm&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.sh&&sudo touch *;
             show_menu;
         ;;
 		

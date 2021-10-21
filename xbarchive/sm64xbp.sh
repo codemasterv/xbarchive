@@ -1,6 +1,6 @@
 #!/bin/bash
 #install the tools needed
-sudo apt install -y build-essential cmake flex bison clang lld git llvm aria2c
+
 #Fix path bug for clang
 PATH=$PATH:/usr/lib/llvm-10/bin
 #get the libraries
