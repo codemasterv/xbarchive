@@ -1,16 +1,16 @@
 #!/bin/bash
 #install the tools needed
-sudo apt install -y build-essential cmake flex bison clang lld git llvm wget
+sudo apt install -y build-essential cmake flex bison clang lld git llvm aria2c
 #Fix path bug for clang
 PATH=$PATH:/usr/lib/llvm-10/bin
 #get the libraries
 sudo git clone --recursive https://github.com/fgsfdsfgs/sm64-port.git -b xbox sm64xbox
 sudo git clone --depth 1 --recurse-submodules --shallow-submodules https://github.com/XboxDev/nxdk.git
 sudo touch *
+sudo aria2c --file-allocation=none -c -x 10 -s 10 -d sm64xbox https://archive.org/download/super-mario-64-usa/Super%20Mario%2064%20%28U%29%20%5B%21%5D.z64
 #Enter the working Mario64 Directory
 cd sm64xbox
 #Get the rom needed and change its name to proper name
-sudo wget https://archive.org/download/super-mario-64-usa/Super%20Mario%2064%20%28U%29%20%5B%21%5D.z64
 sudo touch *
 sudo mv *.z64 baserom.us.z64
 #Add game enhancements to port
