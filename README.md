@@ -26,4 +26,6 @@ The program will create and download the files in the created directory.
 Option 7 will remove all folders but leave the script
 
 
-![Photo](https://user-images.githubusercontent.com/23326730/137853504-dff0db11-75a8-4171-9676-d814a948f2ba.PNG)
+
+
+![Capture](https://user-images.githubusercontent.com/23326730/138365375-0a79725c-560a-4e1c-9cbd-532efb4206f2.PNG)
