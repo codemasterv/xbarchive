@@ -1,6 +1,11 @@
 #!/bin/sh
-XBARCH="http://archive.org/download/XBOX_360_XBLA"
-XBARCH2="https://archive.org/download/XBOX_HDD_READY"
+h="_HDD"
+r="_READY"
+l="_XBLA"
+s="_360"
+x="XBOX"
+XBARCH="http://archive.org/download/${x}${s}${l}"
+XBARCH2="https://archive.org/download/${x}${h}${r}"
 show_menu(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #Blue
