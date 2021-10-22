@@ -153,16 +153,16 @@ sub_menu1(){
 	  ####################################
 	  
 	  #XBOX_360_XBLA Readable List
-      sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
+      sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
 	  
 	  #XBOX_360_XBLA_DLC Readable List
-	  sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt;
+	  sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt;
 	  
 	  #XBOX_360_XBLA_DLC x360db3.txt
-	  sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
+	  sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{49\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
 	  
 	  #XBOX_360_XBLA xbarchive/x360db2.txt
-	  sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
+	  sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{49\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
 	  	  
 	  sub_menu1;
       sub_menu_admin;
