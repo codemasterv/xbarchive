@@ -31,7 +31,7 @@ show_menu(){
 	printf "\n${menu}***************************************************************************${normal}\n\n"
 	printf "This will download the collection from archive.org. If you run into errors please try to\n\n"
 	printf "run option 4 Clean Files and redownload DB and dependencies with option 0 on the main menu\n\n"
-    printf "and with option 1 on the sub menus\n\n"
+    printf "and with option 1 on the sub menus. Be sure to backup your files you want before running 4\n\n"
     printf "\n${menu}***************************************************************************${normal}\n\n"
 	printf "Make your selection '0-5' then hit enter\n\n"
 	printf "${menu}****************************${normal}\n"
