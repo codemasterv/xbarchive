@@ -153,16 +153,16 @@ sub_menu1(){
 	  ####################################
 	  
 	  #XBOX_360_XBLA Readable List
-      sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH/ | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
+      sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
 	  
 	  #XBOX_360_XBLA_DLC Readable List
-	  sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt;
+	  sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{48\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt;
 	  
 	  #XBOX_360_XBLA_DLC x360db3.txt
-	  sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
+	  sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
 	  
 	  #XBOX_360_XBLA xbarchive/x360db2.txt
-	  sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH/ | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
+	  sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH/ | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{47\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
 	  	  
 	  sub_menu1;
       sub_menu_admin;
@@ -190,14 +190,14 @@ sub_menu1(){
 	  
 	  5) clear;
       option_picked "Bulk Downloading Xbox360 XBLA Games";
-      sudo touch xbarchive/XBOX_360_XBLA.txt&&sudo lynx -dump -listonly $XBARCH | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA.txt&&sed -i '1 i\XBOX_360_XBLA' xbarchive/XBOX_360_XBLA.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA.txt;
+      sudo touch xbarchive/XBOX_360_XBLA.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA.txt&&sed -i '1 i\XBOX_360_XBLA' xbarchive/XBOX_360_XBLA.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA.txt;
 	  sub_menu1;
       sub_menu_admin;
       ;;
 	  
 	  6) clear;
       option_picked "Bulk Downloadig Xbox360 XBLA DLC";
-      sudo touch xbarchive/XBOX_360_XBLA_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep http | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA_DLC.txt&&sed -i '1 i\XBOX_360_XBLA_DLC' xbarchive/XBOX_360_XBLA_DLC.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA_DLC.txt;
+      sudo touch xbarchive/XBOX_360_XBLA_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA_DLC.txt&&sed -i '1 i\XBOX_360_XBLA_DLC' xbarchive/XBOX_360_XBLA_DLC.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA_DLC.txt;
 	  sub_menu1;
       sub_menu_admin;
       ;;
@@ -463,13 +463,13 @@ sub_menu4(){
 	  ####################################
 	  
 	  #XBOX #- Readable List
-      sudo touch xbarchive/XBOX_HDD_READY.txt&&sudo lynx -dump -listonly $XBARCH2 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY.txt;
+      sudo touch xbarchive/XBOX_HDD_READY.txt&&sudo lynx -dump -listonly $XBARCH2 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY.txt;
 	  
 	  #XBOX #- Readable List
-	  sudo touch xbarchive/XBOX_HDD_READY1.txt&&sudo lynx -dump -listonly $XBARCH4 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY1.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY1.txt;
+	  sudo touch xbarchive/XBOX_HDD_READY1.txt&&sudo lynx -dump -listonly $XBARCH4 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY1.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY1.txt;
 	  
 	  #XBOX #- Readable List
-	  sudo touch xbarchive/XBOX_HDD_READY2.txt&&sudo lynx -dump -listonly $XBARCH5 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY2.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY2.txt;
+	  sudo touch xbarchive/XBOX_HDD_READY2.txt&&sudo lynx -dump -listonly $XBARCH5 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY2.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY2.txt;
 	  
 	  #XBOX #- Readable List and merge
 	  sudo touch xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY.txt > xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY1.txt >> xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY2.txt >> xbarchive/xbdg.txt&&sudo touch xbarchive/xbdl.txt&&sudo cat xbarchive/xbdg.txt > xbarchive/xbdl.txt&&sudo sed -i 's/ /%20/g' xbarchive/xbdl.txt&&sudo touch xbarchive/xbdg.txt&&sudo sed -i -e '\%(\=|/)$%d' -e 's%.*/%%' xbarchive/xbdg.txt&&sudo touch xbarchive/xbls.txt&&sudo nl xbarchive/xbdg.txt > xbarchive/xbls.txt&&sudo sed -i '1 i\#XBOX_HDD_READY_GAMES' xbarchive/xbls.txt;
@@ -488,21 +488,21 @@ sub_menu4(){
 	  
 	  3) clear;
       option_picked "Bulk Download Xbox Games # - I";
-      sudo touch xbarchive/XBOX_HDD_READY_#-I.txt&&sudo lynx -dump -listonly $XBARCH2 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_#-I.txt&&sed -i '1 i\XBOX_HDD_READY_#-I' xbarchive/XBOX_HDD_READY_#-I.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_#-I.txt;
+      sudo touch xbarchive/XBOX_HDD_READY_#-I.txt&&sudo lynx -dump -listonly $XBARCH2 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_#-I.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_#-I.txt&&sed -i '1 i\XBOX_HDD_READY_#-I' xbarchive/XBOX_HDD_READY_#-I.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_#-I.txt;
 	  sub_menu4;
       sub_menu_admin;
       ;;
 	  
 	  4) clear;
       option_picked "Bulk Download Xbox Games J - Q";
-      sudo touch xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo lynx -dump -listonly $XBARCH4 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_J-Q.txt&&sed -i '1 i\XBOX_HDD_READY_J-Q' xbarchive/XBOX_HDD_READY_J-Q.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_J-Q.txt;
+      sudo touch xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo lynx -dump -listonly $XBARCH4 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_J-Q.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_J-Q.txt&&sed -i '1 i\XBOX_HDD_READY_J-Q' xbarchive/XBOX_HDD_READY_J-Q.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_J-Q.txt;
 	  sub_menu4;
       sub_menu_admin;
       ;;
 	  
 	  5) clear;
       option_picked "Bulk Download Xbox Games R - Z";
-      sudo touch xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo lynx -dump -listonly $XBARCH5 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_R-Z.txt&&sed -i '1 i\XBOX_HDD_READY_R-Z' xbarchive/XBOX_HDD_READY_R-Z.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_R-Z.txt;
+      sudo touch xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo lynx -dump -listonly $XBARCH5 | grep https | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_HDD_READY_R-Z.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_HDD_READY_R-Z.txt&&sed -i '1 i\XBOX_HDD_READY_R-Z' xbarchive/XBOX_HDD_READY_R-Z.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_HDD_READY_R-Z.txt;
 	  sub_menu4;
       sub_menu_admin;
       ;;
