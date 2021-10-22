@@ -271,7 +271,7 @@ sub_menu2(){
 	  1) clear;
       option_picked "Dowload Single Xbox360 XBLA Game From List";
 	  echo "Enter Game Number From the List";
-	  cat xbarchive/x360dbg.txt
+	  sudo cat xbarchive/x360dbg.txt
 		count="$(wc -l xbarchive/x360db2.txt | cut -f 1 -d' ')"
 		n=""
 		while true; do
@@ -291,7 +291,7 @@ sub_menu2(){
       2) clear;
       option_picked "Enter DLC Number From the List";
 	  echo "Enter Game Number From the List";
-	  cat xbarchive/x360dbd.txt
+	  sudo cat xbarchive/x360dbd.txt
 		count="$(wc -l xbarchive/x360db3.txt | cut -f 1 -d' ')"
 		n=""
 		while true; do
@@ -472,7 +472,7 @@ sub_menu4(){
 	  sudo touch xbarchive/XBOX_HDD_READY2.txt&&sudo lynx -dump -listonly $XBARCH5 | grep http | grep \.7z$ | awk '{print $0}' > xbarchive/XBOX_HDD_READY2.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_HDD_READY2.txt;
 	  
 	  #XBOX #- Readable List and merge
-	  touch xbarchive/xbdg.txt&&cat xbarchive/XBOX_HDD_READY.txt > xbarchive/xbdg.txt&&cat xbarchive/XBOX_HDD_READY1.txt >> xbarchive/xbdg.txt&&cat xbarchive/XBOX_HDD_READY2.txt >> xbarchive/xbdg.txt&&sudo touch xbarchive/xbdl.txt&& cat xbarchive/xbdg.txt > xbarchive/xbdl.txt&&sudo sed -i 's/ /%20/g' xbarchive/xbdl.txt&&sudo touch xbarchive/xbdg.txt&&sudo sed -i -e '\%(\=|/)$%d' -e 's%.*/%%' xbarchive/xbdg.txt&&sudo touch xbarchive/xbls.txt&&nl xbarchive/xbdg.txt > xbarchive/xbls.txt&&sed -i '1 i\#XBOX_HDD_READY_GAMES' xbarchive/xbls.txt;
+	  sudo touch xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY.txt > xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY1.txt >> xbarchive/xbdg.txt&&sudo cat xbarchive/XBOX_HDD_READY2.txt >> xbarchive/xbdg.txt&&sudo touch xbarchive/xbdl.txt&&sudo cat xbarchive/xbdg.txt > xbarchive/xbdl.txt&&sudo sed -i 's/ /%20/g' xbarchive/xbdl.txt&&sudo touch xbarchive/xbdg.txt&&sudo sed -i -e '\%(\=|/)$%d' -e 's%.*/%%' xbarchive/xbdg.txt&&sudo touch xbarchive/xbls.txt&&sudo nl xbarchive/xbdg.txt > xbarchive/xbls.txt&&sudo sed -i '1 i\#XBOX_HDD_READY_GAMES' xbarchive/xbls.txt;
 	  sudo rm -f xbarchive/XBOX_HDD_READ*;
 	  sudo rm -f xbarchive/xbdg.txt;
 	  sudo mkdir OGXB_Singles;	  	  
@@ -582,7 +582,7 @@ sub_menu5(){
       2)  clear;
       option_picked "Dowload Single Xbox Game From List";
 	  echo "Enter Game Number From the List";
-	  cat xbarchive/xbls.txt
+	  sudo cat xbarchive/xbls.txt
 		count="$(wc -l xbarchive/xbdl.txt | cut -f 1 -d' ')"
 		n=""
 		while true; do
