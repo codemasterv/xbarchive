@@ -8,7 +8,7 @@ x="XBOX"
 t="_READY_2"
 tt="_201710"
 
-XBARCH="http://archive.org/download/${x}${s}${l}"
+XBARCH="https://archive.org/download/${x}${s}${l}"
 XBARCH2="https://archive.org/download/${x}${h}${r}"
 XBARCH3="https://archive.org/download/${x}${s}${l}${d}"
 XBARCH4="https://archive.org/download/${x}${h}${r}${t}"
