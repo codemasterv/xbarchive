@@ -447,7 +447,7 @@ sub_menu4(){
     printf "${menu}**${number} 1)${menu} Build Xbox DB Files ${normal}\n"
     printf "${menu}**${number} 2)${menu} Download Single Game${normal}\n"
 	printf "${menu}**${number} 3)${menu} Bulk Download Xbox Games # - I${normal}\n"
-	printf "${menu}**${number} 5)${menu} Bulk Download Xbox Games J - Q${normal}\n"
+	printf "${menu}**${number} 4)${menu} Bulk Download Xbox Games J - Q${normal}\n"
 	printf "${menu}**${number} 5)${menu} Bulk Download Xbox Games R - Z${normal}\n"
 	printf "${menu}**${number} 6)${menu} Unzip and FTP to XBOX${normal}\n"
 	printf "${menu}**${number} 7)${menu} Main Menu ${normal}\n\n"
@@ -675,9 +675,16 @@ sub_menu6(){
       case $sub6 in
 	  
 	  1) clear;
+	  
+	  cd OGXB_Singles/; 
+	  ./../xbarchive/ftpname.sh
+	  ./../xbarchive/ftpname2.sh
+	  cd ..;
+	  #
 	  sudo touch xbarchive/ftplist1.txt&&sudo printf '%s\n' OGXB_Singles/*.7z > xbarchive/ftplist1.txt&&sudo sed -i 's/.\{13\}//' xbarchive/ftplist1.txt&&sudo nl xbarchive/ftplist1.txt > xbarchive/ftplist.txt&&sudo less xbarchive/ftplist.txt
 	  sub_menu6;
       sub_menu_admin;
+	  
       ;;
 
       2) clear;
@@ -694,6 +701,7 @@ sub_menu6(){
 		done
 		#Below is the variables for the FTP information
 		game="$(sed -n "${n}p" xbarchive/ftplist.txt)"
+		game2="$(sed -n "${n}p" ../xbarchive/ftplist.txt)"
 		u=""
 		echo "Enter Your XBOX FTP User Name: "
 		echo "ftp username"
@@ -710,21 +718,18 @@ sub_menu6(){
 		xdir=""
 		echo "Enter the Name of the Game Directory; Example: Halo/ "
 		read -p '' xdir
-		break;
-		
-		#Variable for unzip with 7z
-		zi="7z e ${game} -y"
 		
 		#Variable for FTP with lftp Curl makes remote dirctory
-		mkd="curl ftp://${u}:${p}@${i}${xbd}${xdir} --ftp-create-dirs"
+		mkd="$(sudo curl ftp://${u}:${p}@${i}${xbd}${xdir} --ftp-create-dirs)"
+		xbftp=$(sudo lftp -e "mirror -R ${xdir} ${xbd}${xdir}" -u ${u},${p} ${i}</dev/null)
+		#Variable for unzip with 7z
+		zi="$(sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y)"
 		
-		
-		cd OGXB_Singles&&sudo mkdir ${xdir}&&sudo mv ${game} ${xdir}&&cd ${xdir}&&7z e ${game} -y&&mv ${game} ../&&cd ..&&${mkd}&&sudo lftp -e "mirror -R ${xdir} ${xbd}${xdir}" -u ${u},${p} ${i}</dev/null;
-		
-		sudo rm -Rf ${xdir}&&cd ..;
+		sudo mkdir OGXB_Singles/${xdir}&&sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y&&${mkd}&&${xbftp}&&sudo rm -Rf ${xdir};
 		
 		
 		echo "The user selected option number $n: '$game'"
+		break;
 	  sub_menu5;
       sub_menu_admin;
       ;;
