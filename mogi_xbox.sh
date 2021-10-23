@@ -5,7 +5,7 @@ r="_READY"
 l="_XBLA"
 s="_360"
 x="XBOX"
-t="_READY_2"
+t="_2"
 tt="_201710"
 
 XBARCH="https://archive.org/download/${x}${s}${l}"
@@ -53,7 +53,7 @@ show_menu(){
 	    0) clear;
 			option_picked "Download setup files and setup";
 			printf "Downloading DB Files";
-            sudo apt-get update -y&&sudo apt-get upgrade -y&&sudo apt-get install -y libssl*&&sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo apt install -y build-essential&&sudo apt install -y cmake&&sudo apt install -y flex&&sudo apt install -y bison&&sudo apt install -y clang&&sudo apt install -y lld&&sudo apt install -y git&&sudo apt install -y llvm grep sed lynx&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.sh&&sudo touch *;
+            sudo apt-get update -y&&sudo apt-get upgrade -y&&sudo apt-get install -y libssl*&&sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo apt install -y build-essential&&sudo apt install -y cmake&&sudo apt install -y flex&&sudo apt install -y bison&&sudo apt install -y clang&&sudo apt install -y lld&&sudo apt install -y git&&sudo apt install -y llvm grep sed lynx p7zip-full p7zip-rar lftp&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.sh&&sudo touch *;
             show_menu;
         ;;
 		
@@ -287,6 +287,7 @@ sub_menu2(){
 	  sub_menu2;
       sub_menu_admin;
       ;;
+	  
 
       2) clear;
       option_picked "Enter DLC Number From the List";
@@ -440,14 +441,16 @@ sub_menu4(){
 	printf "Option 3) Will Bulk Download Xbox Games # - I\n"
 	printf "Option 4) Will Bulk Download Xbox Games J - Q\n"
 	printf "Option 5) Will Bulk Download Xbox Games R - Z\n"
-	printf "Option 6) Will Exit to Menu\n\n"
+	printf "Option 6) Unzip and FTP to XBOX\n"
+	printf "Option 7) Will Exit to Menu\n\n"
 	printf "${menu}*********************************************${normal}\n"
     printf "${menu}**${number} 1)${menu} Build Xbox DB Files ${normal}\n"
     printf "${menu}**${number} 2)${menu} Download Single Game${normal}\n"
 	printf "${menu}**${number} 3)${menu} Bulk Download Xbox Games # - I${normal}\n"
 	printf "${menu}**${number} 5)${menu} Bulk Download Xbox Games J - Q${normal}\n"
 	printf "${menu}**${number} 5)${menu} Bulk Download Xbox Games R - Z${normal}\n"
-	printf "${menu}**${number} 6)${menu} Main Menu ${normal}\n\n"
+	printf "${menu}**${number} 6)${menu} Unzip and FTP to XBOX${normal}\n"
+	printf "${menu}**${number} 7)${menu} Main Menu ${normal}\n\n"
     printf "${menu}*********************************************${normal}\n"
     printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
     read sub4
@@ -508,6 +511,12 @@ sub_menu4(){
       ;;
 	  
 	  6) clear;
+      option_picked "Exit To Main Menu";
+      sub_menu6;
+      sub_menu_admin;
+      ;;
+	  
+	  7) clear;
       option_picked "Exit To Main Menu";
       show_menu;
       sub_menu_admin;
@@ -619,6 +628,128 @@ sub_menu5(){
     fi
   done
 }
+
+#extract and ftp game
+#XBOX Sub Menu 6
+option_picked() {
+    COLOR='\033[01;31m' # bold red
+    RESET='\033[00;00m' # normal white
+    MESSAGE=${@:-"${RESET}Error: No message passed"}
+    echo "${COLOR}${MESSAGE}${RESET}"
+}
+
+sub_menu6(){
+    normal=`echo "\033[m"`
+    menu=`echo "\033[36m"` #Blue
+    number=`echo "\033[33m"` #yellow
+    bgred=`echo "\033[41m"`
+    fgred=`echo "\033[31m"`
+	red=`echo "\033[91m"`
+	bggreen=`echo "\033[1;32m"`
+    green=`echo "\033[92m"`
+    printf "\n"
+	printf "\n${menu}***************************************************************************${normal}\n"
+	printf "\n"
+	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+	printf "          ${red}Please select 1 first to list the games and find the number of the game\n
+                           then select 2 to enter number from the list or 3 to exit${normal}\n\n"
+	printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "This will download single game from archive.org.\n\n"
+    printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "Make your selection '1-3' then hit enter\n\n"
+	printf "Option 1) List of OG XBOX Games to FTP\n"
+	printf "Option 2) Unzip and FTP game to xbox\n"
+	printf "Option 3) Will Exit to Menu\n\n"
+	printf "${menu}*********************************************${normal}\n"
+    printf "${menu}**${number} 1)${menu} List of OG XBOX Games to FTP${normal}\n"
+	printf "${menu}**${number} 2)${menu} Unzip and FTP game to xbox${normal}\n"
+	printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
+    printf "${menu}*********************************************${normal}\n"
+    printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
+    read sub6
+  while [ sub6 != '' ]
+  do
+    if [[ $sub6 = "" ]]; then
+      exit;
+    else
+      case $sub6 in
+	  
+	  1) clear;
+	  sudo touch xbarchive/ftplist1.txt&&sudo printf '%s' OGXB_Singles/*.7z > xbarchive/ftplist1.txt&&sudo sed -i 's/.\{13\}//' xbarchive/ftplist1.txt&&sudo nl xbarchive/ftplist1.txt > xbarchive/ftplist.txt&&sudo less xbarchive/ftplist.txt
+	  sub_menu6;
+      sub_menu_admin;
+      ;;
+
+      2) clear;
+      option_picked "Unzip and FTP Your Game To Your XBOX From Here";
+		echo "Enter Game Number From the List to ftp";
+	    cat xbarchive/ftplist.txt
+		count="$(wc -l xbarchive/ftplist.txt | cut -f 1 -d' ')"
+		n=""
+		while true; do
+		read -p 'Select option: ' n
+		if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+        break
+		fi
+		done
+		#Below is the variables for the FTP information
+		game="$(sed -n "${n}p" xbarchive/ftplist.txt)"
+		u=""
+		echo "Enter Your XBOX FTP User Name: "
+		echo "ftp username"
+		read -p '' u
+		p=""
+	    echo "Enter the FTP Password: "
+		read -p '' p
+		i=""
+		echo "Enter the FTP IP: "
+		read -p '' i
+		xbd=""
+		echo "Enter XBOX Drive Letter; Example: /G/games/ "
+		read -p '' xbd
+		xdir=""
+		echo "Enter the Name of the Game Directory; Example: Halo/ "
+		read -p '' xdir
+		break;
+		
+		#Variable for unzip with 7z
+		zi="7z e ${game} -y"
+		
+		#Variable for FTP with lftp Curl makes remote dirctory
+		mkd="curl ftp://${u}:${p}@${i}${xbd}${xdir} --ftp-create-dirs"
+		
+		
+		cd OGXB_Singles&&sudo mkdir ${xdir}&&sudo mv ${game} ${xdir}&&cd ${xdir}&&7z e ${game} -y&&mv ${game} ../&&cd ..&&${mkd}&&sudo lftp -e "mirror -R ${xdir} ${xbd}${xdir}" -u ${u},${p} ${i}</dev/null;
+		
+		sudo rm -Rf ${xdir}&&cd ..;
+		
+		
+		echo "The user selected option number $n: '$game'"
+	  sub_menu5;
+      sub_menu_admin;
+      ;;
+	  
+	  3) clear;
+      option_picked "Exit To Main Menu";
+      show_menu;
+      sub_menu_admin;
+      ;;
+	  
+      x)exit;
+      ;;
+
+      \n)exit;
+      ;;
+
+      *)clear;
+      option_picked "Pick an option from the menu";
+      sub_menu1;
+      ;;
+      esac
+    fi
+  done
+}
+
 
 clear
 show_menu
