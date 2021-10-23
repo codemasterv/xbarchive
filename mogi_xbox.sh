@@ -718,7 +718,6 @@ sub_menu6(){
 		XDIR=""
 		echo "Enter the Name of the Game Directory; Example: Halo/ "
 		read -p '' XDIR
-		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt
 
 		#Variable for FTP with lftp Curl makes remote dirctory
 		#mkd="$(sudo curl ftp://${u}:${p}@${i}${xbd}${XDIR} --ftp-create-dirs)"
@@ -730,7 +729,7 @@ sub_menu6(){
 		
 		dest="OGXB_Singles/$XDIR"
 		ogxb="OGXB_singles"
-		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt&&sudo mkdir $dest&&sudo mv "$ogxb"/"$game2" "$ogxb"/"$XDIR"/&&cd $dest&&sudo 7z e $game2 -y&&sudo mv $game2 ../&&cd ../..&&sudo curl -u ${u}:${p} ftp://${i} -Q "MKD $xbd$XDIR"&&sudo lftp -e "mirror -R $ogxb/$XDIR/ $xbd$XDIR" -u ${u},${p} ${i}</dev/null&&echo "The user selected option number $n: '$game'"&&sudo rm -Rf "$ogxb"/"$XDIR"
+		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt&&sudo mkdir $dest&&sudo mv "$ogxb"/"$game2" "$ogxb"/"$XDIR"/&&cd "$ogxb"/"$XDIR"/&&sudo 7z x $game2 -y&&sudo mv $game2 ../&&sudo mv */* .&& cd ../..&&sudo curl -u ${u}:${p} ftp://${i} -Q "MKD $xbd$XDIR"&&sudo lftp -e "mirror -R $ogxb/$XDIR/ $xbd$XDIR" -u ${u},${p} ${i}</dev/null&&echo "The user selected option number $n: '$game'"&&sudo rm -Rf "$ogxb"/"$XDIR"
 		echo "The user selected option number $n: '$game'"
 		break;
 	  sub_menu5;
