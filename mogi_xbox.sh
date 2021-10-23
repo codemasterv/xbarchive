@@ -675,7 +675,7 @@ sub_menu6(){
       case $sub6 in
 	  
 	  1) clear;
-	  sudo touch xbarchive/ftplist1.txt&&sudo printf '%s' OGXB_Singles/*.7z > xbarchive/ftplist1.txt&&sudo sed -i 's/.\{13\}//' xbarchive/ftplist1.txt&&sudo nl xbarchive/ftplist1.txt > xbarchive/ftplist.txt&&sudo less xbarchive/ftplist.txt
+	  sudo touch xbarchive/ftplist1.txt&&sudo printf '%s\n' OGXB_Singles/*.7z > xbarchive/ftplist1.txt&&sudo sed -i 's/.\{13\}//' xbarchive/ftplist1.txt&&sudo nl xbarchive/ftplist1.txt > xbarchive/ftplist.txt&&sudo less xbarchive/ftplist.txt
 	  sub_menu6;
       sub_menu_admin;
       ;;
