@@ -701,7 +701,7 @@ sub_menu6(){
 		done
 		#Below is the variables for the FTP information
 		game="$(sed -n "${n}p" xbarchive/ftplist.txt)"
-		game2="$(sed -n "${n}p" ../xbarchive/ftplist.txt)"
+		game2="$(sed -n "${n}p" xbarchive/ftplist1.txt)"
 		u=""
 		echo "Enter Your XBOX FTP User Name: "
 		echo "ftp username"
@@ -715,19 +715,22 @@ sub_menu6(){
 		xbd=""
 		echo "Enter XBOX Drive Letter; Example: /G/games/ "
 		read -p '' xbd
-		xdir=""
+		XDIR=""
 		echo "Enter the Name of the Game Directory; Example: Halo/ "
-		read -p '' xdir
-		
+		read -p '' XDIR
+		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt
+
 		#Variable for FTP with lftp Curl makes remote dirctory
-		mkd="$(sudo curl ftp://${u}:${p}@${i}${xbd}${xdir} --ftp-create-dirs)"
-		xbftp=$(sudo lftp -e "mirror -R ${xdir} ${xbd}${xdir}" -u ${u},${p} ${i}</dev/null)
+		#mkd="$(sudo curl ftp://${u}:${p}@${i}${xbd}${XDIR} --ftp-create-dirs)"
+		#xbftp=$(sudo lftp -e "mirror -R ${XDIR} ${xbd}${XDIR}" -u ${u},${p} ${i}</dev/null)
 		#Variable for unzip with 7z
-		zi="$(sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y)"
+		#zi="$(sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y)"
+		#sudo mkdir OGXB_Singles/${xdir};
+		#sudo 7z e OGXB_Singles/${game2} OGXB_Singles/${xdir} -y&&${mkd}&&${xbftp}&&sudo rm -Rf ${xdir};
 		
-		sudo mkdir OGXB_Singles/${xdir}&&sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y&&${mkd}&&${xbftp}&&sudo rm -Rf ${xdir};
-		
-		
+		dest="OGXB_Singles/$XDIR"
+		ogxb="OGXB_singles"
+		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt&&sudo mkdir $dest&&sudo mv "$ogxb"/"$game2" "$ogxb"/"$XDIR"/&&cd $dest&&sudo 7z e $game2 -y&&sudo mv $game2 ../&&cd ../..&&sudo curl -u ${u}:${p} ftp://${i} -Q "MKD $xbd$XDIR"&&sudo lftp -e "mirror -R $ogxb/$XDIR/ $xbd$XDIR" -u ${u},${p} ${i}</dev/null&&echo "The user selected option number $n: '$game'"&&sudo rm -Rf "$ogxb"/"$XDIR"
 		echo "The user selected option number $n: '$game'"
 		break;
 	  sub_menu5;
