@@ -512,7 +512,7 @@ sub_menu4(){
 	  
 	  6) clear;
       option_picked "Exit To Main Menu";
-      sub_menu6;
+      show_menu;
       sub_menu_admin;
       ;;
 	  
@@ -610,7 +610,7 @@ sub_menu5(){
 	  
 	  3) clear;
       option_picked "Exit To Main Menu";
-      show_menu;
+      sub_menu4;
       sub_menu_admin;
       ;;
 	  
@@ -689,6 +689,7 @@ sub_menu6(){
 
       2) clear;
       option_picked "Unzip and FTP Your Game To Your XBOX From Here";
+		
 		echo "Enter Game Number From the List to ftp";
 	    cat xbarchive/ftplist.txt
 		count="$(wc -l xbarchive/ftplist.txt | cut -f 1 -d' ')"
@@ -699,6 +700,8 @@ sub_menu6(){
         break
 		fi
 		done
+		
+		echo 
 		#Below is the variables for the FTP information
 		game="$(sed -n "${n}p" xbarchive/ftplist.txt)"
 		game2="$(sed -n "${n}p" xbarchive/ftplist1.txt)"
@@ -718,27 +721,20 @@ sub_menu6(){
 		XDIR=""
 		echo "Enter the Name of the Game Directory; Example: Halo/ "
 		read -p '' XDIR
-
-		#Variable for FTP with lftp Curl makes remote dirctory
-		#mkd="$(sudo curl ftp://${u}:${p}@${i}${xbd}${XDIR} --ftp-create-dirs)"
-		#xbftp=$(sudo lftp -e "mirror -R ${XDIR} ${xbd}${XDIR}" -u ${u},${p} ${i}</dev/null)
-		#Variable for unzip with 7z
-		#zi="$(sudo 7z e OGXB_Singles/${game} OGXB_Singles/${xdir} -y)"
-		#sudo mkdir OGXB_Singles/${xdir};
-		#sudo 7z e OGXB_Singles/${game2} OGXB_Singles/${xdir} -y&&${mkd}&&${xbftp}&&sudo rm -Rf ${xdir};
-		
+		#Below isthe unzip and ftp for single xbox games
 		dest="OGXB_Singles/$XDIR"
 		ogxb="OGXB_singles"
-		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt&&sudo mkdir $dest&&sudo mv "$ogxb"/"$game2" "$ogxb"/"$XDIR"/&&cd "$ogxb"/"$XDIR"/&&sudo 7z x $game2 -y&&sudo mv $game2 ../&&sudo mv */* .&& cd ../..&&sudo curl -u ${u}:${p} ftp://${i} -Q "MKD $xbd$XDIR"&&sudo lftp -e "mirror -R $ogxb/$XDIR/ $xbd$XDIR" -u ${u},${p} ${i}</dev/null&&echo "The user selected option number $n: '$game'"&&sudo rm -Rf "$ogxb"/"$XDIR"
+		sudo cp xbarchive/ftplist.txt xbarchive/ftplist2.txt&&sudo sed -i 's/\t/ /g' xbarchive/ftplist2.txt&&sudo sed -i 's/.\{7\}//' xbarchive/ftplist2.txt&&sudo mkdir $dest&&sudo mv "$ogxb"/"$game2" "$ogxb"/"$XDIR"/&&cd "$ogxb"/"$XDIR"/&&sudo 7z x $game2 -y&&sudo mv $game2 ../&&sudo mv */* .&& cd ../..&&sudo curl -u ${u}:${p} ftp://${i} -Q "MKD $xbd$XDIR"&&sudo lftp -e "mirror -R $ogxb/$XDIR/ $xbd$XDIR" -u ${u},${p} ${i}</dev/null&&echo "The user selected option number $n: '$game'"&&sudo rm -Rf "$ogxb"/"$XDIR";
 		echo "The user selected option number $n: '$game'"
-		break;
+		break
+		
 	  sub_menu5;
       sub_menu_admin;
       ;;
 	  
 	  3) clear;
       option_picked "Exit To Main Menu";
-      show_menu;
+      sub_menu5;
       sub_menu_admin;
       ;;
 	  
