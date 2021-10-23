@@ -3,8 +3,9 @@
 z="64%20%28U%29%20%5B%21%"
 arch="https://archive.org/download/"
 f="5D.z64"
+n="super-mario-64-usa/"
 m="Super%20Mario%20"
-zmarch="${arch}${m}${z}${f}"
+zmarch="${arch}${n}${m}${z}${f}"
 #Fix path bug for clang
 PATH=$PATH:/usr/lib/llvm-10/bin
 #get the libraries
