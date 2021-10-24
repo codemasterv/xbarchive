@@ -7,12 +7,12 @@ s="_360"
 x="XBOX"
 t="_2"
 tt="_201710"
-
-XBARCH="https://archive.org/download/${x}${s}${l}"
-XBARCH2="https://archive.org/download/${x}${h}${r}"
-XBARCH3="https://archive.org/download/${x}${s}${l}${d}"
-XBARCH4="https://archive.org/download/${x}${h}${r}${t}"
-XBARCH5="https://archive.org/download/${x}${h}${r}${t}${tt}"
+ARCH="https://archive.org/download/"
+XBARCH="${ARCH}${x}${s}${l}"
+XBARCH2="${ARCH}${x}${h}${r}"
+XBARCH3="${ARCH}${x}${s}${l}${d}"
+XBARCH4="${ARCH}${x}${h}${r}${t}"
+XBARCH5="${ARCH}${x}${h}${r}${t}${tt}"
 show_menu(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #Blue
@@ -39,8 +39,9 @@ show_menu(){
     printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of ${green}Super Mario 64${normal}\n"
     printf "${menu}**${number} 2)${menu} Download ${green}O.G.Xbox Games${normal}\n"
 	printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n"
-	printf "${menu}**${number} 4)${menu} Clean Files ${normal}\n"
-	printf "${menu}**${number} 5)${menu} Exit ${normal}\n"
+	printf "${menu}**${number} 4)${menu} Download ${green}MAME ${normal}\n"
+	printf "${menu}**${number} 5)${menu} Clean Files ${normal}\n"
+	printf "${menu}**${number} 6)${menu} Exit ${normal}\n"
     printf "${menu}****************************${normal}\n"
     read opt
 
@@ -74,15 +75,20 @@ show_menu(){
             printf "Xbox 360 sub menu";
             sub_menu1;
         ;;
-		
 		4) clear;
+            option_picked "MAME";
+            printf "Xbox 360 sub menu";
+		   sub_menu6;
+		;;
+		
+		5) clear;
             option_picked "Removing Old Files,";
             printf "Bye Felicia";
 			sudo rm -r */ 2> /dev/null;
             show_menu;
         ;;
 		
-        5) clear;
+        6) clear;
 			option_picked "Exit";
             break;
             ;;
@@ -752,6 +758,191 @@ sub_menu6(){
     fi
   done
 }
+
+#MAME_0.225_CHDs_merged
+sub_menu6(){
+    normal=`echo "\033[m"`
+    menu=`echo "\033[36m"` #Blue
+    number=`echo "\033[33m"` #yellow
+    bgred=`echo "\033[41m"`
+    fgred=`echo "\033[31m"`
+	red=`echo "\033[91m"`
+	bggreen=`echo "\033[1;32m"`
+    green=`echo "\033[92m"`
+    printf "\n"
+	printf "\n${menu}***************************************************************************${normal}\n"
+	printf "\n"
+	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+	printf "          ${red}Please select 1 first build DB files\n
+                           then select 2-5 to download ${normal}\n\n"
+	printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "This will download the collection from archive.org.\n\n"
+    printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "Make your selection '1-6' then hit enter\n\n"
+	printf "Option 1) Will Build DB Files\n"
+	printf "Option 2) Will Let you download a single game from a list\n"
+	printf "Option 3) Will Bulk Download Xbox Games # - I\n"
+	printf "Option 4) Will Bulk Download Xbox Games J - Q\n"
+	printf "Option 5) Will Bulk Download Xbox Games R - Z\n"
+	printf "Option 6) Unzip and FTP to XBOX\n"
+	printf "Option 7) Will Exit to Menu\n\n"
+	printf "${menu}*********************************************${normal}\n"
+    printf "${menu}**${number} 1)${menu} Build Mame DB Files ${normal}\n"
+    printf "${menu}**${number} 2)${menu} Download Single Game${normal}\n"
+	printf "${menu}**${number} 3)${menu} Bulk Download MAME_0.225_CHDs${normal}\n"
+	#printf "${menu}**${number} 6)${menu} Unzip and FTP to XBOX${normal}\n"
+	printf "${menu}**${number} 4)${menu} Main Menu ${normal}\n\n"
+    printf "${menu}*********************************************${normal}\n"
+    printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
+    read sub6
+  while [ sub6 != '' ]
+  do
+    if [[ $sub6 = "" ]]; then
+      exit;
+    else
+      case $sub6 in
+
+      1) clear;
+      option_picked "Now Building Mame DB Files";
+	  ####################################
+	  mm="MAME_0.225_CHDs_merged/"
+	  ml="MAME_0.225_CHDs_merged_files.xml"
+	  MS="MAME_0.225_CHDs/"
+	  
+	  #MAME_0.225_CHDs_merged Readable List
+      cd xbarchive/&&sudo wget -N "$ARCH""$mm"MAME_0.225_CHDs_merged_files.xml&&sudo grep '\"*.chd\"' ${ml} > MAME_0.225_CHDs_merged.txt&&sudo sed -i 's/.\{14\}//' MAME_0.225_CHDs_merged.txt&&egrep -o '[^"]*"' MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{gsub("original\"", "");print}' mamedb.txt > MAME_0.225_CHDs_merged.txt&&awk '{gsub("source=\"", "");print}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&grep '\S' mamedb.txt > MAME_0.225_CHDs_merged.txt&&sed -i 's/\"//g' MAME_0.225_CHDs_merged.txt&&cat MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{printf("%01d %s\n", NR, $0)}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&sed -i '1 i\#MAME_0.225_CHDs_merged' mamedb.txt&&sudo cp MAME_0.225_CHDs_merged.txt mamedl.txt&&sudo rm -f ${ml}&&sudo cp mamedl.txt mamesingle.txt&&cd ..&&sudo mkdir ${MS};
+	  	  	  
+	  sub_menu6;
+      sub_menu_admin;
+      ;;
+	  
+	  2) clear;
+      option_picked "Download Single Mame Game";
+      sub_menu7;
+      sub_menu_admin;
+      ;;
+	  
+	  
+	  3) clear;
+      option_picked "Bulk Download MAME_0.225_CHDs";
+      awk '{ printf "MAME_0.225_CHDs_merged/"; print }' xbarchive/mamedl.txt > xbarchive/mamedl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/mamedl2.txt > xbarchive/mamedl.txt&&sudo rm -f xbarchive/mamedl2.txt&&sed -i '1 i\MAME_0.225_CHDs' xbarchive/mamedl.txt&&sed -i '2d' xbarchive/mamedl.txt&&./xbarchive/aria2files.sh xbarchive/mamedl.txt&&sudo rm -f xbarchive/mamedl.txt;
+	  sub_menu6;
+      sub_menu_admin;
+      ;;
+	  
+	  4) clear;
+      option_picked "Exit To Main Menu";
+      show_menu;
+      sub_menu_admin;
+      ;;
+	  
+      x)exit;
+      ;;
+
+      \n)exit;
+      ;;
+
+      *)clear;
+      option_picked "Pick an option from the menu";
+      sub_menu1;
+      ;;
+      esac
+    fi
+  done
+}
+
+#Single Xbox download
+#XBOX Sub Menu 5
+option_picked() {
+    COLOR='\033[01;31m' # bold red
+    RESET='\033[00;00m' # normal white
+    MESSAGE=${@:-"${RESET}Error: No message passed"}
+    echo "${COLOR}${MESSAGE}${RESET}"
+}
+
+sub_menu7(){
+    normal=`echo "\033[m"`
+    menu=`echo "\033[36m"` #Blue
+    number=`echo "\033[33m"` #yellow
+    bgred=`echo "\033[41m"`
+    fgred=`echo "\033[31m"`
+	red=`echo "\033[91m"`
+	bggreen=`echo "\033[1;32m"`
+    green=`echo "\033[92m"`
+    printf "\n"
+	printf "\n${menu}***************************************************************************${normal}\n"
+	printf "\n"
+	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+	printf "          ${red}Please select 1 first to list the games and find the number of the game\n
+                           then select 2 to enter number from the list or 3 to exit${normal}\n\n"
+	printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "This will download single game from archive.org.\n\n"
+    printf "\n${menu}***************************************************************************${normal}\n\n"
+	printf "Make your selection '1-3' then hit enter\n\n"
+	printf "Option 1) List of MAME Games\n"
+	printf "Option 2) Download Single MAME Game From List\n"
+	printf "Option 3) Will Exit to Menu\n\n"
+	printf "${menu}*********************************************${normal}\n"
+    printf "${menu}**${number} 1)${menu} List of MAME_0.225 CHDs${normal}\n"
+	printf "${menu}**${number} 2)${menu} Download Single Game From List${normal}\n"
+	printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
+    printf "${menu}*********************************************${normal}\n"
+    printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
+    read sub7
+  while [ sub7 != '' ]
+  do
+    if [[ $sub7 = "" ]]; then
+      exit;
+    else
+      case $sub7 in
+	  
+	  1) clear;
+	  less xbarchive/mamedb.txt
+	  sub_menu5;
+      sub_menu_admin;
+      ;;
+
+      2)  clear;
+      option_picked "Dowload Single Mame Game From List";
+	  echo "Enter Game Number From the List";
+	  sudo cat xbarchive/mamedb.txt
+		count="$(wc -l xbarchive/mamesingle.txt | cut -f 1 -d' ')"
+		n=""
+		while true; do
+		read -p 'Select option: ' n
+		if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+        break
+		fi
+		done
+		value3="$(sed -n "${n}p" xbarchive/mamesingle.txt)"
+		dlgame3="$arch$mm$value2"
+		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d MAME_Singles $dlgame3
+		echo "The user selected option number $n: '$value3'"
+	  sub_menu5;
+      sub_menu_admin;
+      ;;
+	  
+	  3) clear;
+      option_picked "Exit To Main Menu";
+      sub_menu6;
+      sub_menu_admin;
+      ;;
+	  
+      x)exit;
+      ;;
+
+      \n)exit;
+      ;;
+
+      *)clear;
+      option_picked "Pick an option from the menu";
+      sub_menu1;
+      ;;
+      esac
+    fi
+  done
+}
+
 
 
 clear
