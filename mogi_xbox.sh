@@ -915,7 +915,7 @@ sub_menu7(){
 		fi
 		done
 		value3="$(sed -n "${n}p" xbarchive/mamesingle.txt)"
-		dlgame3="$arch$mm$value2"
+		dlgame3="$ARCH$mm$value3"
 		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d MAME_Singles $dlgame3
 		echo "The user selected option number $n: '$value3'"
 	  sub_menu5;
