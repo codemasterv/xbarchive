@@ -1,4 +1,5 @@
 #!/bin/sh
+#Below are Some Variables
 d="_DLC"
 h="_HDD"
 r="_READY"
@@ -13,408 +14,472 @@ XBARCH2="${ARCH}${x}${h}${r}"
 XBARCH3="${ARCH}${x}${s}${l}${d}"
 XBARCH4="${ARCH}${x}${h}${r}${t}"
 XBARCH5="${ARCH}${x}${h}${r}${t}${tt}"
+
+#Main Menu
 show_menu(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #Blue
     number=`echo "\033[33m"` #yellow
     bgred=`echo "\033[41m"`
     fgred=`echo "\033[31m"`
-	red=`echo "\033[91m"`
-	bggreen=`echo "\033[1;32m"`
+    red=`echo "\033[91m"`
+    bggreen=`echo "\033[1;32m"`
     green=`echo "\033[92m"`
-	printf "\n"
-	printf "\n${menu}***************************************************************************${normal}\n"
-	printf "\n"
-	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
-	printf "          ${red}Please select 0 first to download dependencies\n
-                           then select 1-5 ${normal}\n\n"
-	printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "This will download the collection from archive.org. If you run into errors please try to\n\n"
-	printf "run option 4 Clean Files and redownload DB and dependencies with option 0 on the main menu\n\n"
-    printf "and with option 1 on the sub menus. Be sure to backup your files you want before running 4\n\n"
-    printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "Make your selection '0-5' then hit enter\n\n"
-	printf "${menu}****************************${normal}\n"
-	printf "${menu}**${number} 0)${menu} Download Dependencies ${normal}\n"
-    printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of ${green}Super Mario 64${normal}\n"
-    printf "${menu}**${number} 2)${menu} Download ${green}O.G.Xbox Games${normal}\n"
-	printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n"
-	printf "${menu}**${number} 4)${menu} Download ${green}MAME ${normal}\n"
-	printf "${menu}**${number} 5)${menu} Clean Files ${normal}\n"
-	printf "${menu}**${number} 6)${menu} Exit ${normal}\n"
-    printf "${menu}****************************${normal}\n"
-    read opt
 
-  while [ opt != '' ]
+#Main Menue Header Information
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 0 first to download dependencies\n
+                        then select 1-5 ${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download the collection from archive.org. If you run into errors please try to\n\n"
+printf "run option 4 Clean Files and redownload DB and dependencies with option 0 on the main menu\n\n"
+printf "and with option 1 on the sub menus. Be sure to backup your files you want before running 4\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '0-5' then hit enter\n\n"
+printf "${menu}****************************${normal}\n"
+printf "${menu}**${number} 0)${menu} Download Dependencies and updates${normal}\n"
+printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of ${green}Super Mario 64${normal}\n"
+printf "${menu}**${number} 2)${menu} Download ${green}O.G.Xbox Games${normal}\n"
+printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n"
+printf "${menu}**${number} 4)${menu} Download ${green}MAME ${normal}\n"
+printf "${menu}**${number} 5)${menu} Clean Files ${normal}\n"
+printf "${menu}**${number} 6)${menu} Exit ${normal}\n"
+printf "${menu}****************************${normal}\n"
+
+#Start of Main Menu Options
+read opt
+  while 
+    [ opt != '' ]
   do
-    if [[ $opt = "" ]]; then
-      exit;
-    else
-      case $opt in
-	    0) clear;
-			option_picked "Download setup files and setup";
-			printf "Downloading DB Files";
-            sudo apt-get update -y&&sudo apt-get upgrade -y&&sudo apt-get install -y libssl*&&sudo apt install -y subversion&&sudo apt install -y dos2unix&&sudo apt install -y aria2&&sudo apt install -y build-essential&&sudo apt install -y cmake&&sudo apt install -y flex&&sudo apt install -y bison&&sudo apt install -y clang&&sudo apt install -y lld&&sudo apt install -y git&&sudo apt install -y llvm grep sed lynx p7zip-full p7zip-rar lftp&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.sh&&sudo touch *;
-            show_menu;
-        ;;
-		
-        1) clear;
-            option_picked "Build Super Mario 64 XBOX Port";
-            printf "SM64 XBOX Port";
-			sub_menu3;
-            show_menu;
-        ;;
-     
-        2) clear;
-            option_picked "OG Xbox Games";
-            printf "OG Xbox Games";
-			sub_menu4;
-        ;;
-		3) clear;
-            option_picked "Xbox 360 sub menu";
-            printf "Xbox 360 sub menu";
-            sub_menu1;
-        ;;
-		4) clear;
-            option_picked "MAME";
-            printf "Xbox 360 sub menu";
-		   sub_menu6;
-		;;
-		
-		5) clear;
-            option_picked "Removing Old Files,";
-            printf "Bye Felicia";
-			sudo rm -r */ 2> /dev/null;
-            show_menu;
-        ;;
-		
-        6) clear;
-			option_picked "Exit";
-            break;
-            ;;
-        \n)exit;
-        ;;
-        *)clear;
-            option_picked "Pick an option to download";
-            show_menu;
-      ;;
-      esac
-    fi
+  if 
+    [[ $opt = "" ]]; 
+  then
+    exit;
+  else
+  case $opt 
+  in
+
+#Download tools updates and create DB Files
+0) clear;
+  option_picked "Download setup files and Updates";
+    printf "Downloading DB Files";
+    sudo apt-get update -y&&sudo apt-get upgrade -y&&sudo apt-get install -y libssl* subversion dos2unix aria2 build-essential cmake flex bison clang lld git llvm grep sed lynx p7zip-full p7zip-rar lftp&&sudo svn checkout https://github.com/codemasterv/xbarchive/trunk/xbarchive&&sudo dos2unix xbarchive/*.sh&&sudo touch *;
+  show_menu;
+;;
+
+#Build SM64 Xbox Port Sub Menu
+1) clear;
+  option_picked "Build Super Mario 64 XBOX Port";
+    printf "SM64 XBOX Port";
+  sub_menu3;
+  show_menu;
+;;
+
+#OG Xbox Sub Menu
+2) clear;
+  option_picked "OG Xbox Games";
+    printf "OG Xbox Games";
+  sub_menu4;
+;;
+
+#Build SM64 Xbox Port Sub Menu
+3) clear;
+  option_picked "Xbox 360 sub menu";
+    printf "Xbox 360 sub menu";
+  sub_menu1;
+;;
+
+#Build SM64 Xbox Port Sub Menu
+4) clear;
+  option_picked "MAME";
+    printf "Xbox 360 sub menu";
+  sub_menu7;
+;;
+
+
+#Clean workspace
+5) clear;
+  option_picked "Removing Old Files,";
+    printf "Bye Felicia";
+    sudo rm -r xbarchive/ 2> /dev/null;
+  show_menu;
+;;
+
+#Exit program
+6) clear;
+  option_picked "Exit";
+  break;
+;;
+
+\n)exit;
+;;
+
+*) clear;
+  option_picked "Exit";
+  show_menu;
+;;
+  esac
+  fi
   done
 }
-#XBOX 360 Sub Menu
+
 option_picked() {
-    COLOR='\033[01;31m' # bold red
-    RESET='\033[00;00m' # normal white
-    MESSAGE=${@:-"${RESET}Error: No message passed"}
-    echo "${COLOR}${MESSAGE}${RESET}"
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
 }
 
+#XBOX 360 Sub Menu
 sub_menu1(){
-    normal=`echo "\033[m"`
-    menu=`echo "\033[36m"` #Blue
-    number=`echo "\033[33m"` #yellow
-    bgred=`echo "\033[41m"`
-    fgred=`echo "\033[31m"`
-	red=`echo "\033[91m"`
-	bggreen=`echo "\033[1;32m"`
-    green=`echo "\033[92m"`
-    printf "\n"
-	printf "\n${menu}***************************************************************************${normal}\n"
-	printf "\n"
-	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
-	printf "          ${red}Please select 1 first to build Xbox 360 DB files\n
-                           then select 2-6 to see game lists and download by bulk${normal}\n\n"
-	printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "This will download the collection from archive.org.\n\n"
-    printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "Make your selection '1-7' then hit enter\n\n"
-	printf "Option 1) Will Build DB Files\n"
-	printf "Option 2) Will Show List Of Xbox360 XBLA Games, Press 'q' to exit list\n"
-	printf "Option 3) Will Show List Of Xbox360 XBLA DLC, Press 'q' to exit list\n"
-	printf "Option 4) Will Download Single Game or DLC From Above Lists\n"
-	printf "Option 5) Will Bulk Download Xbox360 XBLA Games\n"
-	printf "Option 6) Will Bulk Download Xbox360 XBLA DLC\n"
-	printf "Option 7) Will Exit to Menu\n\n"
-	printf "${menu}*********************************************${normal}\n"
-    printf "${menu}**${number} 1)${menu} Build Xbox360 DB Files ${normal}\n"
-    printf "${menu}**${number} 2)${menu} Show List Of Xbox360 XBLA Games ${normal}\n"
-	printf "${menu}**${number} 3)${menu} Show List Of Xbox360 XBLA DLC ${normal}\n"
-	printf "${menu}**${number} 4)${menu} Download Single Game or DLC From Above Lists${normal}\n"
-	printf "${menu}**${number} 5)${menu} Bulk Download Xbox360 XBLA Games ${normal}\n"
-	printf "${menu}**${number} 6)${menu} Bulk Download Xbox360 XBLA DLC ${normal}\n"
-	printf "${menu}**${number} 7)${menu} Exit To Main Menu ${normal}\n\n"
-    printf "${menu}*********************************************${normal}\n"
-    printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
-    read sub1
-  while [ sub1 != '' ]
+  normal=`echo "\033[m"`
+  menu=`echo "\033[36m"` #Blue
+  number=`echo "\033[33m"` #yellow
+  bgred=`echo "\033[41m"`
+  fgred=`echo "\033[31m"`
+  red=`echo "\033[91m"`
+  bggreen=`echo "\033[1;32m"`
+  green=`echo "\033[92m"`
+
+#Below is the Header Information for XBOX 360 Sub Menu
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 1 first to build Xbox 360 DB files\n
+                          then select 2-6 to see game lists and download by bulk${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download the collection from archive.org.\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-7' then hit enter\n\n"
+printf "Option 1) Will Build DB Files\n"
+printf "Option 2) Will Show List Of Xbox360 XBLA Games, Press 'q' to exit list\n"
+printf "Option 3) Will Show List Of Xbox360 XBLA DLC, Press 'q' to exit list\n"
+printf "Option 4) Will Download Single Game or DLC From Above Lists\n"
+printf "Option 5) Will Bulk Download Xbox360 XBLA Games\n"
+printf "Option 6) Will Bulk Download Xbox360 XBLA DLC\n"
+printf "Option 7) Will Exit to Menu\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} Build Xbox360 DB Files ${normal}\n"
+printf "${menu}**${number} 2)${menu} Show List Of Xbox360 XBLA Games ${normal}\n"
+printf "${menu}**${number} 3)${menu} Show List Of Xbox360 XBLA DLC ${normal}\n"
+printf "${menu}**${number} 4)${menu} Download Single Game or DLC From Above Lists${normal}\n"
+printf "${menu}**${number} 5)${menu} Bulk Download Xbox360 XBLA Games ${normal}\n"
+printf "${menu}**${number} 6)${menu} Bulk Download Xbox360 XBLA DLC ${normal}\n"
+printf "${menu}**${number} 7)${menu} Exit To Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
+
+#Start of XBOX 360 Sub Menu Options
+read sub1
+  while 
+    [ sub1 != '' ]
   do
-    if [[ $sub1 = "" ]]; then
-      exit;
-    else
-      case $sub1 in
+  if 
+    [[ $sub1 = "" ]]; 
+  then
+    exit;
+  else
+  case $sub1 
+  in
 
-      1) clear;
-      option_picked "Now Building Xbox360 DB Files";
-	  ####################################
+#Xbox360 Option 1 Build DB Files
+1) clear;
+  option_picked "Now Building Xbox360 DB Files";  
+
+#Below makes XBOX_360_XBLA Readable List
+    sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
 	  
-	  #XBOX_360_XBLA Readable List
-      sudo touch xbarchive/XBOX_360_GAMES.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_GAMES.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_GAMES.txt&&touch xbarchive/x360dbg.txt&&nl xbarchive/XBOX_360_GAMES.txt > xbarchive/x360dbg.txt&&sed -i '1 i\#XBOX_360_XBLA_GAMES' xbarchive/x360dbg.txt&&sudo rm -f xbarchive/XBOX_360_GAMES.txt&&sudo mkdir XBLA_Singles;
+#Below makes XBOX_360_XBLA_DLC Readable List
+    sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt&&sudo mkdir XBLA_Singles_DLC;
 	  
-	  #XBOX_360_XBLA_DLC Readable List
-	  sudo touch xbarchive/XBOX_360_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_DLC.txt&&sudo sed -i 's/.\{49\}//' xbarchive/XBOX_360_DLC.txt&&touch xbarchive/x360dbd.txt&&nl xbarchive/XBOX_360_DLC.txt > xbarchive/x360dbd.txt&&sed -i '1 i\#XBOX_360_XBLA_DLC' xbarchive/x360dbd.txt&&sudo rm -f xbarchive/XBOX_360_DLC.txt&&sudo mkdir XBLA_Singles_DLC;
+#Below makes XBOX_360_XBLA_DLC x360db3.txt
+    sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{48\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
 	  
-	  #XBOX_360_XBLA_DLC x360db3.txt
-	  sudo touch xbarchive/x360db3.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db3.txt&&sudo sed -i 's/.\{48\}//' xbarchive/x360db3.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db3.txt;
-	  
-	  #XBOX_360_XBLA xbarchive/x360db2.txt
-	  sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{48\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
+#Below makes XBOX_360_XBLA xbarchive/x360db2.txt
+    sudo touch xbarchive/x360db2.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/x360db2.txt&&sudo sed -i 's/.\{48\}//' xbarchive/x360db2.txt&&sudo sed -i 's/ /%20/g' xbarchive/x360db2.txt;
 	  	  
-	  sub_menu1;
-      sub_menu_admin;
-      ;;
-	  
-	  2) clear;
-      option_picked "Listing Xbox360 XBLA Games";
-      less xbarchive/x360dbg.txt;
-	  sub_menu1;
-      sub_menu_admin;
-      ;;
+  sub_menu1;
+  sub_menu_admin;
+;;
 
-      3) clear;
-      option_picked "Listing Xbox360 XBLA DLC";
-      less xbarchive/x360dbd.txt;
-	  sub_menu1;
-      sub_menu_admin;
-      ;;
-	  
-	  4) clear;
-      option_picked "Download Single Game or DLC";
-      sub_menu2;
-      sub_menu_admin;
-      ;;
-	  
-	  5) clear;
-      option_picked "Bulk Downloading Xbox360 XBLA Games";
-      sudo touch xbarchive/XBOX_360_XBLA.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA.txt&&sed -i '1 i\XBOX_360_XBLA' xbarchive/XBOX_360_XBLA.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA.txt;
-	  sub_menu1;
-      sub_menu_admin;
-      ;;
-	  
-	  6) clear;
-      option_picked "Bulk Downloadig Xbox360 XBLA DLC";
-      sudo touch xbarchive/XBOX_360_XBLA_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA_DLC.txt&&sed -i '1 i\XBOX_360_XBLA_DLC' xbarchive/XBOX_360_XBLA_DLC.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA_DLC.txt;
-	  sub_menu1;
-      sub_menu_admin;
-      ;;
-	  
-	  7) clear;
-      option_picked "Exit To Main Menu";
-      show_menu;
-      sub_menu_admin;
-      ;;
-	  
-      x)exit;
-      ;;
+#Xbox360 Option 1 Build DB Files	  
+2) clear;
+  option_picked "Listing Xbox360 XBLA Games";
+    less xbarchive/x360dbg.txt;
+  sub_menu1;
+  sub_menu_admin;
+;;
 
-      \n)exit;
-      ;;
+#Xbox360 Option 1 Build DB Files
+3) clear;
+  option_picked "Listing Xbox360 XBLA DLC";
+    less xbarchive/x360dbd.txt;
+  sub_menu1;
+  sub_menu_admin;
+;;
 
-      *)clear;
-      option_picked "Pick an option from the menu";
-      show_menu;
-      ;;
-      esac
-    fi
-  done
+#Xbox360 Option 1 Build DB Files	  
+4) clear;
+  option_picked "Download Single Game or DLC";
+  sub_menu2;
+  sub_menu_admin;
+;;
+
+#below Bulk downloads Xbox360 XBLA Games
+5) clear;
+  option_picked "Bulk Downloading Xbox360 XBLA Games";
+    sudo touch xbarchive/XBOX_360_XBLA.txt&&sudo lynx -dump -listonly $XBARCH | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA.txt&&sed -i '1 i\XBOX_360_XBLA' xbarchive/XBOX_360_XBLA.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA.txt;
+  sub_menu1;
+  sub_menu_admin;
+;;
+
+#below Bulk downloads Xbox360 XBLA DLC	  
+6) clear;
+    option_picked "Bulk Downloadig Xbox360 XBLA DLC";
+    sudo touch xbarchive/XBOX_360_XBLA_DLC.txt&&sudo lynx -dump -listonly $XBARCH3 | grep https | grep \.rar$ | awk '{print $0}' > xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/.\{6\}//' xbarchive/XBOX_360_XBLA_DLC.txt&&sudo sed -i 's/ /%20/g' xbarchive/XBOX_360_XBLA_DLC.txt&&sed -i '1 i\XBOX_360_XBLA_DLC' xbarchive/XBOX_360_XBLA_DLC.txt&&./xbarchive/aria2files.sh xbarchive/XBOX_360_XBLA_DLC.txt;
+  sub_menu1;
+  sub_menu_admin;
+;;
+	  
+#Exit to main menu    
+7) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+	  
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+  option_picked "Pick an option from the menu";
+  show_menu;
+;;
+esac
+fi
+done
+}
+
+#Colors for text 
+option_picked() {
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
 }
 
 #Single Xbox360 download
 #XBOX 360 Sub Menu 2
-option_picked() {
-    COLOR='\033[01;31m' # bold red
-    RESET='\033[00;00m' # normal white
-    MESSAGE=${@:-"${RESET}Error: No message passed"}
-    echo "${COLOR}${MESSAGE}${RESET}"
-}
-
 sub_menu2(){
-    normal=`echo "\033[m"`
-    menu=`echo "\033[36m"` #Blue
-    number=`echo "\033[33m"` #yellow
-    bgred=`echo "\033[41m"`
-    fgred=`echo "\033[31m"`
-	red=`echo "\033[91m"`
-	bggreen=`echo "\033[1;32m"`
-    green=`echo "\033[92m"`
-    printf "\n"
-	printf "\n${menu}***************************************************************************${normal}\n"
-	printf "\n"
-	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
-	printf "          ${red}Please select 1 or 2 download game from xbox 360 list\n"
-    printf "                     and enter the mumber use option 3 to go back to menu${normal}\n\n"
-	printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "This will download single game from archive.org.\n\n"
-    printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "Make your selection '1-3' then hit enter\n\n"
-	printf "Option 1) Download Single Game From List\n"
-	printf "Option 2) Download Single DLC From List\n"
-	printf "Option 3) Will Exit to Menu\n\n"
-	printf "${menu}*********************************************${normal}\n"
-    printf "${menu}**${number} 1)${menu} Download Single Game From List${normal}\n"
-	printf "${menu}**${number} 2)${menu} Download Single DLC From List${normal}\n"
-	printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
-    printf "${menu}*********************************************${normal}\n"
-    printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
-    read sub2
-  while [ sub2 != '' ]
+  normal=`echo "\033[m"`
+  menu=`echo "\033[36m"` #Blue
+  number=`echo "\033[33m"` #yellow
+  bgred=`echo "\033[41m"`
+  fgred=`echo "\033[31m"`
+  red=`echo "\033[91m"`
+  bggreen=`echo "\033[1;32m"`
+  green=`echo "\033[92m"`
+  printf "\n"
+  printf "\n${menu}***************************************************************************${normal}\n"
+  printf "\n"
+  printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+  printf "          ${red}Please select 1 or 2 download game from xbox 360 list\n"
+  printf "                     and enter the mumber use option 3 to go back to menu${normal}\n\n"
+  printf "\n${menu}***************************************************************************${normal}\n\n"
+  printf "This will download single game from archive.org.\n\n"
+  printf "\n${menu}***************************************************************************${normal}\n\n"
+  printf "Make your selection '1-3' then hit enter\n\n"
+  printf "Option 1) Download Single Game From List\n"
+  printf "Option 2) Download Single DLC From List\n"
+  printf "Option 3) Will Exit to Menu\n\n"
+  printf "${menu}*********************************************${normal}\n"
+  printf "${menu}**${number} 1)${menu} Download Single Game From List${normal}\n"
+  printf "${menu}**${number} 2)${menu} Download Single DLC From List${normal}\n"
+  printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
+  printf "${menu}*********************************************${normal}\n"
+  printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
+
+#Start of XBOX 360 Sub Menu 2 Options select
+read sub2
+  while 
+    [ sub2 != '' ]
   do
-    if [[ $sub2 = "" ]]; then
-      exit;
-    else
-      case $sub2 in
-	  
-	  1) clear;
-      option_picked "Dowload Single Xbox360 XBLA Game From List";
-	  echo "Enter Game Number From the List";
-	  sudo cat xbarchive/x360dbg.txt
-		count="$(wc -l xbarchive/x360db2.txt | cut -f 1 -d' ')"
-		n=""
-		while true; do
-		read -p 'Select option: ' n
-		if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
-        break
-		fi
-		done
-		value="$(sed -n "${n}p" xbarchive/x360db2.txt)"
-		dlgame="$XBARCH$value"
-		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d XBLA_Singles $dlgame
-		echo "The user selected option number $n: '$value'"
-	  sub_menu2;
-      sub_menu_admin;
-      ;;
-	  
+  if 
+    [[ $sub2 = "" ]]; 
+  then
+    exit;
+  else
+  case $sub2 in
 
-      2) clear;
-      option_picked "Enter DLC Number From the List";
-	  echo "Enter Game Number From the List";
-	  sudo cat xbarchive/x360dbd.txt
-		count="$(wc -l xbarchive/x360db3.txt | cut -f 1 -d' ')"
-		n=""
-		while true; do
-		read -p 'Select option: ' n
-		if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
-        break
-		fi
-		done
-		value="$(sed -n "${n}p" xbarchive/x360db3.txt)"
-		dldlc="$XBARCH$value"
-		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d XBLA_Singles_DLC $dldlc
-		echo "The user selected option number $n: '$value'"
-	  sub_menu2;
-      sub_menu_admin;
-      ;;
-	  
-	  3) clear;
-      option_picked "Exit To Main Menu";
-      show_menu;
-      sub_menu_admin;
-      ;;
-	  
-      x)exit;
-      ;;
-
-      \n)exit;
-      ;;
-
-      *)clear;
-      option_picked "Pick an option from the menu";
-      show_menu;
-      ;;
-      esac
+#Option one	Dowload Single Xbox360 XBLA Game From List
+1) clear;
+  option_picked "Dowload Single Xbox360 XBLA Game From List";
+    echo "Enter Game Number From the List";
+    sudo cat xbarchive/x360dbg.txt
+    count="$(wc -l xbarchive/x360db2.txt | cut -f 1 -d' ')"
+    n=""
+    while 
+      true; 
+    do
+      read -p 'Select option: ' n
+    if 
+      [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; 
+    then
+      break
     fi
+    done
+    value="$(sed -n "${n}p" xbarchive/x360db2.txt)"
+    dlgame="$XBARCH$value"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d XBLA_Singles $dlgame
+    echo "The user selected option number $n: '$value'"
+  sub_menu2;
+  sub_menu_admin;
+;;
+
+#Option 2 Dowload Single Xbox360 XBLA DLC From List
+2) clear;
+  option_picked "Enter DLC Number From the List";
+    echo "Enter Game Number From the List";
+    sudo cat xbarchive/x360dbd.txt
+    count="$(wc -l xbarchive/x360db3.txt | cut -f 1 -d' ')"
+    n=""
+    while 
+      true; 
+    do
+      read -p 'Select option: ' n
+    if 
+      [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; 
+    then
+      break
+    fi
+    done
+    value="$(sed -n "${n}p" xbarchive/x360db3.txt)"
+    dldlc="$XBARCH$value"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d XBLA_Singles_DLC $dldlc
+    echo "The user selected option number $n: '$value'"
+  sub_menu2;
+  sub_menu_admin;
+;;
+
+#Option 3 Back to main menu
+3) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+  option_picked "Pick an option from the menu";
+  show_menu;
+;;
+  esac
+  fi
   done
 }
 
-#Mario64 Sub Menu 3
 option_picked() {
-    COLOR='\033[01;31m' # bold red
-    RESET='\033[00;00m' # normal white
-    MESSAGE=${@:-"${RESET}Error: No message passed"}
-    echo "${COLOR}${MESSAGE}${RESET}"
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
 }
 
+#Mario64 Xbox Port Sub Menu 3
 sub_menu3(){
-    normal=`echo "\033[m"`
-    menu=`echo "\033[36m"` #Blue
-    number=`echo "\033[33m"` #yellow
-    bgred=`echo "\033[41m"`
-    fgred=`echo "\033[31m"`
-	red=`echo "\033[91m"`
-	bggreen=`echo "\033[1;32m"`
-    green=`echo "\033[92m"`
-    printf "\n"
-	printf "\n${menu}***************************************************************************${normal}\n"
-	printf "\n"
-	printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
-	printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "This will build Super Mario 64 XBOX Port for XBOX from https://github.com/fgsfdsfgs/sm64-port\n\n"
-	printf "You must use the correct verion of ubuntu.\n Only Ubuntu 18 and 20 are supported and this includes WSL vrsions\n"
-	printf " Your build can be found in sm64xbox\xbe after it finishes \n\n"
-    printf "\n${menu}***************************************************************************${normal}\n\n"
-	printf "Make your selection '1-3' then hit enter\n\n"
-	printf "Option 1) Build Super Mario 64 XBOX Port with Ubuntu 20\n"
-	printf "Option 2) Build Super Mario 64 XBOX Port with Ubuntu 18\n"
-	printf "Option 3) Will Exit to Menu\n\n"
-	printf "${menu}*********************************************${normal}\n"
-    printf "${menu}**${number} 1)${menu} Build Super Mario 64 XBOX Port with Ubuntu 20${normal}\n"
-	printf "${menu}**${number} 2)${menu} Build Super Mario 64 XBOX Port with Ubuntu 18${normal}\n"
-	printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
-    printf "${menu}*********************************************${normal}\n"
-    printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
-    read sub3
-  while [ sub3 != '' ]
-  do
-    if [[ $sub3 = "" ]]; then
-      exit;
-    else
-      case $sub3 in
-	  
-	  1) clear;
-      option_picked "Building Super Mario 64 XBOX Port with Ubuntu 20";
-      sh xbarchive/sm64xbp.sh;
-	  sub_menu3;
-      sub_menu_admin;
-      ;;
+  normal=`echo "\033[m"`
+  menu=`echo "\033[36m"` #Blue
+  number=`echo "\033[33m"` #yellow
+  bgred=`echo "\033[41m"`
+  fgred=`echo "\033[31m"`
+  red=`echo "\033[91m"`
+  bggreen=`echo "\033[1;32m"`
+  green=`echo "\033[92m"`
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will build Super Mario 64 XBOX Port for XBOX from https://github.com/fgsfdsfgs/sm64-port\n\n"
+printf "You must use the correct verion of ubuntu.\n Only Ubuntu 18 and 20 are supported and this includes WSL vrsions\n"
+printf " Your build can be found in sm64xbox\xbe after it finishes \n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-3' then hit enter\n\n"
+printf "Option 1) Build Super Mario 64 XBOX Port with Ubuntu 20\n"
+printf "Option 2) Build Super Mario 64 XBOX Port with Ubuntu 18\n"
+printf "Option 3) Will Exit to Menu\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} Build Super Mario 64 XBOX Port with Ubuntu 20${normal}\n"
+printf "${menu}**${number} 2)${menu} Build Super Mario 64 XBOX Port with Ubuntu 18${normal}\n"
+printf "${menu}**${number} 3)${menu} Exit To Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
 
-      2) clear;
-      option_picked "Building Super Mario 64 XBOX Port with Ubuntu 18";
-      sh xbarchive/sm64xbp18.sh;
-	  sub_menu3;
-      sub_menu_admin;
-      ;;
+read sub3
+while [ sub3 != '' ]
+do
+if 
+  [[ $sub3 = "" ]]; then
+  exit;
+else
+case $sub3 in
 	  
-	  3) clear;
-      option_picked "Exit To Main Menu";
-      show_menu;
-      sub_menu_admin;
-      ;;
+1) clear;
+  option_picked "Building Super Mario 64 XBOX Port with Ubuntu 20";
+    sh xbarchive/sm64xbp.sh;
+  sub_menu3;
+  sub_menu_admin;
+;;
+
+2) clear;
+  option_picked "Building Super Mario 64 XBOX Port with Ubuntu 18";
+    sh xbarchive/sm64xbp18.sh;
+  sub_menu3;
+  sub_menu_admin;
+;;
+
+3) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
 	  
-      x)exit;
-      ;;
+x) exit;
+;;
 
-      \n)exit;
-      ;;
+\n) exit;
+;;
 
-      *)clear;
-      option_picked "Pick an option from the menu";
-      show_menu;
-      ;;
-      esac
-    fi
-  done
+*) clear;
+  option_picked "Pick an option from the menu";
+  show_menu;
+;;
+esac
+fi
+done
 }
 
+
+option_picked() {
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
+}
+
+#XBOX Downloader XBOX
 #XBOX
 option_picked() {
     COLOR='\033[01;31m' # bold red
@@ -517,8 +582,8 @@ sub_menu4(){
       ;;
 	  
 	  6) clear;
-      option_picked "Exit To Main Menu";
-      show_menu;
+      option_picked "Unzip and FTP Game to xbox";
+      sub_menu6;
       sub_menu_admin;
       ;;
 	  
@@ -686,7 +751,7 @@ sub_menu6(){
 	  ./../xbarchive/ftpname.sh
 	  ./../xbarchive/ftpname2.sh
 	  cd ..;
-	  #
+	  
 	  sudo touch xbarchive/ftplist1.txt&&sudo printf '%s\n' OGXB_Singles/*.7z > xbarchive/ftplist1.txt&&sudo sed -i 's/.\{13\}//' xbarchive/ftplist1.txt&&sudo nl xbarchive/ftplist1.txt > xbarchive/ftplist.txt&&sudo less xbarchive/ftplist.txt
 	  sub_menu6;
       sub_menu_admin;
@@ -734,13 +799,13 @@ sub_menu6(){
 		echo "The user selected option number $n: '$game'"
 		break
 		
-	  sub_menu5;
+	  sub_menu6;
       sub_menu_admin;
       ;;
 	  
 	  3) clear;
       option_picked "Exit To Main Menu";
-      sub_menu5;
+      show_menu;
       sub_menu_admin;
       ;;
 	  
@@ -760,7 +825,7 @@ sub_menu6(){
 }
 
 #MAME_0.225_CHDs_merged
-sub_menu6(){
+sub_menu7(){
     normal=`echo "\033[m"`
     menu=`echo "\033[36m"` #Blue
     number=`echo "\033[33m"` #yellow
@@ -794,13 +859,13 @@ sub_menu6(){
 	printf "${menu}**${number} 4)${menu} Main Menu ${normal}\n\n"
     printf "${menu}*********************************************${normal}\n"
     printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
-    read sub6
-  while [ sub6 != '' ]
+    read sub7
+  while [ sub7 != '' ]
   do
-    if [[ $sub6 = "" ]]; then
+    if [[ $sub7 = "" ]]; then
       exit;
     else
-      case $sub6 in
+      case $sub7 in
 
       1) clear;
       option_picked "Now Building Mame DB Files";
@@ -812,13 +877,13 @@ sub_menu6(){
 	  #MAME_0.225_CHDs_merged Readable List
       cd xbarchive/&&sudo wget -N "$ARCH""$mm"MAME_0.225_CHDs_merged_files.xml&&sudo grep '\"*.chd\"' ${ml} > MAME_0.225_CHDs_merged.txt&&sudo sed -i 's/.\{14\}//' MAME_0.225_CHDs_merged.txt&&egrep -o '[^"]*"' MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{gsub("original\"", "");print}' mamedb.txt > MAME_0.225_CHDs_merged.txt&&awk '{gsub("source=\"", "");print}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&grep '\S' mamedb.txt > MAME_0.225_CHDs_merged.txt&&sed -i 's/\"//g' MAME_0.225_CHDs_merged.txt&&cat MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{printf("%01d %s\n", NR, $0)}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&sed -i '1 i\#MAME_0.225_CHDs_merged' mamedb.txt&&sudo cp MAME_0.225_CHDs_merged.txt mamedl.txt&&sudo rm -f ${ml}&&sudo cp mamedl.txt mamesingle.txt&&cd ..&&sudo mkdir ${MS};
 	  	  	  
-	  sub_menu6;
+	  sub_menu7;
       sub_menu_admin;
       ;;
 	  
 	  2) clear;
       option_picked "Download Single Mame Game";
-      sub_menu7;
+      sub_menu8;
       sub_menu_admin;
       ;;
 	  
@@ -826,7 +891,7 @@ sub_menu6(){
 	  3) clear;
       option_picked "Bulk Download MAME_0.225_CHDs";
       awk '{ printf "MAME_0.225_CHDs_merged/"; print }' xbarchive/mamedl.txt > xbarchive/mamedl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/mamedl2.txt > xbarchive/mamedl.txt&&sudo rm -f xbarchive/mamedl2.txt&&sed -i '1 i\MAME_0.225_CHDs' xbarchive/mamedl.txt&&sed -i '2d' xbarchive/mamedl.txt&&./xbarchive/aria2files.sh xbarchive/mamedl.txt&&sudo rm -f xbarchive/mamedl.txt;
-	  sub_menu6;
+	  sub_menu7;
       sub_menu_admin;
       ;;
 	  
@@ -914,9 +979,9 @@ sub_menu7(){
         break
 		fi
 		done
-		value3="$(sed -n "${n}p" xbarchive/mamesingle.txt)"
-		dlgame3="$ARCH$mm$value3"
-		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d MAME_Singles $dlgame3
+		valuem="$(sed -n "${n}p" xbarchive/mamesingle.txt)"
+		dlgamem="$ARCH$mm$valuem"
+		sudo aria2c --file-allocation=none -c -x 10 -s 10 -d MAME_Singles $dlgamem
 		echo "The user selected option number $n: '$value3'"
 	  sub_menu5;
       sub_menu_admin;
@@ -947,3 +1012,6 @@ sub_menu7(){
 
 clear
 show_menu
+
+trap 'rm -Rf xbarchive/' INT
+trap 'rm -Rf xbarchive/' EXIT
