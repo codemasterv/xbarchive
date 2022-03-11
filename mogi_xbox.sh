@@ -1,4 +1,5 @@
 #!/bin/sh
+sudo rm -rf xbarchive/*.txt;
 #Variables
 d="_DLC"
 h="_HDD"
@@ -17,6 +18,7 @@ XBARCH5="${ARCH}${x}${h}${r}${t}${tt}"
 
 #Main Menu
 show_menu(){
+
 normal=`echo "\033[m"`
 menu=`echo "\033[36m"` #Blue
 number=`echo "\033[33m"` #yellow
@@ -28,13 +30,13 @@ green=`echo "\033[92m"`
 printf "\n"
 printf "\n${menu}***************************************************************************${normal}\n"
 printf "\n"
-printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
-printf "          ${red}Please select 0 first to download dependencies\n
-then select 1-7 ${normal}\n\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n"
+printf "          ${red}Please select 0 first to download dependencies"
 printf "\n${menu}***************************************************************************${normal}\n\n"
-printf "This will download the collection from archive.org. If you run into errors please try to\n\n"
-printf "run option 6 Clean Files and redownload DB and dependencies with option 0 on the main menu\n\n"
-printf "and with option 1 on the sub menus. Be sure to backup your files you want before running 4\n\n"
+printf ${number}"This will download the ReDump Collection from archive.org. If you run into errors please try to\n\n"
+printf "run option 7 to Clean All Files and Re-Download Dependencies with option 0 on the main menu\n\n"
+printf ${green}"YOU MUST DOWNLOAD THE DB FILES FOR EACH CONSOLE EACH TIME YOU START THE PROGRAM TO INSURE ITS UPDATED\n\n"
+printf ${red}"Option 7 Will Remove all Downloaded Games!! Be Sure to Move Them to a Safe Place First!! \n\n"
 printf "\n${menu}***************************************************************************${normal}\n\n"
 printf "Make your selection '0-7' then hit enter\n\n"
 printf "${menu}****************************${normal}\n"
@@ -44,8 +46,9 @@ printf "${menu}**${number} 2)${menu} Download ${green}O.G.Xbox Games${normal}\n"
 printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n"
 printf "${menu}**${number} 4)${menu} Download ${green}XBOX 360 ISOs ${normal}\n"
 printf "${menu}**${number} 5)${menu} Download ${green}MAME ${normal}\n"
-printf "${menu}**${number} 6)${menu} ${red}Clean Files ${normal}\n"
-printf "${menu}**${number} 7)${menu} Exit ${normal}\n"
+printf "${menu}**${number} 6)${menu} Download ${green}Wii rvz${normal}\n"
+printf "${menu}**${number} 7)${menu} ${red}Clean Files ${normal}\n"
+printf "${menu}**${number} 8)${menu} Exit ${normal}\n"
 printf "${menu}****************************${normal}\n"
 read opt
 
@@ -55,6 +58,7 @@ if [[ $opt = "" ]]; then
 exit;
 else
 case $opt in
+
 0) clear;
   option_picked "Download setup files and setup";
     printf "Downloading DB Files";
@@ -94,13 +98,19 @@ case $opt in
 ;;
 
 6) clear;
+  option_picked "Wii rvz";
+    printf "Wii rvz sub menu";
+  sub_menu11;
+;;
+
+7) clear;
   option_picked "Removing Old Files,";
     printf "Bye Felicia";
     sudo rm -r */ 2> /dev/null;
   show_menu;
 ;;
 
-7) clear;
+8) clear;
   option_picked "Exit";
     break;
 ;;
@@ -2754,6 +2764,325 @@ done
 }
 
 
+#Wii rvz
+#MAME Sub Menu 7
+sub_menu11(){
+normal=`echo "\033[m"`
+menu=`echo "\033[36m"` #Blue
+number=`echo "\033[33m"` #yellow
+bgred=`echo "\033[41m"`
+fgred=`echo "\033[31m"`
+red=`echo "\033[91m"`
+bggreen=`echo "\033[1;32m"`
+green=`echo "\033[92m"`
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 1 first build DB files\n
+then select 2-6 to download ${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download the collection from archive.org.\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-4' then hit enter\n\n"
+printf "Option 1) Will Build DB Files\n"
+printf "Option 2) Will Let you download a single game from a list\n"
+printf "Option 3) Will Bulk Download Wii rvz #-D\n"
+printf "Option 4) Will Bulk Download Wii rvz F-M\n"
+printf "Option 5) Will Bulk Download Wii rvz N-S\n"
+printf "Option 6) Will Bulk Download Wii rvz T-Z\n"
+printf "Option 7) Will Exit to Menu\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} ${red}Build Wii rvz #-D DB Files ${normal}\n"
+printf "${menu}**${number} 2)${menu} ${green}Download Single Wii rvz Game${normal}\n"
+printf "${menu}**${number} 3)${menu} Bulk Download Wii rvz #-D${normal}\n"
+printf "${menu}**${number} 4)${menu} Bulk Download Wii rvz F-M${normal}\n"
+printf "${menu}**${number} 5)${menu} Bulk Download Wii rvz N-S${normal}\n"
+printf "${menu}**${number} 6)${menu} Bulk Download Wii rvz T-Z${normal}\n"
+printf "${menu}**${number} 7)${menu} Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
+read sub11
+while [ sub11 != '' ]
+do
+if [[ $sub11 = "" ]]; then
+exit;
+else
+case $sub11 in
+
+1) clear;
+  option_picked "Now Building Wii rvz part 1 DB Files";
+    
+    ################# Wii rvz #-D ###################
+    rvz="wii_rvz_usa/"
+    rvz1="wii_rvz_usa"
+    rvxml="wii_rvz_usa_files.xml"
+
+    ################# Wii rvz F-M ###################
+    rvz2="wii_rvz_usa_p2/"
+    rvz12="wii_rvz_usa_p2"
+    rvxml2="wii_rvz_usa_p2_files.xml"
+
+    ################# Wii rvz N-S ###################
+    rvz3="wii_rvz_usa_p3/"
+    rvz13="wii_rvz_usa_p3"
+    rvxml3="wii_rvz_usa_p3_files.xml"
+
+    ################# Wii rvz T-Z ###################
+    rvz4="wii_rvz_usa_p4/"
+    rvz14="wii_rvz_usa_p4"
+    rvxml4="wii_rvz_usa_p4_files.xml"
+    
+
+    #wii_rvz_usa part 1 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz"wii_rvz_usa_files.xml&&sudo grep '\"*.rvz\"' ${rvxml} > wii_rvz_usa.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usa.txt&&egrep -o '[^"]*"' wii_rvz_usa.txt > rvzdb.txt&&awk '{gsub("original\"", "");print}' rvzdb.txt > wii_rvz_usa.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usa.txt > rvzdb.txt&&grep '\S' rvzdb.txt > wii_rvz_usa.txt&&sed -i 's/\"//g' wii_rvz_usa.txt&&cat wii_rvz_usa.txt > rvzdb.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usa.txt > rvzdb.txt&&sed -i '1 i\#wii_rvz_usa' rvzdb.txt&&sudo cp wii_rvz_usa.txt rvzdl.txt&&sudo rm -f ${rvxml}&&sudo cp rvzdl.txt rvzsingle.txt&&cd ..&&sudo mkdir ${rvz1};
+
+    #wii_rvz_usa part 2 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz2"wii_rvz_usa_p2_files.xml&&sudo grep '\"*.rvz\"' ${rvxml2} > wii_rvz_usap2.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap2.txt&&egrep -o '[^"]*"' wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{gsub("original\"", "");print}' rvzdbp2.txt > wii_rvz_usap2.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap2.txt > rvzdbp2.txt&&grep '\S' rvzdbp2.txt > wii_rvz_usap2.txt&&sed -i 's/\"//g' wii_rvz_usap2.txt&&cat wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap2.txt > rvzdbp2.txt&&sed -i '1 i\#wii_rvz_usap2' rvzdbp2.txt&&sudo cp wii_rvz_usap2.txt rvzdlp2.txt&&sudo rm -f ${rvxml2}&&sudo cp rvzdlp2.txt rvzsinglep2.txt&&cd ..&&sudo mkdir ${rvz12};#&&sudo sed -i 's/\&amp\;/%26/g' xbarchive/rvzsinglep2.txt;
+
+    #wii_rvz_usa part 3 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz3"wii_rvz_usa_p3_files.xml&&sudo grep '\"*.rvz\"' ${rvxml3} > wii_rvz_usap3.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap3.txt&&egrep -o '[^"]*"' wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{gsub("original\"", "");print}' rvzdbp3.txt > wii_rvz_usap3.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap3.txt > rvzdbp3.txt&&grep '\S' rvzdbp3.txt > wii_rvz_usap3.txt&&sed -i 's/\"//g' wii_rvz_usap3.txt&&cat wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap3.txt > rvzdbp3.txt&&sed -i '1 i\#wii_rvz_usap3' rvzdbp3.txt&&sudo cp wii_rvz_usap3.txt rvzdlp3.txt&&sudo rm -f ${rvxml3}&&sudo cp rvzdlp3.txt rvzsinglep3.txt&&cd ..&&sudo mkdir ${rvz13};
+
+    #wii_rvz_usa part 4 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz4"wii_rvz_usa_p4_files.xml&&sudo grep '\"*.rvz\"' ${rvxml4} > wii_rvz_usap4.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap4.txt&&egrep -o '[^"]*"' wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{gsub("original\"", "");print}' rvzdbp4.txt > wii_rvz_usap4.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap4.txt > rvzdbp4.txt&&grep '\S' rvzdbp4.txt > wii_rvz_usap4.txt&&sed -i 's/\"//g' wii_rvz_usap4.txt&&cat wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap4.txt > rvzdbp4.txt&&sed -i '1 i\#wii_rvz_usap4' rvzdbp4.txt&&sudo cp wii_rvz_usap4.txt rvzdlp4.txt&&sudo rm -f ${rvxml4}&&sudo cp rvzdlp4.txt rvzsinglep4.txt&&cd ..&&sudo mkdir ${rvz14};
+
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+2) clear;
+  option_picked "Download Single Wii rvz Game";
+  sub_menu12;
+  sub_menu_admin;
+;;
+
+
+3) clear;
+  option_picked "Bulk Download Wii rvz #-D";
+    awk '{ printf "wii_rvz_usa/"; print }' xbarchive/rvzdl.txt > xbarchive/rvzdl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/rvzdl2.txt > xbarchive/rvzdl.txt&&sudo rm -f xbarchive/rvzdl2.txt&&sed -i '1 i\wii_rvz_usa' xbarchive/rvzdl.txt&&sed -i '2d' xbarchive/rvzdl.txt&&./xbarchive/aria2files.sh xbarchive/rvzdl.txt&&sudo rm -f xbarchive/rvzdl.txt;
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+4) clear;
+  option_picked "Bulk Download Wii rvz F-M";
+    awk '{ printf "wii_rvz_usa_p2/"; print }' xbarchive/rvzdlp2.txt > xbarchive/rvzdlp22.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/rvzdlp22.txt > xbarchive/rvzdlp2.txt&&sudo rm -f xbarchive/rvzdlp22.txt&&sed -i '1 i\wii_rvz_usa_p2' xbarchive/rvzdlp2.txt&&sed -i '2d' xbarchive/rvzdlp2.txt&&./xbarchive/aria2files.sh xbarchive/rvzdlp2.txt&&sudo rm -f xbarchive/rvzdlp2.txt;
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+5) clear;
+  option_picked "Bulk Download Wii rvz N-S";
+    awk '{ printf "wii_rvz_usa_p3/"; print }' xbarchive/rvzdlp3.txt > xbarchive/rvzdlp32.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/rvzdlp32.txt > xbarchive/rvzdlp3.txt&&sudo rm -f xbarchive/rvzdlp32.txt&&sed -i '1 i\wii_rvz_usa_p3' xbarchive/rvzdlp3.txt&&sed -i '2d' xbarchive/rvzdlp3.txt&&./xbarchive/aria2files.sh xbarchive/rvzdlp3.txt&&sudo rm -f xbarchive/rvzdlp3.txt;
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+6) clear;
+  option_picked "Bulk Download Wii rvz T-Z";
+    awk '{ printf "wii_rvz_usa_p4/"; print }' xbarchive/rvzdlp4.txt > xbarchive/rvzdlp42.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/rvzdlp42.txt > xbarchive/rvzdlp4.txt&&sudo rm -f xbarchive/rvzdlp42.txt&&sed -i '1 i\wii_rvz_usa_p4' xbarchive/rvzdlp4.txt&&sed -i '2d' xbarchive/rvzdlp4.txt&&./xbarchive/aria2files.sh xbarchive/rvzdlp4.txt&&sudo rm -f xbarchive/rvzdlp4.txt;
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+4) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+option_picked "Pick an option from the menu";
+sub_menu1;
+;;
+esac
+fi
+done
+}
+
+#Single Wii rvz download
+#Wii rvz Sub Menu 12
+option_picked() {
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
+}
+
+sub_menu12(){
+  normal=`echo "\033[m"`
+  menu=`echo "\033[36m"` #Blue
+  number=`echo "\033[33m"` #yellow
+  bgred=`echo "\033[41m"`
+  fgred=`echo "\033[31m"`
+  red=`echo "\033[91m"`
+  bggreen=`echo "\033[1;32m"`
+  green=`echo "\033[92m"`
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 1 To Return to Wii rvz Bulk Download\n
+select 2 to enter number from the list to download or 3 to exit${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download single game from archive.org.\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-6' then hit enter\n\n"
+#printf "Option 1) Return to Wii rvz Bulk Download\n"
+#printf "Option 2) Download Single Wii rvz #-D Game From List\n"
+#printf "Option 3) Download Single Wii rvz F-M Game From List\n"
+#printf "Option 4) Download Single Wii rvz N-S Game From List\n"
+#printf "Option 5) Download Single Wii rvz T-Z Game From List\n"
+#printf "Option 6) Will Exit to Menu\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} ${green}Return to Wii rvz Bulk Download${normal}\n"
+printf "${menu}**${number} 2)${menu} Download Single Wii rvz #-D Game From List${normal}\n"
+printf "${menu}**${number} 3)${menu} Download Single Wii rvz F-M Game From List${normal}\n"
+printf "${menu}**${number} 4)${menu} Download Single Wii rvz N-S Game From List${normal}\n"
+printf "${menu}**${number} 5)${menu} Download Single Wii rvz T-Z Game From List${normal}\n"
+printf "${menu}**${number} 6)${menu} ${red}Exit To Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
+read sub12
+while [ sub12 != '' ]
+do
+if [[ $sub12 = "" ]]; then
+exit;
+else
+case $sub12 in
+
+1) clear;
+  sub_menu11;
+  sub_menu_admin;
+;;
+
+2)  clear;
+  option_picked "Dowload Single Wii rvz #-D Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/rvzsingle.txt xbarchive/rvzsingle2.txt
+    sudo sed -i 's/ /%20/g' xbarchive/rvzsingle2.txt
+    sudo sed -i 's/(/%28/g' xbarchive/rvzsingle2.txt
+    sudo sed -i 's/)/%29/g' xbarchive/rvzsingle2.txt
+    sudo sed -i 's/&amp;/%26/g' xbarchive/rvzsingle2.txt
+    sudo cat xbarchive/rvzdb.txt
+    count="$(wc -l xbarchive/rvzsingle.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuep1="$(sed -n "${n}p" xbarchive/rvzsingle2.txt)"
+    #dlgamem="$ARCH$mm$valuep1"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d wii_rvz_usa_Singles_#-D https://archive.org/download/wii_rvz_usa/$valuep1
+    echo "The user selected option number $n: '$valuep1'"
+  sub_menu12;
+  sub_menu_admin;
+;;
+
+3)  clear;
+  option_picked "Dowload Single Wii rvz F-M Game From List";
+    echo "Enter Game Number From the List";
+    #sudo sed -i 's/\&amp\;/%26/g' xbarchive/rvzsinglep2.txt
+    sudo cp xbarchive/rvzsinglep2.txt xbarchive/rvzsinglep22.txt;
+    sudo sed -i 's/ /%20/g' xbarchive/rvzsinglep22.txt;
+    sudo sed -i 's/(/%28/g' xbarchive/rvzsinglep22.txt;
+    sudo sed -i 's/)/%29/g' xbarchive/rvzsinglep22.txt;
+    sudo sed -i 's/&amp;/%26/g' xbarchive/rvzsinglep22.txt;
+    sudo cat xbarchive/rvzdbp2.txt;
+    count="$(wc -l xbarchive/rvzsinglep2.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuep2="$(sed -n "${n}p" xbarchive/rvzsinglep22.txt)"
+    #dlgamem="$ARCH$mm$valuep1"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d wii_rvz_usa_Singles_F-M https://archive.org/download/wii_rvz_usa_p2/$valuep2
+    echo "The user selected option number $n: '$valuep2'"
+  sub_menu12;
+  sub_menu_admin;
+;;
+
+4)  clear;
+  option_picked "Dowload Single Wii rvz N-S Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/rvzsinglep3.txt xbarchive/rvzsinglep32.txt
+    sudo sed -i 's/ /%20/g' xbarchive/rvzsinglep32.txt
+    sudo sed -i 's/(/%28/g' xbarchive/rvzsinglep32.txt
+    sudo sed -i 's/)/%29/g' xbarchive/rvzsinglep32.txt
+    sudo sed -i 's/&amp;/%26/g' xbarchive/rvzsinglep32.txt
+    sudo cat xbarchive/rvzdbp3.txt
+    count="$(wc -l xbarchive/rvzsinglep3.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuep3="$(sed -n "${n}p" xbarchive/rvzsinglep32.txt)"
+    #dlgamem="$ARCH$mm$valuep1"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d wii_rvz_usa_Singles_N-S https://archive.org/download/wii_rvz_usa_p3/$valuep3
+    echo "The user selected option number $n: '$valuep3'"
+  sub_menu12;
+  sub_menu_admin;
+;;
+
+5)  clear;
+  option_picked "Dowload Single Wii rvz T-Z Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/rvzsinglep4.txt xbarchive/rvzsinglep42.txt
+    sudo sed -i 's/ /%20/g' xbarchive/rvzsinglep42.txt
+    sudo sed -i 's/(/%28/g' xbarchive/rvzsinglep42.txt
+    sudo sed -i 's/)/%29/g' xbarchive/rvzsinglep42.txt
+    sudo sed -i 's/&amp;/%26/g' xbarchive/rvzsinglep42.txt
+    sudo cat xbarchive/rvzdbp4.txt
+    count="$(wc -l xbarchive/rvzsinglep4.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuep4="$(sed -n "${n}p" xbarchive/rvzsinglep42.txt)"
+    #dlgamem="$ARCH$mm$valuep1"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d wii_rvz_usa_Singles_T-Z https://archive.org/download/wii_rvz_usa_p4/$valuep4
+    echo "The user selected option number $n: '$valuep4'"
+  sub_menu12;
+  sub_menu_admin;
+;;
+
+6) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+  option_picked "Pick an option from the menu";
+  sub_menu1;
+;;
+esac
+fi
+done
+}
 
 
 
