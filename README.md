@@ -28,4 +28,4 @@ Option 4 will remove all folders but leave the script
 
 
 
-![Capture](https://user-images.githubusercontent.com/23326730/138365375-0a79725c-560a-4e1c-9cbd-532efb4206f2.PNG)
+![Capture](https://github.com/codemasterv/xbarchive/blob/master/Capture.PNG)
