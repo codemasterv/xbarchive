@@ -1,5 +1,5 @@
 #!/bin/sh
-sudo rm -rf xbarchive/*.txt;
+
 #Variables
 d="_DLC"
 h="_HDD"
@@ -27,18 +27,20 @@ fgred=`echo "\033[31m"`
 red=`echo "\033[91m"`
 bggreen=`echo "\033[1;32m"`
 green=`echo "\033[92m"`
-printf "\n"
 printf "\n${menu}***************************************************************************${normal}\n"
-printf "\n"
-printf "                        ${green}Mogi_XBOX_Downloader                       \n"
-printf "          ${red}Please select 0 first to download dependencies"
+printf "                      ${green}Mogi_ReDump_Downloader                       \n"
+printf "          ${red}Please Select 0 First To Download Dependencies"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf ${number}"    This will download the ReDump Collection from archive.org.\n"
+printf "              If You Run Into Errors Please Try To,\n"
+printf "               Run Option 7 To Clean All DB Files\n"
+printf ${green}"YOU MUST DOWNLOAD THE DB FILES FOR EACH CONSOLE TO DOWNLOAD GAMES\n"
+printf "\n${menu}*****************************READ ME***************************************${normal}\n"
+printf ${red}"Option 8 Will Remove All Downloaded Games, DB Files, Scripts, And Folders!!\n"
+printf "Be Sure To Move Downloaded Games To A Safe Place First!! \n"
+printf "Then Re-Download Dependencies With Option 0 On The Main Menu\n"
 printf "\n${menu}***************************************************************************${normal}\n\n"
-printf ${number}"This will download the ReDump Collection from archive.org. If you run into errors please try to\n\n"
-printf "run option 7 to Clean All Files and Re-Download Dependencies with option 0 on the main menu\n\n"
-printf ${green}"YOU MUST DOWNLOAD THE DB FILES FOR EACH CONSOLE EACH TIME YOU START THE PROGRAM TO INSURE ITS UPDATED\n\n"
-printf ${red}"Option 7 Will Remove all Downloaded Games!! Be Sure to Move Them to a Safe Place First!! \n\n"
-printf "\n${menu}***************************************************************************${normal}\n\n"
-printf "Make your selection '0-7' then hit enter\n\n"
+printf "Make your selection '0-8' then hit enter\n"
 printf "${menu}****************************${normal}\n"
 printf "${menu}**${number} 0)${menu} Download Dependencies ${normal}\n"
 printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of ${green}Super Mario 64${normal}\n"
@@ -47,8 +49,9 @@ printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n
 printf "${menu}**${number} 4)${menu} Download ${green}XBOX 360 ISOs ${normal}\n"
 printf "${menu}**${number} 5)${menu} Download ${green}MAME ${normal}\n"
 printf "${menu}**${number} 6)${menu} Download ${green}Wii rvz${normal}\n"
-printf "${menu}**${number} 7)${menu} ${red}Clean Files ${normal}\n"
-printf "${menu}**${number} 8)${menu} Exit ${normal}\n"
+printf "${menu}**${number} 7)${menu} ${red}Remove Old DB Files ${normal}\n"
+printf "${menu}**${number} 8)${menu} ${red}Remove All Game, DB Files, and Folders  ${normal}\n"
+printf "${menu}**${number} 9)${menu} Exit ${normal}\n"
 printf "${menu}****************************${normal}\n"
 read opt
 
@@ -67,14 +70,14 @@ case $opt in
 ;;
 
 1) clear;
-  option_picked "Build Super Mario 64 XBOX Port";
+  option_picked "Build Super Mario 64 XBOX Port sub menu";
     printf "SM64 XBOX Port";
   sub_menu3;
   show_menu;
 ;;
 
 2) clear;
-  option_picked "OG Xbox Games";
+  option_picked "OG Xbox Games sub menu";
     printf "OG Xbox Games";
   sub_menu4;
 ;;
@@ -92,7 +95,7 @@ case $opt in
 ;;
 
 5) clear;
-  option_picked "MAME";
+  option_picked "MAME sub menu";
     printf "MAME sub menu";
   sub_menu7;
 ;;
@@ -104,13 +107,20 @@ case $opt in
 ;;
 
 7) clear;
-  option_picked "Removing Old Files,";
+  option_picked "Removing Old DB Files";
+    printf "Removing Old DB Files";
+    sudo rm -rf xbarchive/*.txt; 2> /dev/null;
+  show_menu;
+;;
+
+8) clear;
+  option_picked "Removing All Games and DB Files,";
     printf "Bye Felicia";
     sudo rm -r */ 2> /dev/null;
   show_menu;
 ;;
 
-8) clear;
+9) clear;
   option_picked "Exit";
     break;
 ;;
@@ -2793,7 +2803,7 @@ printf "Option 5) Will Bulk Download Wii rvz N-S\n"
 printf "Option 6) Will Bulk Download Wii rvz T-Z\n"
 printf "Option 7) Will Exit to Menu\n\n"
 printf "${menu}*********************************************${normal}\n"
-printf "${menu}**${number} 1)${menu} ${red}Build Wii rvz #-D DB Files ${normal}\n"
+printf "${menu}**${number} 1)${menu} ${red}Build Wii rvz #-Z DB Files ${normal}\n"
 printf "${menu}**${number} 2)${menu} ${green}Download Single Wii rvz Game${normal}\n"
 printf "${menu}**${number} 3)${menu} Bulk Download Wii rvz #-D${normal}\n"
 printf "${menu}**${number} 4)${menu} Bulk Download Wii rvz F-M${normal}\n"
