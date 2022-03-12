@@ -5,7 +5,7 @@ This is a helper tool to access Archive.org files
 This is early in build so its pretty basic.
 It will allow you to get xbox stuff in bulk from archive.org
 
-This will download Redump games from Archive.org at an average speed of 5-6MBs and uses mulithreaded downloading and avoid rate limiting.
+This will download Redump games from Archive.org at an average speed of 5-6MBs and uses multithreaded downloading and avoid rate limiting.
 
 This program also has a resume feature. It will allow you to continue bulk downloads or single downloads if your internet connection is interrupted or errors
 
