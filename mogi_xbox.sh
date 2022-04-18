@@ -40,18 +40,19 @@ printf ${red}"Option 8 Will Remove All Downloaded Games, DB Files, Scripts, And 
 printf "Be Sure To Move Downloaded Games To A Safe Place First!! \n"
 printf "Then Re-Download Dependencies With Option 0 On The Main Menu\n"
 printf "\n${menu}***************************************************************************${normal}\n\n"
-printf "Make your selection '0-8' then hit enter\n"
+printf "Make your selection '0-10' then hit enter\n"
 printf "${menu}****************************${normal}\n"
 printf "${menu}**${number} 0)${menu} Download Dependencies ${normal}\n"
-printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of ${green}Super Mario 64${normal}\n"
-printf "${menu}**${number} 2)${menu} Download ${green}O.G.Xbox Games${normal}\n"
-printf "${menu}**${number} 3)${menu} Download ${green}XBOX 360 XBLAs ${normal}\n"
-printf "${menu}**${number} 4)${menu} Download ${green}XBOX 360 ISOs ${normal}\n"
-printf "${menu}**${number} 5)${menu} Download ${green}MAME ${normal}\n"
-printf "${menu}**${number} 6)${menu} Download ${green}Wii rvz${normal}\n"
-printf "${menu}**${number} 7)${menu} ${red}Remove Old DB Files ${normal}\n"
-printf "${menu}**${number} 8)${menu} ${red}Remove All Game, DB Files, and Folders  ${normal}\n"
-printf "${menu}**${number} 9)${menu} Exit ${normal}\n"
+printf "${menu}**${number} 1)${menu} Build Latest XBOX Port of Super Mario 64${normal}\n"
+printf "${menu}**${number} 2)${menu} Download O.G.Xbox Games${normal}\n"
+printf "${menu}**${number} 3)${menu} Download XBOX 360 XBLAs ${normal}\n"
+printf "${menu}**${number} 4)${menu} Download XBOX 360 ISOs ${normal}\n"
+printf "${menu}**${number} 5)${menu} Download MAME ${normal}\n"
+printf "${menu}**${number} 6)${menu} Download Wii rvz ${normal}\n"
+printf "${menu}**${number} 7)${menu} Download PS2 ISO ${normal}\n"
+printf "${menu}**${number} 8)${menu} Remove Old DB Files ${normal}\n"
+printf "${menu}**${number} 9)${menu} Remove All Game, DB Files, and Folders ${normal}\n"
+printf "${menu}**${number} 10)${menu} Exit ${normal}\n"
 printf "${menu}****************************${normal}\n"
 read opt
 
@@ -107,20 +108,26 @@ case $opt in
 ;;
 
 7) clear;
+  option_picked "PS2 ISO";
+    printf "PS2 ISO sub menu";
+  sub_menu13;
+;;
+
+8) clear;
   option_picked "Removing Old DB Files";
     printf "Removing Old DB Files";
     sudo rm -rf xbarchive/*.txt; 2> /dev/null;
   show_menu;
 ;;
 
-8) clear;
+9) clear;
   option_picked "Removing All Games and DB Files,";
     printf "Bye Felicia";
     sudo rm -r */ 2> /dev/null;
   show_menu;
 ;;
 
-9) clear;
+10) clear;
   option_picked "Exit";
     break;
 ;;
@@ -833,7 +840,7 @@ case $sub7 in
     MS="MAME_0.225_CHDs/"
 
     #MAME_0.225_CHDs_merged Readable List
-    cd xbarchive/&&sudo wget -N "$ARCH""$mm"MAME_0.225_CHDs_merged_files.xml&&sudo grep '\"*.chd\"' ${ml} > MAME_0.225_CHDs_merged.txt&&sudo sed -i 's/.\{14\}//' MAME_0.225_CHDs_merged.txt&&egrep -o '[^"]*"' MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{gsub("original\"", "");print}' mamedb.txt > MAME_0.225_CHDs_merged.txt&&awk '{gsub("source=\"", "");print}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&grep '\S' mamedb.txt > MAME_0.225_CHDs_merged.txt&&sed -i 's/\"//g' MAME_0.225_CHDs_merged.txt&&cat MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{printf("%01d %s\n", NR, $0)}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&sed -i '1 i\#MAME_0.225_CHDs_merged' mamedb.txt&&sudo cp MAME_0.225_CHDs_merged.txt mamedl.txt&&sudo rm -f ${ml}&&sudo cp mamedl.txt mamesingle.txt&&cd ..&&sudo mkdir ${MS};
+    cd xbarchive/&&sudo wget -N "$ARCH""$mm"MAME_0.225_CHDs_merged_files.xml&&sudo grep '\"*.chd\"' ${ml} > MAME_0.225_CHDs_merged.txt&&sudo sed -i 's/.\{14\}//' MAME_0.225_CHDs_merged.txt&&egrep -o '[^"]*"' MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{gsub("original\"", "");print}' mamedb.txt > MAME_0.225_CHDs_merged.txt&&awk '{gsub("source=\"", "");print}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&grep '\S' mamedb.txt > MAME_0.225_CHDs_merged.txt&&sed -i 's/\"//g' MAME_0.225_CHDs_merged.txt&&cat MAME_0.225_CHDs_merged.txt > mamedb.txt&&awk '{printf("%01d %s\n", NR, $0)}' MAME_0.225_CHDs_merged.txt > mamedb.txt&&sed -i '1 i\#MAME_0.225_CHDs_merged' mamedb.txt&&sudo cp MAME_0.225_CHDs_merged.txt mamedl.txt&&sudo rm -f ${ml}&&sudo cp mamedl.txt mamesingle.txt&&cd ..;#&&sudo mkdir ${MS};
 
   sub_menu7;
   sub_menu_admin;
@@ -1275,112 +1282,112 @@ case $sub9 in
     n3S="redump-xbox360-numbers"
 
     #XBOX 360 ISOs Readable List A
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3m"redump-xbox360-a_files.xml&&sudo grep '\"*.zip\"' ${x3l} > redump-xbox360-a.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-a.txt&&egrep -o '[^"]*"' redump-xbox360-a.txt > 360iso_a_db.txt&&awk '{gsub("original\"", "");print}' 360iso_a_db.txt > redump-xbox360-a.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-a.txt > 360iso_a_db.txt&&grep '\S' 360iso_a_db.txt > redump-xbox360-a.txt&&sed -i 's/\"//g' redump-xbox360-a.txt&&cat redump-xbox360-a.txt > 360iso_a_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-a.txt > 360iso_a_db.txt&&sed -i '1 i\#redump-xbox360-a' 360iso_a_db.txt&&sudo cp redump-xbox360-a.txt 360iso_a_dl.txt&&sudo rm -f ${x3l}&&sudo cp 360iso_a_dl.txt 360iso_a_single.txt&&cd ..&&sudo mkdir ${X3S};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3m"redump-xbox360-a_files.xml&&sudo grep '\"*.zip\"' ${x3l} > redump-xbox360-a.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-a.txt&&egrep -o '[^"]*"' redump-xbox360-a.txt > 360iso_a_db.txt&&awk '{gsub("original\"", "");print}' 360iso_a_db.txt > redump-xbox360-a.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-a.txt > 360iso_a_db.txt&&grep '\S' 360iso_a_db.txt > redump-xbox360-a.txt&&sed -i 's/\"//g' redump-xbox360-a.txt&&cat redump-xbox360-a.txt > 360iso_a_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-a.txt > 360iso_a_db.txt&&sed -i '1 i\#redump-xbox360-a' 360iso_a_db.txt&&sudo cp redump-xbox360-a.txt 360iso_a_dl.txt&&sudo rm -f ${x3l}&&sudo cp 360iso_a_dl.txt 360iso_a_single.txt&&cd ..;#&&sudo mkdir ${X3S};
 
     #XBOX 360 ISOs Readable List A 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3m2"redump-xbox360-a-2_files.xml&&sudo grep '\"*.zip\"' ${x3l2} > redump-xbox360-a2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-a2.txt&&egrep -o '[^"]*"' redump-xbox360-a2.txt > 360iso_a2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_a2_db.txt > redump-xbox360-a2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-a2.txt > 360iso_a2_db.txt&&grep '\S' 360iso_a2_db.txt > redump-xbox360-a2.txt&&sed -i 's/\"//g' redump-xbox360-a2.txt&&cat redump-xbox360-a2.txt > 360iso_a2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-a2.txt > 360iso_a2_db.txt&&sed -i '1 i\#redump-xbox360-a-2' 360iso_a2_db.txt&&sudo cp redump-xbox360-a2.txt 360iso_a2_dl.txt&&sudo rm -f ${x3l2}&&sudo cp 360iso_a2_dl.txt 360iso_a2_single.txt&&cd ..&&sudo mkdir ${X3S2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3m2"redump-xbox360-a-2_files.xml&&sudo grep '\"*.zip\"' ${x3l2} > redump-xbox360-a2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-a2.txt&&egrep -o '[^"]*"' redump-xbox360-a2.txt > 360iso_a2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_a2_db.txt > redump-xbox360-a2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-a2.txt > 360iso_a2_db.txt&&grep '\S' 360iso_a2_db.txt > redump-xbox360-a2.txt&&sed -i 's/\"//g' redump-xbox360-a2.txt&&cat redump-xbox360-a2.txt > 360iso_a2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-a2.txt > 360iso_a2_db.txt&&sed -i '1 i\#redump-xbox360-a-2' 360iso_a2_db.txt&&sudo cp redump-xbox360-a2.txt 360iso_a2_dl.txt&&sudo rm -f ${x3l2}&&sudo cp 360iso_a2_dl.txt 360iso_a2_single.txt&&cd ..;#&&sudo mkdir ${X3S2};
 
     #XBOX 360 ISOs Readable List B
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mb"redump-xbox360-b_files.xml&&sudo grep '\"*.zip\"' ${x3lb} > redump-xbox360-b.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-b.txt&&egrep -o '[^"]*"' redump-xbox360-b.txt > 360iso_b_db.txt&&awk '{gsub("original\"", "");print}' 360iso_b_db.txt > redump-xbox360-b.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-b.txt > 360iso_b_db.txt&&grep '\S' 360iso_b_db.txt > redump-xbox360-b.txt&&sed -i 's/\"//g' redump-xbox360-b.txt&&cat redump-xbox360-b.txt > 360iso_b_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-b.txt > 360iso_b_db.txt&&sed -i '1 i\#redump-xbox360-b' 360iso_b_db.txt&&sudo cp redump-xbox360-b.txt 360iso_b_dl.txt&&sudo rm -f ${x3lb}&&sudo cp 360iso_b_dl.txt 360iso_b_single.txt&&cd ..&&sudo mkdir ${X3SB};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mb"redump-xbox360-b_files.xml&&sudo grep '\"*.zip\"' ${x3lb} > redump-xbox360-b.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-b.txt&&egrep -o '[^"]*"' redump-xbox360-b.txt > 360iso_b_db.txt&&awk '{gsub("original\"", "");print}' 360iso_b_db.txt > redump-xbox360-b.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-b.txt > 360iso_b_db.txt&&grep '\S' 360iso_b_db.txt > redump-xbox360-b.txt&&sed -i 's/\"//g' redump-xbox360-b.txt&&cat redump-xbox360-b.txt > 360iso_b_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-b.txt > 360iso_b_db.txt&&sed -i '1 i\#redump-xbox360-b' 360iso_b_db.txt&&sudo cp redump-xbox360-b.txt 360iso_b_dl.txt&&sudo rm -f ${x3lb}&&sudo cp 360iso_b_dl.txt 360iso_b_single.txt&&cd ..;#&&sudo mkdir ${X3SB};
 
     #XBOX 360 ISOs Readable List B 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mb2"redump-xbox360-b-2_files.xml&&sudo grep '\"*.zip\"' ${x3lb2} > redump-xbox360-b2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-b2.txt&&egrep -o '[^"]*"' redump-xbox360-b2.txt > 360iso_b2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_b2_db.txt > redump-xbox360-b2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-b2.txt > 360iso_b2_db.txt&&grep '\S' 360iso_b2_db.txt > redump-xbox360-b2.txt&&sed -i 's/\"//g' redump-xbox360-b2.txt&&cat redump-xbox360-b2.txt > 360iso_b2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-b2.txt > 360iso_b2_db.txt&&sed -i '1 i\#redump-xbox360-b2' 360iso_b2_db.txt&&sudo cp redump-xbox360-b2.txt 360iso_b2_dl.txt&&sudo rm -f ${x3lb2}&&sudo cp 360iso_b2_dl.txt 360iso_b2_single.txt&&cd ..&&sudo mkdir ${X3SB2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mb2"redump-xbox360-b-2_files.xml&&sudo grep '\"*.zip\"' ${x3lb2} > redump-xbox360-b2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-b2.txt&&egrep -o '[^"]*"' redump-xbox360-b2.txt > 360iso_b2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_b2_db.txt > redump-xbox360-b2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-b2.txt > 360iso_b2_db.txt&&grep '\S' 360iso_b2_db.txt > redump-xbox360-b2.txt&&sed -i 's/\"//g' redump-xbox360-b2.txt&&cat redump-xbox360-b2.txt > 360iso_b2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-b2.txt > 360iso_b2_db.txt&&sed -i '1 i\#redump-xbox360-b2' 360iso_b2_db.txt&&sudo cp redump-xbox360-b2.txt 360iso_b2_dl.txt&&sudo rm -f ${x3lb2}&&sudo cp 360iso_b2_dl.txt 360iso_b2_single.txt&&cd ..;#&&sudo mkdir ${X3SB2};
 
     #XBOX 360 ISOs Readable List C
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mc"redump-xbox360-c_files.xml&&sudo grep '\"*.zip\"' ${x3lc} > redump-xbox360-c.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-c.txt&&egrep -o '[^"]*"' redump-xbox360-c.txt > 360iso_c_db.txt&&awk '{gsub("original\"", "");print}' 360iso_c_db.txt > redump-xbox360-c.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-c.txt > 360iso_c_db.txt&&grep '\S' 360iso_c_db.txt > redump-xbox360-c.txt&&sed -i 's/\"//g' redump-xbox360-c.txt&&cat redump-xbox360-c.txt > 360iso_c_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-c.txt > 360iso_c_db.txt&&sed -i '1 i\#redump-xbox360-c' 360iso_c_db.txt&&sudo cp redump-xbox360-c.txt 360iso_c_dl.txt&&sudo rm -f ${x3lc}&&sudo cp 360iso_c_dl.txt 360iso_c_single.txt&&cd ..&&sudo mkdir ${X3SC};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mc"redump-xbox360-c_files.xml&&sudo grep '\"*.zip\"' ${x3lc} > redump-xbox360-c.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-c.txt&&egrep -o '[^"]*"' redump-xbox360-c.txt > 360iso_c_db.txt&&awk '{gsub("original\"", "");print}' 360iso_c_db.txt > redump-xbox360-c.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-c.txt > 360iso_c_db.txt&&grep '\S' 360iso_c_db.txt > redump-xbox360-c.txt&&sed -i 's/\"//g' redump-xbox360-c.txt&&cat redump-xbox360-c.txt > 360iso_c_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-c.txt > 360iso_c_db.txt&&sed -i '1 i\#redump-xbox360-c' 360iso_c_db.txt&&sudo cp redump-xbox360-c.txt 360iso_c_dl.txt&&sudo rm -f ${x3lc}&&sudo cp 360iso_c_dl.txt 360iso_c_single.txt&&cd ..;#&&sudo mkdir ${X3SC};
 
     #XBOX 360 ISOs Readable List C 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mc2"redump-xbox360-c-2_files.xml&&sudo grep '\"*.zip\"' ${x3lc2} > redump-xbox360-c2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-c2.txt&&egrep -o '[^"]*"' redump-xbox360-c2.txt > 360iso_c2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_c2_db.txt > redump-xbox360-c2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-c2.txt > 360iso_c2_db.txt&&grep '\S' 360iso_c2_db.txt > redump-xbox360-c2.txt&&sed -i 's/\"//g' redump-xbox360-c2.txt&&cat redump-xbox360-c2.txt > 360iso_c2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-c2.txt > 360iso_c2_db.txt&&sed -i '1 i\#redump-xbox360-c2' 360iso_c2_db.txt&&sudo cp redump-xbox360-c2.txt 360iso_c2_dl.txt&&sudo rm -f ${x3lc2}&&sudo cp 360iso_c2_dl.txt 360iso_c2_single.txt&&cd ..&&sudo mkdir ${X3SC2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mc2"redump-xbox360-c-2_files.xml&&sudo grep '\"*.zip\"' ${x3lc2} > redump-xbox360-c2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-c2.txt&&egrep -o '[^"]*"' redump-xbox360-c2.txt > 360iso_c2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_c2_db.txt > redump-xbox360-c2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-c2.txt > 360iso_c2_db.txt&&grep '\S' 360iso_c2_db.txt > redump-xbox360-c2.txt&&sed -i 's/\"//g' redump-xbox360-c2.txt&&cat redump-xbox360-c2.txt > 360iso_c2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-c2.txt > 360iso_c2_db.txt&&sed -i '1 i\#redump-xbox360-c2' 360iso_c2_db.txt&&sudo cp redump-xbox360-c2.txt 360iso_c2_dl.txt&&sudo rm -f ${x3lc2}&&sudo cp 360iso_c2_dl.txt 360iso_c2_single.txt&&cd ..;#&&sudo mkdir ${X3SC2};
 
     #XBOX 360 ISOs Readable List D
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3md"redump-xbox360-d-1_files.xml&&sudo grep '\"*.zip\"' ${x3ld} > redump-xbox360-d.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-d.txt&&egrep -o '[^"]*"' redump-xbox360-d.txt > 360iso_d_db.txt&&awk '{gsub("original\"", "");print}' 360iso_d_db.txt > redump-xbox360-d.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-d.txt > 360iso_d_db.txt&&grep '\S' 360iso_d_db.txt > redump-xbox360-d.txt&&sed -i 's/\"//g' redump-xbox360-d.txt&&cat redump-xbox360-d.txt > 360iso_d_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-d.txt > 360iso_d_db.txt&&sed -i '1 i\#redump-xbox360-d' 360iso_d_db.txt&&sudo cp redump-xbox360-d.txt 360iso_d_dl.txt&&sudo rm -f ${x3ld}&&sudo cp 360iso_d_dl.txt 360iso_d_single.txt&&cd ..&&sudo mkdir ${X3SD};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3md"redump-xbox360-d-1_files.xml&&sudo grep '\"*.zip\"' ${x3ld} > redump-xbox360-d.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-d.txt&&egrep -o '[^"]*"' redump-xbox360-d.txt > 360iso_d_db.txt&&awk '{gsub("original\"", "");print}' 360iso_d_db.txt > redump-xbox360-d.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-d.txt > 360iso_d_db.txt&&grep '\S' 360iso_d_db.txt > redump-xbox360-d.txt&&sed -i 's/\"//g' redump-xbox360-d.txt&&cat redump-xbox360-d.txt > 360iso_d_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-d.txt > 360iso_d_db.txt&&sed -i '1 i\#redump-xbox360-d' 360iso_d_db.txt&&sudo cp redump-xbox360-d.txt 360iso_d_dl.txt&&sudo rm -f ${x3ld}&&sudo cp 360iso_d_dl.txt 360iso_d_single.txt&&cd ..;#&&sudo mkdir ${X3SD};
 
     #XBOX 360 ISOs Readable List D 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3md2"redump-xbox360-d--2_files.xml&&sudo grep '\"*.zip\"' ${x3ld2} > redump-xbox360-d2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-d2.txt&&egrep -o '[^"]*"' redump-xbox360-d2.txt > 360iso_d2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_d2_db.txt > redump-xbox360-d2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-d2.txt > 360iso_d2_db.txt&&grep '\S' 360iso_d2_db.txt > redump-xbox360-d2.txt&&sed -i 's/\"//g' redump-xbox360-d2.txt&&cat redump-xbox360-d2.txt > 360iso_d2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-d2.txt > 360iso_d2_db.txt&&sed -i '1 i\#redump-xbox360-d2' 360iso_d2_db.txt&&sudo cp redump-xbox360-d2.txt 360iso_d2_dl.txt&&sudo rm -f ${x3ld2}&&sudo cp 360iso_d2_dl.txt 360iso_d2_single.txt&&cd ..&&sudo mkdir ${X3SD2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3md2"redump-xbox360-d--2_files.xml&&sudo grep '\"*.zip\"' ${x3ld2} > redump-xbox360-d2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-d2.txt&&egrep -o '[^"]*"' redump-xbox360-d2.txt > 360iso_d2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_d2_db.txt > redump-xbox360-d2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-d2.txt > 360iso_d2_db.txt&&grep '\S' 360iso_d2_db.txt > redump-xbox360-d2.txt&&sed -i 's/\"//g' redump-xbox360-d2.txt&&cat redump-xbox360-d2.txt > 360iso_d2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-d2.txt > 360iso_d2_db.txt&&sed -i '1 i\#redump-xbox360-d2' 360iso_d2_db.txt&&sudo cp redump-xbox360-d2.txt 360iso_d2_dl.txt&&sudo rm -f ${x3ld2}&&sudo cp 360iso_d2_dl.txt 360iso_d2_single.txt&&cd ..;#&&sudo mkdir ${X3SD2};
 
     #XBOX 360 ISOs Readable List E
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3me"redump-xbox360-e_files.xml&&sudo grep '\"*.zip\"' ${x3le} > redump-xbox360-e.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-e.txt&&egrep -o '[^"]*"' redump-xbox360-e.txt > 360iso_e_db.txt&&awk '{gsub("original\"", "");print}' 360iso_e_db.txt > redump-xbox360-e.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-e.txt > 360iso_e_db.txt&&grep '\S' 360iso_e_db.txt > redump-xbox360-e.txt&&sed -i 's/\"//g' redump-xbox360-e.txt&&cat redump-xbox360-e.txt > 360iso_e_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-e.txt > 360iso_e_db.txt&&sed -i '1 i\#redump-xbox360-e' 360iso_e_db.txt&&sudo cp redump-xbox360-e.txt 360iso_e_dl.txt&&sudo rm -f ${x3le}&&sudo cp 360iso_e_dl.txt 360iso_e_single.txt&&cd ..&&sudo mkdir ${X3SE};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3me"redump-xbox360-e_files.xml&&sudo grep '\"*.zip\"' ${x3le} > redump-xbox360-e.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-e.txt&&egrep -o '[^"]*"' redump-xbox360-e.txt > 360iso_e_db.txt&&awk '{gsub("original\"", "");print}' 360iso_e_db.txt > redump-xbox360-e.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-e.txt > 360iso_e_db.txt&&grep '\S' 360iso_e_db.txt > redump-xbox360-e.txt&&sed -i 's/\"//g' redump-xbox360-e.txt&&cat redump-xbox360-e.txt > 360iso_e_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-e.txt > 360iso_e_db.txt&&sed -i '1 i\#redump-xbox360-e' 360iso_e_db.txt&&sudo cp redump-xbox360-e.txt 360iso_e_dl.txt&&sudo rm -f ${x3le}&&sudo cp 360iso_e_dl.txt 360iso_e_single.txt&&cd ..;#&&sudo mkdir ${X3SE};
 
     #XBOX 360 ISOs Readable List F
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mf"redump-xbox360-f-1_files.xml&&sudo grep '\"*.zip\"' ${x3lf} > redump-xbox360-f.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-f.txt&&egrep -o '[^"]*"' redump-xbox360-f.txt > 360iso_f_db.txt&&awk '{gsub("original\"", "");print}' 360iso_f_db.txt > redump-xbox360-f.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-f.txt > 360iso_f_db.txt&&grep '\S' 360iso_f_db.txt > redump-xbox360-f.txt&&sed -i 's/\"//g' redump-xbox360-f.txt&&cat redump-xbox360-f.txt > 360iso_f_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-f.txt > 360iso_f_db.txt&&sed -i '1 i\#redump-xbox360-f' 360iso_f_db.txt&&sudo cp redump-xbox360-f.txt 360iso_f_dl.txt&&sudo rm -f ${x3lf}&&sudo cp 360iso_f_dl.txt 360iso_f_single.txt&&cd ..&&sudo mkdir ${X3SF};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mf"redump-xbox360-f-1_files.xml&&sudo grep '\"*.zip\"' ${x3lf} > redump-xbox360-f.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-f.txt&&egrep -o '[^"]*"' redump-xbox360-f.txt > 360iso_f_db.txt&&awk '{gsub("original\"", "");print}' 360iso_f_db.txt > redump-xbox360-f.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-f.txt > 360iso_f_db.txt&&grep '\S' 360iso_f_db.txt > redump-xbox360-f.txt&&sed -i 's/\"//g' redump-xbox360-f.txt&&cat redump-xbox360-f.txt > 360iso_f_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-f.txt > 360iso_f_db.txt&&sed -i '1 i\#redump-xbox360-f' 360iso_f_db.txt&&sudo cp redump-xbox360-f.txt 360iso_f_dl.txt&&sudo rm -f ${x3lf}&&sudo cp 360iso_f_dl.txt 360iso_f_single.txt&&cd ..;#&&sudo mkdir ${X3SF};
 
     #XBOX 360 ISOs Readable List F 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mf2"redump-xbox360-f-2_files.xml&&sudo grep '\"*.zip\"' ${x3lf2} > redump-xbox360-f2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-f2.txt&&egrep -o '[^"]*"' redump-xbox360-f2.txt > 360iso_f2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_f2_db.txt > redump-xbox360-f2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-f2.txt > 360iso_f2_db.txt&&grep '\S' 360iso_f2_db.txt > redump-xbox360-f2.txt&&sed -i 's/\"//g' redump-xbox360-f2.txt&&cat redump-xbox360-f2.txt > 360iso_f2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-f2.txt > 360iso_f2_db.txt&&sed -i '1 i\#redump-xbox360-f2' 360iso_f2_db.txt&&sudo cp redump-xbox360-f2.txt 360iso_f2_dl.txt&&sudo rm -f ${x3lf2}&&sudo cp 360iso_f2_dl.txt 360iso_f2_single.txt&&cd ..&&sudo mkdir ${X3SF2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mf2"redump-xbox360-f-2_files.xml&&sudo grep '\"*.zip\"' ${x3lf2} > redump-xbox360-f2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-f2.txt&&egrep -o '[^"]*"' redump-xbox360-f2.txt > 360iso_f2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_f2_db.txt > redump-xbox360-f2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-f2.txt > 360iso_f2_db.txt&&grep '\S' 360iso_f2_db.txt > redump-xbox360-f2.txt&&sed -i 's/\"//g' redump-xbox360-f2.txt&&cat redump-xbox360-f2.txt > 360iso_f2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-f2.txt > 360iso_f2_db.txt&&sed -i '1 i\#redump-xbox360-f2' 360iso_f2_db.txt&&sudo cp redump-xbox360-f2.txt 360iso_f2_dl.txt&&sudo rm -f ${x3lf2}&&sudo cp 360iso_f2_dl.txt 360iso_f2_single.txt&&cd ..;#&&sudo mkdir ${X3SF2};
 
     #XBOX 360 ISOs Readable List G
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mg"redump-xbox360-g_files.xml&&sudo grep '\"*.zip\"' ${x3lg} > redump-xbox360-g.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-g.txt&&egrep -o '[^"]*"' redump-xbox360-g.txt > 360iso_g_db.txt&&awk '{gsub("original\"", "");print}' 360iso_g_db.txt > redump-xbox360-g.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-g.txt > 360iso_g_db.txt&&grep '\S' 360iso_g_db.txt > redump-xbox360-g.txt&&sed -i 's/\"//g' redump-xbox360-g.txt&&cat redump-xbox360-g.txt > 360iso_g_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-g.txt > 360iso_g_db.txt&&sed -i '1 i\#redump-xbox360-g' 360iso_g_db.txt&&sudo cp redump-xbox360-g.txt 360iso_g_dl.txt&&sudo rm -f ${x3lg}&&sudo cp 360iso_g_dl.txt 360iso_g_single.txt&&cd ..&&sudo mkdir ${X3SG};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mg"redump-xbox360-g_files.xml&&sudo grep '\"*.zip\"' ${x3lg} > redump-xbox360-g.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-g.txt&&egrep -o '[^"]*"' redump-xbox360-g.txt > 360iso_g_db.txt&&awk '{gsub("original\"", "");print}' 360iso_g_db.txt > redump-xbox360-g.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-g.txt > 360iso_g_db.txt&&grep '\S' 360iso_g_db.txt > redump-xbox360-g.txt&&sed -i 's/\"//g' redump-xbox360-g.txt&&cat redump-xbox360-g.txt > 360iso_g_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-g.txt > 360iso_g_db.txt&&sed -i '1 i\#redump-xbox360-g' 360iso_g_db.txt&&sudo cp redump-xbox360-g.txt 360iso_g_dl.txt&&sudo rm -f ${x3lg}&&sudo cp 360iso_g_dl.txt 360iso_g_single.txt&&cd ..;#&&sudo mkdir ${X3SG};
 
     #XBOX 360 ISOs Readable List H
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mh"redump-xbox360-h_files.xml&&sudo grep '\"*.zip\"' ${x3lh} > redump-xbox360-h.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-h.txt&&egrep -o '[^"]*"' redump-xbox360-h.txt > 360iso_h_db.txt&&awk '{gsub("original\"", "");print}' 360iso_h_db.txt > redump-xbox360-h.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-h.txt > 360iso_h_db.txt&&grep '\S' 360iso_h_db.txt > redump-xbox360-h.txt&&sed -i 's/\"//g' redump-xbox360-h.txt&&cat redump-xbox360-h.txt > 360iso_h_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-h.txt > 360iso_h_db.txt&&sed -i '1 i\#redump-xbox360-h' 360iso_h_db.txt&&sudo cp redump-xbox360-h.txt 360iso_h_dl.txt&&sudo rm -f ${x3lh}&&sudo cp 360iso_h_dl.txt 360iso_h_single.txt&&cd ..&&sudo mkdir ${X3SH};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mh"redump-xbox360-h_files.xml&&sudo grep '\"*.zip\"' ${x3lh} > redump-xbox360-h.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-h.txt&&egrep -o '[^"]*"' redump-xbox360-h.txt > 360iso_h_db.txt&&awk '{gsub("original\"", "");print}' 360iso_h_db.txt > redump-xbox360-h.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-h.txt > 360iso_h_db.txt&&grep '\S' 360iso_h_db.txt > redump-xbox360-h.txt&&sed -i 's/\"//g' redump-xbox360-h.txt&&cat redump-xbox360-h.txt > 360iso_h_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-h.txt > 360iso_h_db.txt&&sed -i '1 i\#redump-xbox360-h' 360iso_h_db.txt&&sudo cp redump-xbox360-h.txt 360iso_h_dl.txt&&sudo rm -f ${x3lh}&&sudo cp 360iso_h_dl.txt 360iso_h_single.txt&&cd ..;#&&sudo mkdir ${X3SH};
 
     #XBOX 360 ISOs Readable List I
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mi"redump-xbox360-i_files.xml&&sudo grep '\"*.zip\"' ${x3li} > redump-xbox360-i.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-i.txt&&egrep -o '[^"]*"' redump-xbox360-i.txt > 360iso_i_db.txt&&awk '{gsub("original\"", "");print}' 360iso_i_db.txt > redump-xbox360-i.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-i.txt > 360iso_i_db.txt&&grep '\S' 360iso_i_db.txt > redump-xbox360-i.txt&&sed -i 's/\"//g' redump-xbox360-i.txt&&cat redump-xbox360-i.txt > 360iso_i_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-i.txt > 360iso_i_db.txt&&sed -i '1 i\#redump-xbox360-i' 360iso_i_db.txt&&sudo cp redump-xbox360-i.txt 360iso_i_dl.txt&&sudo rm -f ${x3li}&&sudo cp 360iso_i_dl.txt 360iso_i_single.txt&&cd ..&&sudo mkdir ${X3SI};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mi"redump-xbox360-i_files.xml&&sudo grep '\"*.zip\"' ${x3li} > redump-xbox360-i.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-i.txt&&egrep -o '[^"]*"' redump-xbox360-i.txt > 360iso_i_db.txt&&awk '{gsub("original\"", "");print}' 360iso_i_db.txt > redump-xbox360-i.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-i.txt > 360iso_i_db.txt&&grep '\S' 360iso_i_db.txt > redump-xbox360-i.txt&&sed -i 's/\"//g' redump-xbox360-i.txt&&cat redump-xbox360-i.txt > 360iso_i_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-i.txt > 360iso_i_db.txt&&sed -i '1 i\#redump-xbox360-i' 360iso_i_db.txt&&sudo cp redump-xbox360-i.txt 360iso_i_dl.txt&&sudo rm -f ${x3li}&&sudo cp 360iso_i_dl.txt 360iso_i_single.txt&&cd ..;#&&sudo mkdir ${X3SI};
 
     #XBOX 360 ISOs Readable List J
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mj"redump-xbox360-j_files.xml&&sudo grep '\"*.zip\"' ${x3lj} > redump-xbox360-j.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-j.txt&&egrep -o '[^"]*"' redump-xbox360-j.txt > 360iso_j_db.txt&&awk '{gsub("original\"", "");print}' 360iso_j_db.txt > redump-xbox360-j.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-j.txt > 360iso_j_db.txt&&grep '\S' 360iso_j_db.txt > redump-xbox360-j.txt&&sed -i 's/\"//g' redump-xbox360-j.txt&&cat redump-xbox360-j.txt > 360iso_j_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-j.txt > 360iso_j_db.txt&&sed -i '1 i\#redump-xbox360-j' 360iso_j_db.txt&&sudo cp redump-xbox360-j.txt 360iso_j_dl.txt&&sudo rm -f ${x3lj}&&sudo cp 360iso_j_dl.txt 360iso_j_single.txt&&cd ..&&sudo mkdir ${X3SJ};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mj"redump-xbox360-j_files.xml&&sudo grep '\"*.zip\"' ${x3lj} > redump-xbox360-j.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-j.txt&&egrep -o '[^"]*"' redump-xbox360-j.txt > 360iso_j_db.txt&&awk '{gsub("original\"", "");print}' 360iso_j_db.txt > redump-xbox360-j.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-j.txt > 360iso_j_db.txt&&grep '\S' 360iso_j_db.txt > redump-xbox360-j.txt&&sed -i 's/\"//g' redump-xbox360-j.txt&&cat redump-xbox360-j.txt > 360iso_j_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-j.txt > 360iso_j_db.txt&&sed -i '1 i\#redump-xbox360-j' 360iso_j_db.txt&&sudo cp redump-xbox360-j.txt 360iso_j_dl.txt&&sudo rm -f ${x3lj}&&sudo cp 360iso_j_dl.txt 360iso_j_single.txt&&cd ..;#&&sudo mkdir ${X3SJ};
 
     #XBOX 360 ISOs Readable List K
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mk"redump-xbox360-k_files.xml&&sudo grep '\"*.zip\"' ${x3lk} > redump-xbox360-k.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-k.txt&&egrep -o '[^"]*"' redump-xbox360-k.txt > 360iso_k_db.txt&&awk '{gsub("original\"", "");print}' 360iso_k_db.txt > redump-xbox360-k.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-k.txt > 360iso_k_db.txt&&grep '\S' 360iso_k_db.txt > redump-xbox360-k.txt&&sed -i 's/\"//g' redump-xbox360-k.txt&&cat redump-xbox360-k.txt > 360iso_k_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-k.txt > 360iso_k_db.txt&&sed -i '1 i\#redump-xbox360-k' 360iso_k_db.txt&&sudo cp redump-xbox360-k.txt 360iso_k_dl.txt&&sudo rm -f ${x3lk}&&sudo cp 360iso_k_dl.txt 360iso_k_single.txt&&cd ..&&sudo mkdir ${X3SK};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mk"redump-xbox360-k_files.xml&&sudo grep '\"*.zip\"' ${x3lk} > redump-xbox360-k.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-k.txt&&egrep -o '[^"]*"' redump-xbox360-k.txt > 360iso_k_db.txt&&awk '{gsub("original\"", "");print}' 360iso_k_db.txt > redump-xbox360-k.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-k.txt > 360iso_k_db.txt&&grep '\S' 360iso_k_db.txt > redump-xbox360-k.txt&&sed -i 's/\"//g' redump-xbox360-k.txt&&cat redump-xbox360-k.txt > 360iso_k_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-k.txt > 360iso_k_db.txt&&sed -i '1 i\#redump-xbox360-k' 360iso_k_db.txt&&sudo cp redump-xbox360-k.txt 360iso_k_dl.txt&&sudo rm -f ${x3lk}&&sudo cp 360iso_k_dl.txt 360iso_k_single.txt&&cd ..;#&&sudo mkdir ${X3SK};
 
     #XBOX 360 ISOs Readable List L
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3ml"redump-xbox360-l_files.xml&&sudo grep '\"*.zip\"' ${x3ll} > redump-xbox360-l.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-l.txt&&egrep -o '[^"]*"' redump-xbox360-l.txt > 360iso_l_db.txt&&awk '{gsub("original\"", "");print}' 360iso_l_db.txt > redump-xbox360-l.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-l.txt > 360iso_l_db.txt&&grep '\S' 360iso_l_db.txt > redump-xbox360-l.txt&&sed -i 's/\"//g' redump-xbox360-l.txt&&cat redump-xbox360-l.txt > 360iso_l_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-l.txt > 360iso_l_db.txt&&sed -i '1 i\#redump-xbox360-l' 360iso_l_db.txt&&sudo cp redump-xbox360-l.txt 360iso_l_dl.txt&&sudo rm -f ${x3ll}&&sudo cp 360iso_l_dl.txt 360iso_l_single.txt&&cd ..&&sudo mkdir ${X3SL};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3ml"redump-xbox360-l_files.xml&&sudo grep '\"*.zip\"' ${x3ll} > redump-xbox360-l.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-l.txt&&egrep -o '[^"]*"' redump-xbox360-l.txt > 360iso_l_db.txt&&awk '{gsub("original\"", "");print}' 360iso_l_db.txt > redump-xbox360-l.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-l.txt > 360iso_l_db.txt&&grep '\S' 360iso_l_db.txt > redump-xbox360-l.txt&&sed -i 's/\"//g' redump-xbox360-l.txt&&cat redump-xbox360-l.txt > 360iso_l_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-l.txt > 360iso_l_db.txt&&sed -i '1 i\#redump-xbox360-l' 360iso_l_db.txt&&sudo cp redump-xbox360-l.txt 360iso_l_dl.txt&&sudo rm -f ${x3ll}&&sudo cp 360iso_l_dl.txt 360iso_l_single.txt&&cd ..;#&&sudo mkdir ${X3SL};
 
     #XBOX 360 ISOs Readable List M
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mm"redump-xbox360-m-1_files.xml&&sudo grep '\"*.zip\"' ${x3lm} > redump-xbox360-m.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-m.txt&&egrep -o '[^"]*"' redump-xbox360-m.txt > 360iso_m_db.txt&&awk '{gsub("original\"", "");print}' 360iso_m_db.txt > redump-xbox360-m.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-m.txt > 360iso_m_db.txt&&grep '\S' 360iso_m_db.txt > redump-xbox360-m.txt&&sed -i 's/\"//g' redump-xbox360-m.txt&&cat redump-xbox360-m.txt > 360iso_m_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-m.txt > 360iso_m_db.txt&&sed -i '1 i\#redump-xbox360-m' 360iso_m_db.txt&&sudo cp redump-xbox360-m.txt 360iso_m_dl.txt&&sudo rm -f ${x3lm}&&sudo cp 360iso_m_dl.txt 360iso_m_single.txt&&cd ..&&sudo mkdir ${X3SM};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mm"redump-xbox360-m-1_files.xml&&sudo grep '\"*.zip\"' ${x3lm} > redump-xbox360-m.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-m.txt&&egrep -o '[^"]*"' redump-xbox360-m.txt > 360iso_m_db.txt&&awk '{gsub("original\"", "");print}' 360iso_m_db.txt > redump-xbox360-m.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-m.txt > 360iso_m_db.txt&&grep '\S' 360iso_m_db.txt > redump-xbox360-m.txt&&sed -i 's/\"//g' redump-xbox360-m.txt&&cat redump-xbox360-m.txt > 360iso_m_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-m.txt > 360iso_m_db.txt&&sed -i '1 i\#redump-xbox360-m' 360iso_m_db.txt&&sudo cp redump-xbox360-m.txt 360iso_m_dl.txt&&sudo rm -f ${x3lm}&&sudo cp 360iso_m_dl.txt 360iso_m_single.txt&&cd ..;#&&sudo mkdir ${X3SM};
 
     #XBOX 360 ISOs Readable List M 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mm2"redump-xbox360-m-2_files.xml&&sudo grep '\"*.zip\"' ${x3lm2} > redump-xbox360-m2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-m2.txt&&egrep -o '[^"]*"' redump-xbox360-m2.txt > 360iso_m2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_m2_db.txt > redump-xbox360-m2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-m2.txt > 360iso_m2_db.txt&&grep '\S' 360iso_m2_db.txt > redump-xbox360-m2.txt&&sed -i 's/\"//g' redump-xbox360-m2.txt&&cat redump-xbox360-m2.txt > 360iso_m2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-m2.txt > 360iso_m2_db.txt&&sed -i '1 i\#redump-xbox360-m2' 360iso_m2_db.txt&&sudo cp redump-xbox360-m2.txt 360iso_m2_dl.txt&&sudo rm -f ${x3lm2}&&sudo cp 360iso_m2_dl.txt 360iso_m2_single.txt&&cd ..&&sudo mkdir ${X3SM2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mm2"redump-xbox360-m-2_files.xml&&sudo grep '\"*.zip\"' ${x3lm2} > redump-xbox360-m2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-m2.txt&&egrep -o '[^"]*"' redump-xbox360-m2.txt > 360iso_m2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_m2_db.txt > redump-xbox360-m2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-m2.txt > 360iso_m2_db.txt&&grep '\S' 360iso_m2_db.txt > redump-xbox360-m2.txt&&sed -i 's/\"//g' redump-xbox360-m2.txt&&cat redump-xbox360-m2.txt > 360iso_m2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-m2.txt > 360iso_m2_db.txt&&sed -i '1 i\#redump-xbox360-m2' 360iso_m2_db.txt&&sudo cp redump-xbox360-m2.txt 360iso_m2_dl.txt&&sudo rm -f ${x3lm2}&&sudo cp 360iso_m2_dl.txt 360iso_m2_single.txt&&cd ..;#&&sudo mkdir ${X3SM2};
 
     #XBOX 360 ISOs Readable List N
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mn"redump-xbox360-n_files.xml&&sudo grep '\"*.zip\"' ${x3ln} > redump-xbox360-n.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-n.txt&&egrep -o '[^"]*"' redump-xbox360-n.txt > 360iso_n_db.txt&&awk '{gsub("original\"", "");print}' 360iso_n_db.txt > redump-xbox360-n.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-n.txt > 360iso_n_db.txt&&grep '\S' 360iso_n_db.txt > redump-xbox360-n.txt&&sed -i 's/\"//g' redump-xbox360-n.txt&&cat redump-xbox360-n.txt > 360iso_n_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-n.txt > 360iso_n_db.txt&&sed -i '1 i\#redump-xbox360-n' 360iso_n_db.txt&&sudo cp redump-xbox360-n.txt 360iso_n_dl.txt&&sudo rm -f ${x3ln}&&sudo cp 360iso_n_dl.txt 360iso_n_single.txt&&cd ..&&sudo mkdir ${X3SN};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mn"redump-xbox360-n_files.xml&&sudo grep '\"*.zip\"' ${x3ln} > redump-xbox360-n.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-n.txt&&egrep -o '[^"]*"' redump-xbox360-n.txt > 360iso_n_db.txt&&awk '{gsub("original\"", "");print}' 360iso_n_db.txt > redump-xbox360-n.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-n.txt > 360iso_n_db.txt&&grep '\S' 360iso_n_db.txt > redump-xbox360-n.txt&&sed -i 's/\"//g' redump-xbox360-n.txt&&cat redump-xbox360-n.txt > 360iso_n_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-n.txt > 360iso_n_db.txt&&sed -i '1 i\#redump-xbox360-n' 360iso_n_db.txt&&sudo cp redump-xbox360-n.txt 360iso_n_dl.txt&&sudo rm -f ${x3ln}&&sudo cp 360iso_n_dl.txt 360iso_n_single.txt&&cd ..;#&&sudo mkdir ${X3SN};
 
     #XBOX 360 ISOs Readable List O
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mo"redump-xbox360-o_files.xml&&sudo grep '\"*.zip\"' ${x3lo} > redump-xbox360-o.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-o.txt&&egrep -o '[^"]*"' redump-xbox360-o.txt > 360iso_o_db.txt&&awk '{gsub("original\"", "");print}' 360iso_o_db.txt > redump-xbox360-o.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-o.txt > 360iso_o_db.txt&&grep '\S' 360iso_o_db.txt > redump-xbox360-o.txt&&sed -i 's/\"//g' redump-xbox360-o.txt&&cat redump-xbox360-o.txt > 360iso_o_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-o.txt > 360iso_o_db.txt&&sed -i '1 i\#redump-xbox360-o' 360iso_o_db.txt&&sudo cp redump-xbox360-o.txt 360iso_o_dl.txt&&sudo rm -f ${x3lo}&&sudo cp 360iso_o_dl.txt 360iso_o_single.txt&&cd ..&&sudo mkdir ${X3SO};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mo"redump-xbox360-o_files.xml&&sudo grep '\"*.zip\"' ${x3lo} > redump-xbox360-o.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-o.txt&&egrep -o '[^"]*"' redump-xbox360-o.txt > 360iso_o_db.txt&&awk '{gsub("original\"", "");print}' 360iso_o_db.txt > redump-xbox360-o.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-o.txt > 360iso_o_db.txt&&grep '\S' 360iso_o_db.txt > redump-xbox360-o.txt&&sed -i 's/\"//g' redump-xbox360-o.txt&&cat redump-xbox360-o.txt > 360iso_o_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-o.txt > 360iso_o_db.txt&&sed -i '1 i\#redump-xbox360-o' 360iso_o_db.txt&&sudo cp redump-xbox360-o.txt 360iso_o_dl.txt&&sudo rm -f ${x3lo}&&sudo cp 360iso_o_dl.txt 360iso_o_single.txt&&cd ..;#&&sudo mkdir ${X3SO};
 
     #XBOX 360 ISOs Readable List P
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mp"redump-xbox360-p_files.xml&&sudo grep '\"*.zip\"' ${x3lp} > redump-xbox360-p.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-p.txt&&egrep -o '[^"]*"' redump-xbox360-p.txt > 360iso_p_db.txt&&awk '{gsub("original\"", "");print}' 360iso_p_db.txt > redump-xbox360-p.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-p.txt > 360iso_p_db.txt&&grep '\S' 360iso_p_db.txt > redump-xbox360-p.txt&&sed -i 's/\"//g' redump-xbox360-p.txt&&cat redump-xbox360-p.txt > 360iso_p_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-p.txt > 360iso_p_db.txt&&sed -i '1 i\#redump-xbox360-p' 360iso_p_db.txt&&sudo cp redump-xbox360-p.txt 360iso_p_dl.txt&&sudo rm -f ${x3lp}&&sudo cp 360iso_p_dl.txt 360iso_p_single.txt&&cd ..&&sudo mkdir ${X3SP};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mp"redump-xbox360-p_files.xml&&sudo grep '\"*.zip\"' ${x3lp} > redump-xbox360-p.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-p.txt&&egrep -o '[^"]*"' redump-xbox360-p.txt > 360iso_p_db.txt&&awk '{gsub("original\"", "");print}' 360iso_p_db.txt > redump-xbox360-p.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-p.txt > 360iso_p_db.txt&&grep '\S' 360iso_p_db.txt > redump-xbox360-p.txt&&sed -i 's/\"//g' redump-xbox360-p.txt&&cat redump-xbox360-p.txt > 360iso_p_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-p.txt > 360iso_p_db.txt&&sed -i '1 i\#redump-xbox360-p' 360iso_p_db.txt&&sudo cp redump-xbox360-p.txt 360iso_p_dl.txt&&sudo rm -f ${x3lp}&&sudo cp 360iso_p_dl.txt 360iso_p_single.txt&&cd ..;#&&sudo mkdir ${X3SP};
 
     #XBOX 360 ISOs Readable List Q
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mq"redump-xbox360-q_files.xml&&sudo grep '\"*.zip\"' ${x3lq} > redump-xbox360-q.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-q.txt&&egrep -o '[^"]*"' redump-xbox360-q.txt > 360iso_q_db.txt&&awk '{gsub("original\"", "");print}' 360iso_q_db.txt > redump-xbox360-q.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-q.txt > 360iso_q_db.txt&&grep '\S' 360iso_q_db.txt > redump-xbox360-q.txt&&sed -i 's/\"//g' redump-xbox360-q.txt&&cat redump-xbox360-q.txt > 360iso_q_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-q.txt > 360iso_q_db.txt&&sed -i '1 i\#redump-xbox360-q' 360iso_q_db.txt&&sudo cp redump-xbox360-q.txt 360iso_q_dl.txt&&sudo rm -f ${x3lq}&&sudo cp 360iso_q_dl.txt 360iso_q_single.txt&&cd ..&&sudo mkdir ${X3SQ};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mq"redump-xbox360-q_files.xml&&sudo grep '\"*.zip\"' ${x3lq} > redump-xbox360-q.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-q.txt&&egrep -o '[^"]*"' redump-xbox360-q.txt > 360iso_q_db.txt&&awk '{gsub("original\"", "");print}' 360iso_q_db.txt > redump-xbox360-q.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-q.txt > 360iso_q_db.txt&&grep '\S' 360iso_q_db.txt > redump-xbox360-q.txt&&sed -i 's/\"//g' redump-xbox360-q.txt&&cat redump-xbox360-q.txt > 360iso_q_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-q.txt > 360iso_q_db.txt&&sed -i '1 i\#redump-xbox360-q' 360iso_q_db.txt&&sudo cp redump-xbox360-q.txt 360iso_q_dl.txt&&sudo rm -f ${x3lq}&&sudo cp 360iso_q_dl.txt 360iso_q_single.txt&&cd ..;#&&sudo mkdir ${X3SQ};
 
     #XBOX 360 ISOs Readable List R
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mr"redump-xbox360-r_files.xml&&sudo grep '\"*.zip\"' ${x3lr} > redump-xbox360-r.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-r.txt&&egrep -o '[^"]*"' redump-xbox360-r.txt > 360iso_r_db.txt&&awk '{gsub("original\"", "");print}' 360iso_r_db.txt > redump-xbox360-r.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-r.txt > 360iso_r_db.txt&&grep '\S' 360iso_r_db.txt > redump-xbox360-r.txt&&sed -i 's/\"//g' redump-xbox360-r.txt&&cat redump-xbox360-r.txt > 360iso_r_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-r.txt > 360iso_r_db.txt&&sed -i '1 i\#redump-xbox360-r' 360iso_r_db.txt&&sudo cp redump-xbox360-r.txt 360iso_r_dl.txt&&sudo rm -f ${x3lr}&&sudo cp 360iso_r_dl.txt 360iso_r_single.txt&&cd ..&&sudo mkdir ${X3SR};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mr"redump-xbox360-r_files.xml&&sudo grep '\"*.zip\"' ${x3lr} > redump-xbox360-r.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-r.txt&&egrep -o '[^"]*"' redump-xbox360-r.txt > 360iso_r_db.txt&&awk '{gsub("original\"", "");print}' 360iso_r_db.txt > redump-xbox360-r.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-r.txt > 360iso_r_db.txt&&grep '\S' 360iso_r_db.txt > redump-xbox360-r.txt&&sed -i 's/\"//g' redump-xbox360-r.txt&&cat redump-xbox360-r.txt > 360iso_r_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-r.txt > 360iso_r_db.txt&&sed -i '1 i\#redump-xbox360-r' 360iso_r_db.txt&&sudo cp redump-xbox360-r.txt 360iso_r_dl.txt&&sudo rm -f ${x3lr}&&sudo cp 360iso_r_dl.txt 360iso_r_single.txt&&cd ..;#&&sudo mkdir ${X3SR};
 
     #XBOX 360 ISOs Readable List S
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3ms"redump-xbox360-s_files.xml&&sudo grep '\"*.zip\"' ${x3ls} > redump-xbox360-s.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-s.txt&&egrep -o '[^"]*"' redump-xbox360-s.txt > 360iso_s_db.txt&&awk '{gsub("original\"", "");print}' 360iso_s_db.txt > redump-xbox360-s.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-s.txt > 360iso_s_db.txt&&grep '\S' 360iso_s_db.txt > redump-xbox360-s.txt&&sed -i 's/\"//g' redump-xbox360-s.txt&&cat redump-xbox360-s.txt > 360iso_s_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-s.txt > 360iso_s_db.txt&&sed -i '1 i\#redump-xbox360-s' 360iso_s_db.txt&&sudo cp redump-xbox360-s.txt 360iso_s_dl.txt&&sudo rm -f ${x3ls}&&sudo cp 360iso_s_dl.txt 360iso_s_single.txt&&cd ..&&sudo mkdir ${X3SS};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3ms"redump-xbox360-s_files.xml&&sudo grep '\"*.zip\"' ${x3ls} > redump-xbox360-s.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-s.txt&&egrep -o '[^"]*"' redump-xbox360-s.txt > 360iso_s_db.txt&&awk '{gsub("original\"", "");print}' 360iso_s_db.txt > redump-xbox360-s.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-s.txt > 360iso_s_db.txt&&grep '\S' 360iso_s_db.txt > redump-xbox360-s.txt&&sed -i 's/\"//g' redump-xbox360-s.txt&&cat redump-xbox360-s.txt > 360iso_s_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-s.txt > 360iso_s_db.txt&&sed -i '1 i\#redump-xbox360-s' 360iso_s_db.txt&&sudo cp redump-xbox360-s.txt 360iso_s_dl.txt&&sudo rm -f ${x3ls}&&sudo cp 360iso_s_dl.txt 360iso_s_single.txt&&cd ..;#&&sudo mkdir ${X3SS};
 
     #XBOX 360 ISOs Readable List S 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3ms2"redump-xbox360-s-2_files.xml&&sudo grep '\"*.zip\"' ${x3ls2} > redump-xbox360-s2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-s2.txt&&egrep -o '[^"]*"' redump-xbox360-s2.txt > 360iso_s2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_s2_db.txt > redump-xbox360-s2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-s2.txt > 360iso_s2_db.txt&&grep '\S' 360iso_s2_db.txt > redump-xbox360-s2.txt&&sed -i 's/\"//g' redump-xbox360-s2.txt&&cat redump-xbox360-s2.txt > 360iso_s2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-s2.txt > 360iso_s2_db.txt&&sed -i '1 i\#redump-xbox360-s2' 360iso_s2_db.txt&&sudo cp redump-xbox360-s2.txt 360iso_s2_dl.txt&&sudo rm -f ${x3ls2}&&sudo cp 360iso_s2_dl.txt 360iso_s2_single.txt&&cd ..&&sudo mkdir ${X3SS2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3ms2"redump-xbox360-s-2_files.xml&&sudo grep '\"*.zip\"' ${x3ls2} > redump-xbox360-s2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-s2.txt&&egrep -o '[^"]*"' redump-xbox360-s2.txt > 360iso_s2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_s2_db.txt > redump-xbox360-s2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-s2.txt > 360iso_s2_db.txt&&grep '\S' 360iso_s2_db.txt > redump-xbox360-s2.txt&&sed -i 's/\"//g' redump-xbox360-s2.txt&&cat redump-xbox360-s2.txt > 360iso_s2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-s2.txt > 360iso_s2_db.txt&&sed -i '1 i\#redump-xbox360-s2' 360iso_s2_db.txt&&sudo cp redump-xbox360-s2.txt 360iso_s2_dl.txt&&sudo rm -f ${x3ls2}&&sudo cp 360iso_s2_dl.txt 360iso_s2_single.txt&&cd ..;#&&sudo mkdir ${X3SS2};
 
     #XBOX 360 ISOs Readable List T
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mt"redump-xbox360-t-1_files.xml&&sudo grep '\"*.zip\"' ${x3lt} > redump-xbox360-t.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-t.txt&&egrep -o '[^"]*"' redump-xbox360-t.txt > 360iso_t_db.txt&&awk '{gsub("original\"", "");print}' 360iso_t_db.txt > redump-xbox360-t.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-t.txt > 360iso_t_db.txt&&grep '\S' 360iso_t_db.txt > redump-xbox360-t.txt&&sed -i 's/\"//g' redump-xbox360-t.txt&&cat redump-xbox360-t.txt > 360iso_t_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-t.txt > 360iso_t_db.txt&&sed -i '1 i\#redump-xbox360-t' 360iso_t_db.txt&&sudo cp redump-xbox360-t.txt 360iso_t_dl.txt&&sudo rm -f ${x3lt}&&sudo cp 360iso_t_dl.txt 360iso_t_single.txt&&cd ..&&sudo mkdir ${X3ST};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mt"redump-xbox360-t-1_files.xml&&sudo grep '\"*.zip\"' ${x3lt} > redump-xbox360-t.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-t.txt&&egrep -o '[^"]*"' redump-xbox360-t.txt > 360iso_t_db.txt&&awk '{gsub("original\"", "");print}' 360iso_t_db.txt > redump-xbox360-t.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-t.txt > 360iso_t_db.txt&&grep '\S' 360iso_t_db.txt > redump-xbox360-t.txt&&sed -i 's/\"//g' redump-xbox360-t.txt&&cat redump-xbox360-t.txt > 360iso_t_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-t.txt > 360iso_t_db.txt&&sed -i '1 i\#redump-xbox360-t' 360iso_t_db.txt&&sudo cp redump-xbox360-t.txt 360iso_t_dl.txt&&sudo rm -f ${x3lt}&&sudo cp 360iso_t_dl.txt 360iso_t_single.txt&&cd ..;#&&sudo mkdir ${X3ST};
 
     #XBOX 360 ISOs Readable List T 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mt2"redump-xbox360-t-2_files.xml&&sudo grep '\"*.zip\"' ${x3lt2} > redump-xbox360-t2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-t2.txt&&egrep -o '[^"]*"' redump-xbox360-t2.txt > 360iso_t2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_t2_db.txt > redump-xbox360-t2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-t2.txt > 360iso_t2_db.txt&&grep '\S' 360iso_t2_db.txt > redump-xbox360-t2.txt&&sed -i 's/\"//g' redump-xbox360-t2.txt&&cat redump-xbox360-t2.txt > 360iso_t2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-t2.txt > 360iso_t2_db.txt&&sed -i '1 i\#redump-xbox360-t' 360iso_t2_db.txt&&sudo cp redump-xbox360-t2.txt 360iso_t2_dl.txt&&sudo rm -f ${x3lt2}&&sudo cp 360iso_t2_dl.txt 360iso_t2_single.txt&&cd ..&&sudo mkdir ${X3ST2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mt2"redump-xbox360-t-2_files.xml&&sudo grep '\"*.zip\"' ${x3lt2} > redump-xbox360-t2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-t2.txt&&egrep -o '[^"]*"' redump-xbox360-t2.txt > 360iso_t2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_t2_db.txt > redump-xbox360-t2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-t2.txt > 360iso_t2_db.txt&&grep '\S' 360iso_t2_db.txt > redump-xbox360-t2.txt&&sed -i 's/\"//g' redump-xbox360-t2.txt&&cat redump-xbox360-t2.txt > 360iso_t2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-t2.txt > 360iso_t2_db.txt&&sed -i '1 i\#redump-xbox360-t' 360iso_t2_db.txt&&sudo cp redump-xbox360-t2.txt 360iso_t2_dl.txt&&sudo rm -f ${x3lt2}&&sudo cp 360iso_t2_dl.txt 360iso_t2_single.txt&&cd ..;#&&sudo mkdir ${X3ST2};
 
     #XBOX 360 ISOs Readable List U
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mu"redump-xbox360-u_files.xml&&sudo grep '\"*.zip\"' ${x3lu} > redump-xbox360-u.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-u.txt&&egrep -o '[^"]*"' redump-xbox360-u.txt > 360iso_u_db.txt&&awk '{gsub("original\"", "");print}' 360iso_u_db.txt > redump-xbox360-u.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-u.txt > 360iso_u_db.txt&&grep '\S' 360iso_u_db.txt > redump-xbox360-u.txt&&sed -i 's/\"//g' redump-xbox360-u.txt&&cat redump-xbox360-u.txt > 360iso_u_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-u.txt > 360iso_u_db.txt&&sed -i '1 i\#redump-xbox360-u' 360iso_u_db.txt&&sudo cp redump-xbox360-u.txt 360iso_u_dl.txt&&sudo rm -f ${x3lu}&&sudo cp 360iso_u_dl.txt 360iso_u_single.txt&&cd ..&&sudo mkdir ${X3SU};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mu"redump-xbox360-u_files.xml&&sudo grep '\"*.zip\"' ${x3lu} > redump-xbox360-u.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-u.txt&&egrep -o '[^"]*"' redump-xbox360-u.txt > 360iso_u_db.txt&&awk '{gsub("original\"", "");print}' 360iso_u_db.txt > redump-xbox360-u.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-u.txt > 360iso_u_db.txt&&grep '\S' 360iso_u_db.txt > redump-xbox360-u.txt&&sed -i 's/\"//g' redump-xbox360-u.txt&&cat redump-xbox360-u.txt > 360iso_u_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-u.txt > 360iso_u_db.txt&&sed -i '1 i\#redump-xbox360-u' 360iso_u_db.txt&&sudo cp redump-xbox360-u.txt 360iso_u_dl.txt&&sudo rm -f ${x3lu}&&sudo cp 360iso_u_dl.txt 360iso_u_single.txt&&cd ..;#&&sudo mkdir ${X3SU};
 
     #XBOX 360 ISOs Readable List V
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mv"redump-xbox360-v_files.xml&&sudo grep '\"*.zip\"' ${x3lv} > redump-xbox360-v.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-v.txt&&egrep -o '[^"]*"' redump-xbox360-v.txt > 360iso_v_db.txt&&awk '{gsub("original\"", "");print}' 360iso_v_db.txt > redump-xbox360-v.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-v.txt > 360iso_v_db.txt&&grep '\S' 360iso_v_db.txt > redump-xbox360-v.txt&&sed -i 's/\"//g' redump-xbox360-v.txt&&cat redump-xbox360-v.txt > 360iso_v_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-v.txt > 360iso_v_db.txt&&sed -i '1 i\#redump-xbox360-v' 360iso_v_db.txt&&sudo cp redump-xbox360-v.txt 360iso_v_dl.txt&&sudo rm -f ${x3lv}&&sudo cp 360iso_v_dl.txt 360iso_v_single.txt&&cd ..&&sudo mkdir ${X3SV};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mv"redump-xbox360-v_files.xml&&sudo grep '\"*.zip\"' ${x3lv} > redump-xbox360-v.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-v.txt&&egrep -o '[^"]*"' redump-xbox360-v.txt > 360iso_v_db.txt&&awk '{gsub("original\"", "");print}' 360iso_v_db.txt > redump-xbox360-v.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-v.txt > 360iso_v_db.txt&&grep '\S' 360iso_v_db.txt > redump-xbox360-v.txt&&sed -i 's/\"//g' redump-xbox360-v.txt&&cat redump-xbox360-v.txt > 360iso_v_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-v.txt > 360iso_v_db.txt&&sed -i '1 i\#redump-xbox360-v' 360iso_v_db.txt&&sudo cp redump-xbox360-v.txt 360iso_v_dl.txt&&sudo rm -f ${x3lv}&&sudo cp 360iso_v_dl.txt 360iso_v_single.txt&&cd ..;#&&sudo mkdir ${X3SV};
 
     #XBOX 360 ISOs Readable List W
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mw"redump-xbox360-w_files.xml&&sudo grep '\"*.zip\"' ${x3lw} > redump-xbox360-w.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-w.txt&&egrep -o '[^"]*"' redump-xbox360-w.txt > 360iso_w_db.txt&&awk '{gsub("original\"", "");print}' 360iso_w_db.txt > redump-xbox360-w.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-w.txt > 360iso_w_db.txt&&grep '\S' 360iso_w_db.txt > redump-xbox360-w.txt&&sed -i 's/\"//g' redump-xbox360-w.txt&&cat redump-xbox360-w.txt > 360iso_w_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-w.txt > 360iso_w_db.txt&&sed -i '1 i\#redump-xbox360-w' 360iso_w_db.txt&&sudo cp redump-xbox360-w.txt 360iso_w_dl.txt&&sudo rm -f ${x3lw}&&sudo cp 360iso_w_dl.txt 360iso_w_single.txt&&cd ..&&sudo mkdir ${X3SW};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mw"redump-xbox360-w_files.xml&&sudo grep '\"*.zip\"' ${x3lw} > redump-xbox360-w.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-w.txt&&egrep -o '[^"]*"' redump-xbox360-w.txt > 360iso_w_db.txt&&awk '{gsub("original\"", "");print}' 360iso_w_db.txt > redump-xbox360-w.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-w.txt > 360iso_w_db.txt&&grep '\S' 360iso_w_db.txt > redump-xbox360-w.txt&&sed -i 's/\"//g' redump-xbox360-w.txt&&cat redump-xbox360-w.txt > 360iso_w_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-w.txt > 360iso_w_db.txt&&sed -i '1 i\#redump-xbox360-w' 360iso_w_db.txt&&sudo cp redump-xbox360-w.txt 360iso_w_dl.txt&&sudo rm -f ${x3lw}&&sudo cp 360iso_w_dl.txt 360iso_w_single.txt&&cd ..;#&&sudo mkdir ${X3SW};
 
     #XBOX 360 ISOs Readable List X 1
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mx"redump-xbox360-x-1_files.xml&&sudo grep '\"*.zip\"' ${x3lx} > redump-xbox360-x.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-x.txt&&egrep -o '[^"]*"' redump-xbox360-x.txt > 360iso_x_db.txt&&awk '{gsub("original\"", "");print}' 360iso_x_db.txt > redump-xbox360-x.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-x.txt > 360iso_x_db.txt&&grep '\S' 360iso_x_db.txt > redump-xbox360-x.txt&&sed -i 's/\"//g' redump-xbox360-x.txt&&cat redump-xbox360-x.txt > 360iso_x_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-x.txt > 360iso_x_db.txt&&sed -i '1 i\#redump-xbox360-x' 360iso_x_db.txt&&sudo cp redump-xbox360-x.txt 360iso_x_dl.txt&&sudo rm -f ${x3lx}&&sudo cp 360iso_x_dl.txt 360iso_x_single.txt&&cd ..&&sudo mkdir ${X3SX};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mx"redump-xbox360-x-1_files.xml&&sudo grep '\"*.zip\"' ${x3lx} > redump-xbox360-x.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-x.txt&&egrep -o '[^"]*"' redump-xbox360-x.txt > 360iso_x_db.txt&&awk '{gsub("original\"", "");print}' 360iso_x_db.txt > redump-xbox360-x.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-x.txt > 360iso_x_db.txt&&grep '\S' 360iso_x_db.txt > redump-xbox360-x.txt&&sed -i 's/\"//g' redump-xbox360-x.txt&&cat redump-xbox360-x.txt > 360iso_x_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-x.txt > 360iso_x_db.txt&&sed -i '1 i\#redump-xbox360-x' 360iso_x_db.txt&&sudo cp redump-xbox360-x.txt 360iso_x_dl.txt&&sudo rm -f ${x3lx}&&sudo cp 360iso_x_dl.txt 360iso_x_single.txt&&cd ..;#&&sudo mkdir ${X3SX};
 
     #XBOX 360 ISOs Readable List X 2
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mx2"redump-xbox360-x-2_files.xml&&sudo grep '\"*.zip\"' ${x3lx2} > redump-xbox360-x2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-x2.txt&&egrep -o '[^"]*"' redump-xbox360-x2.txt > 360iso_x2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_x2_db.txt > redump-xbox360-x2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-x2.txt > 360iso_x2_db.txt&&grep '\S' 360iso_x2_db.txt > redump-xbox360-x2.txt&&sed -i 's/\"//g' redump-xbox360-x2.txt&&cat redump-xbox360-x2.txt > 360iso_x2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-x2.txt > 360iso_x2_db.txt&&sed -i '1 i\#redump-xbox360-x2' 360iso_x2_db.txt&&sudo cp redump-xbox360-x2.txt 360iso_x2_dl.txt&&sudo rm -f ${x3lx2}&&sudo cp 360iso_x2_dl.txt 360iso_x2_single.txt&&cd ..&&sudo mkdir ${X3SX2};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mx2"redump-xbox360-x-2_files.xml&&sudo grep '\"*.zip\"' ${x3lx2} > redump-xbox360-x2.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-x2.txt&&egrep -o '[^"]*"' redump-xbox360-x2.txt > 360iso_x2_db.txt&&awk '{gsub("original\"", "");print}' 360iso_x2_db.txt > redump-xbox360-x2.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-x2.txt > 360iso_x2_db.txt&&grep '\S' 360iso_x2_db.txt > redump-xbox360-x2.txt&&sed -i 's/\"//g' redump-xbox360-x2.txt&&cat redump-xbox360-x2.txt > 360iso_x2_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-x2.txt > 360iso_x2_db.txt&&sed -i '1 i\#redump-xbox360-x2' 360iso_x2_db.txt&&sudo cp redump-xbox360-x2.txt 360iso_x2_dl.txt&&sudo rm -f ${x3lx2}&&sudo cp 360iso_x2_dl.txt 360iso_x2_single.txt&&cd ..;#&&sudo mkdir ${X3SX2};
 
     #XBOX 360 ISOs Readable List Y
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3my"redump-xbox360-y_files.xml&&sudo grep '\"*.zip\"' ${x3ly} > redump-xbox360-y.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-y.txt&&egrep -o '[^"]*"' redump-xbox360-y.txt > 360iso_y_db.txt&&awk '{gsub("original\"", "");print}' 360iso_y_db.txt > redump-xbox360-y.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-y.txt > 360iso_y_db.txt&&grep '\S' 360iso_y_db.txt > redump-xbox360-y.txt&&sed -i 's/\"//g' redump-xbox360-y.txt&&cat redump-xbox360-y.txt > 360iso_y_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-y.txt > 360iso_y_db.txt&&sed -i '1 i\#redump-xbox360-y' 360iso_y_db.txt&&sudo cp redump-xbox360-y.txt 360iso_y_dl.txt&&sudo rm -f ${x3ly}&&sudo cp 360iso_y_dl.txt 360iso_y_single.txt&&cd ..&&sudo mkdir ${X3SY};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3my"redump-xbox360-y_files.xml&&sudo grep '\"*.zip\"' ${x3ly} > redump-xbox360-y.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-y.txt&&egrep -o '[^"]*"' redump-xbox360-y.txt > 360iso_y_db.txt&&awk '{gsub("original\"", "");print}' 360iso_y_db.txt > redump-xbox360-y.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-y.txt > 360iso_y_db.txt&&grep '\S' 360iso_y_db.txt > redump-xbox360-y.txt&&sed -i 's/\"//g' redump-xbox360-y.txt&&cat redump-xbox360-y.txt > 360iso_y_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-y.txt > 360iso_y_db.txt&&sed -i '1 i\#redump-xbox360-y' 360iso_y_db.txt&&sudo cp redump-xbox360-y.txt 360iso_y_dl.txt&&sudo rm -f ${x3ly}&&sudo cp 360iso_y_dl.txt 360iso_y_single.txt&&cd ..;#&&sudo mkdir ${X3SY};
 
     #XBOX 360 ISOs Readable List Z
-    cd xbarchive/&&sudo wget -N "$ARCH""$x3mz"redump-xbox360-z_files.xml&&sudo grep '\"*.zip\"' ${x3lz} > redump-xbox360-z.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-z.txt&&egrep -o '[^"]*"' redump-xbox360-z.txt > 360iso_z_db.txt&&awk '{gsub("original\"", "");print}' 360iso_z_db.txt > redump-xbox360-z.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-z.txt > 360iso_z_db.txt&&grep '\S' 360iso_z_db.txt > redump-xbox360-z.txt&&sed -i 's/\"//g' redump-xbox360-z.txt&&cat redump-xbox360-z.txt > 360iso_z_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-z.txt > 360iso_z_db.txt&&sed -i '1 i\#redump-xbox360-z' 360iso_z_db.txt&&sudo cp redump-xbox360-z.txt 360iso_z_dl.txt&&sudo rm -f ${x3lz}&&sudo cp 360iso_z_dl.txt 360iso_z_single.txt&&cd ..&&sudo mkdir ${X3SZ};
+    cd xbarchive/&&sudo wget -N "$ARCH""$x3mz"redump-xbox360-z_files.xml&&sudo grep '\"*.zip\"' ${x3lz} > redump-xbox360-z.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-z.txt&&egrep -o '[^"]*"' redump-xbox360-z.txt > 360iso_z_db.txt&&awk '{gsub("original\"", "");print}' 360iso_z_db.txt > redump-xbox360-z.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-z.txt > 360iso_z_db.txt&&grep '\S' 360iso_z_db.txt > redump-xbox360-z.txt&&sed -i 's/\"//g' redump-xbox360-z.txt&&cat redump-xbox360-z.txt > 360iso_z_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-z.txt > 360iso_z_db.txt&&sed -i '1 i\#redump-xbox360-z' 360iso_z_db.txt&&sudo cp redump-xbox360-z.txt 360iso_z_dl.txt&&sudo rm -f ${x3lz}&&sudo cp 360iso_z_dl.txt 360iso_z_single.txt&&cd ..;#&&sudo mkdir ${X3SZ};
 
     #XBOX 360 ISOs Readable List Numbers
-    cd xbarchive/&&sudo wget -N "$ARCH""$n3m"redump-xbox360-numbers_files.xml&&sudo grep '\"*.zip\"' ${n3l} > redump-xbox360-numbers.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-numbers.txt&&egrep -o '[^"]*"' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&awk '{gsub("original\"", "");print}' 360iso_numbers_db.txt > redump-xbox360-numbers.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&grep '\S' 360iso_numbers_db.txt > redump-xbox360-numbers.txt&&sed -i 's/\"//g' redump-xbox360-numbers.txt&&cat redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&sed -i '1 i\#redump-xbox360-numbers' 360iso_numbers_db.txt&&sudo cp redump-xbox360-numbers.txt 360iso_numbers_dl.txt&&sudo rm -f ${n3l}&&sudo cp 360iso_numbers_dl.txt 360iso_numbers_single.txt&&cd ..&&sudo mkdir ${n3S};
+    cd xbarchive/&&sudo wget -N "$ARCH""$n3m"redump-xbox360-numbers_files.xml&&sudo grep '\"*.zip\"' ${n3l} > redump-xbox360-numbers.txt&&sudo sed -i 's/.\{14\}//' redump-xbox360-numbers.txt&&egrep -o '[^"]*"' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&awk '{gsub("original\"", "");print}' 360iso_numbers_db.txt > redump-xbox360-numbers.txt&&awk '{gsub("source=\"", "");print}' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&grep '\S' 360iso_numbers_db.txt > redump-xbox360-numbers.txt&&sed -i 's/\"//g' redump-xbox360-numbers.txt&&cat redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&awk '{printf("%01d %s\n", NR, $0)}' redump-xbox360-numbers.txt > 360iso_numbers_db.txt&&sed -i '1 i\#redump-xbox360-numbers' 360iso_numbers_db.txt&&sudo cp redump-xbox360-numbers.txt 360iso_numbers_dl.txt&&sudo rm -f ${n3l}&&sudo cp 360iso_numbers_dl.txt 360iso_numbers_single.txt&&cd ..;#&&sudo mkdir ${n3S};
 
 
   sub_menu9;
@@ -1529,7 +1536,7 @@ case $sub9 in
 
 22) clear;
   option_picked "Bulk Download xbox360-n ISOs";
-    awk '{ printf "redump-xbox360-n/"; print }' xbarchive/360iso_n_dl.txt > xbarchive/360iso_n_dl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/360iso_n_dl2.txt > xbarchive/360iso_n_dl.txt&&sudo rm -f xbarchive/360iso_n_dl2.txt&&sed -i '1 i\redump-xbox360-n' xbarchive/360iso_a_dl.txt&&sed -i '2d' xbarchive/360iso_n_dl.txt&&./xbarchive/aria2files.sh xbarchive/360iso_n_dl.txt&&sudo rm -f xbarchive/360iso_n_dl.txt;
+    awk '{ printf "redump-xbox360-n/"; print }' xbarchive/360iso_n_dl.txt > xbarchive/360iso_n_dl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/360iso_n_dl2.txt > xbarchive/360iso_n_dl.txt&&sudo rm -f xbarchive/360iso_n_dl2.txt&&sed -i '1 i\redump-xbox360-n' xbarchive/360iso_n_dl.txt&&sed -i '2d' xbarchive/360iso_n_dl.txt&&./xbarchive/aria2files.sh xbarchive/360iso_n_dl.txt&&sudo rm -f xbarchive/360iso_n_dl.txt;
   sub_menu9;
   sub_menu_admin;
 ;;
@@ -2845,16 +2852,16 @@ case $sub11 in
     
 
     #wii_rvz_usa part 1 Readable List
-    cd xbarchive/&&sudo wget -N "$ARCH""$rvz"wii_rvz_usa_files.xml&&sudo grep '\"*.rvz\"' ${rvxml} > wii_rvz_usa.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usa.txt&&egrep -o '[^"]*"' wii_rvz_usa.txt > rvzdb.txt&&awk '{gsub("original\"", "");print}' rvzdb.txt > wii_rvz_usa.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usa.txt > rvzdb.txt&&grep '\S' rvzdb.txt > wii_rvz_usa.txt&&sed -i 's/\"//g' wii_rvz_usa.txt&&cat wii_rvz_usa.txt > rvzdb.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usa.txt > rvzdb.txt&&sed -i '1 i\#wii_rvz_usa' rvzdb.txt&&sudo cp wii_rvz_usa.txt rvzdl.txt&&sudo rm -f ${rvxml}&&sudo cp rvzdl.txt rvzsingle.txt&&cd ..&&sudo mkdir ${rvz1};
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz"wii_rvz_usa_files.xml&&sudo grep '\"*.rvz\"' ${rvxml} > wii_rvz_usa.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usa.txt&&egrep -o '[^"]*"' wii_rvz_usa.txt > rvzdb.txt&&awk '{gsub("original\"", "");print}' rvzdb.txt > wii_rvz_usa.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usa.txt > rvzdb.txt&&grep '\S' rvzdb.txt > wii_rvz_usa.txt&&sed -i 's/\"//g' wii_rvz_usa.txt&&cat wii_rvz_usa.txt > rvzdb.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usa.txt > rvzdb.txt&&sed -i '1 i\#wii_rvz_usa' rvzdb.txt&&sudo cp wii_rvz_usa.txt rvzdl.txt&&sudo rm -f ${rvxml}&&sudo cp rvzdl.txt rvzsingle.txt&&cd ..;#&&sudo mkdir ${rvz1};
 
     #wii_rvz_usa part 2 Readable List
-    cd xbarchive/&&sudo wget -N "$ARCH""$rvz2"wii_rvz_usa_p2_files.xml&&sudo grep '\"*.rvz\"' ${rvxml2} > wii_rvz_usap2.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap2.txt&&egrep -o '[^"]*"' wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{gsub("original\"", "");print}' rvzdbp2.txt > wii_rvz_usap2.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap2.txt > rvzdbp2.txt&&grep '\S' rvzdbp2.txt > wii_rvz_usap2.txt&&sed -i 's/\"//g' wii_rvz_usap2.txt&&cat wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap2.txt > rvzdbp2.txt&&sed -i '1 i\#wii_rvz_usap2' rvzdbp2.txt&&sudo cp wii_rvz_usap2.txt rvzdlp2.txt&&sudo rm -f ${rvxml2}&&sudo cp rvzdlp2.txt rvzsinglep2.txt&&cd ..&&sudo mkdir ${rvz12};#&&sudo sed -i 's/\&amp\;/%26/g' xbarchive/rvzsinglep2.txt;
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz2"wii_rvz_usa_p2_files.xml&&sudo grep '\"*.rvz\"' ${rvxml2} > wii_rvz_usap2.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap2.txt&&egrep -o '[^"]*"' wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{gsub("original\"", "");print}' rvzdbp2.txt > wii_rvz_usap2.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap2.txt > rvzdbp2.txt&&grep '\S' rvzdbp2.txt > wii_rvz_usap2.txt&&sed -i 's/\"//g' wii_rvz_usap2.txt&&cat wii_rvz_usap2.txt > rvzdbp2.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap2.txt > rvzdbp2.txt&&sed -i '1 i\#wii_rvz_usap2' rvzdbp2.txt&&sudo cp wii_rvz_usap2.txt rvzdlp2.txt&&sudo rm -f ${rvxml2}&&sudo cp rvzdlp2.txt rvzsinglep2.txt&&cd ..;#&&sudo mkdir ${rvz12};#&&sudo sed -i 's/\&amp\;/%26/g' xbarchive/rvzsinglep2.txt;
 
     #wii_rvz_usa part 3 Readable List
-    cd xbarchive/&&sudo wget -N "$ARCH""$rvz3"wii_rvz_usa_p3_files.xml&&sudo grep '\"*.rvz\"' ${rvxml3} > wii_rvz_usap3.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap3.txt&&egrep -o '[^"]*"' wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{gsub("original\"", "");print}' rvzdbp3.txt > wii_rvz_usap3.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap3.txt > rvzdbp3.txt&&grep '\S' rvzdbp3.txt > wii_rvz_usap3.txt&&sed -i 's/\"//g' wii_rvz_usap3.txt&&cat wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap3.txt > rvzdbp3.txt&&sed -i '1 i\#wii_rvz_usap3' rvzdbp3.txt&&sudo cp wii_rvz_usap3.txt rvzdlp3.txt&&sudo rm -f ${rvxml3}&&sudo cp rvzdlp3.txt rvzsinglep3.txt&&cd ..&&sudo mkdir ${rvz13};
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz3"wii_rvz_usa_p3_files.xml&&sudo grep '\"*.rvz\"' ${rvxml3} > wii_rvz_usap3.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap3.txt&&egrep -o '[^"]*"' wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{gsub("original\"", "");print}' rvzdbp3.txt > wii_rvz_usap3.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap3.txt > rvzdbp3.txt&&grep '\S' rvzdbp3.txt > wii_rvz_usap3.txt&&sed -i 's/\"//g' wii_rvz_usap3.txt&&cat wii_rvz_usap3.txt > rvzdbp3.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap3.txt > rvzdbp3.txt&&sed -i '1 i\#wii_rvz_usap3' rvzdbp3.txt&&sudo cp wii_rvz_usap3.txt rvzdlp3.txt&&sudo rm -f ${rvxml3}&&sudo cp rvzdlp3.txt rvzsinglep3.txt&&cd ..;#&&sudo mkdir ${rvz13};
 
     #wii_rvz_usa part 4 Readable List
-    cd xbarchive/&&sudo wget -N "$ARCH""$rvz4"wii_rvz_usa_p4_files.xml&&sudo grep '\"*.rvz\"' ${rvxml4} > wii_rvz_usap4.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap4.txt&&egrep -o '[^"]*"' wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{gsub("original\"", "");print}' rvzdbp4.txt > wii_rvz_usap4.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap4.txt > rvzdbp4.txt&&grep '\S' rvzdbp4.txt > wii_rvz_usap4.txt&&sed -i 's/\"//g' wii_rvz_usap4.txt&&cat wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap4.txt > rvzdbp4.txt&&sed -i '1 i\#wii_rvz_usap4' rvzdbp4.txt&&sudo cp wii_rvz_usap4.txt rvzdlp4.txt&&sudo rm -f ${rvxml4}&&sudo cp rvzdlp4.txt rvzsinglep4.txt&&cd ..&&sudo mkdir ${rvz14};
+    cd xbarchive/&&sudo wget -N "$ARCH""$rvz4"wii_rvz_usa_p4_files.xml&&sudo grep '\"*.rvz\"' ${rvxml4} > wii_rvz_usap4.txt&&sudo sed -i 's/.\{14\}//' wii_rvz_usap4.txt&&egrep -o '[^"]*"' wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{gsub("original\"", "");print}' rvzdbp4.txt > wii_rvz_usap4.txt&&awk '{gsub("source=\"", "");print}' wii_rvz_usap4.txt > rvzdbp4.txt&&grep '\S' rvzdbp4.txt > wii_rvz_usap4.txt&&sed -i 's/\"//g' wii_rvz_usap4.txt&&cat wii_rvz_usap4.txt > rvzdbp4.txt&&awk '{printf("%01d %s\n", NR, $0)}' wii_rvz_usap4.txt > rvzdbp4.txt&&sed -i '1 i\#wii_rvz_usap4' rvzdbp4.txt&&sudo cp wii_rvz_usap4.txt rvzdlp4.txt&&sudo rm -f ${rvxml4}&&sudo cp rvzdlp4.txt rvzsinglep4.txt&&cd ..;#&&sudo mkdir ${rvz14};
 
   sub_menu11;
   sub_menu_admin;
@@ -2944,12 +2951,6 @@ printf "\n${menu}***************************************************************
 printf "This will download single game from archive.org.\n\n"
 printf "\n${menu}***************************************************************************${normal}\n\n"
 printf "Make your selection '1-6' then hit enter\n\n"
-#printf "Option 1) Return to Wii rvz Bulk Download\n"
-#printf "Option 2) Download Single Wii rvz #-D Game From List\n"
-#printf "Option 3) Download Single Wii rvz F-M Game From List\n"
-#printf "Option 4) Download Single Wii rvz N-S Game From List\n"
-#printf "Option 5) Download Single Wii rvz T-Z Game From List\n"
-#printf "Option 6) Will Exit to Menu\n\n"
 printf "${menu}*********************************************${normal}\n"
 printf "${menu}**${number} 1)${menu} ${green}Return to Wii rvz Bulk Download${normal}\n"
 printf "${menu}**${number} 2)${menu} Download Single Wii rvz #-D Game From List${normal}\n"
@@ -3095,9 +3096,290 @@ done
 }
 
 
+#PS2 ISO
+#MAME Sub Menu 13
+sub_menu13(){
+normal=`echo "\033[m"`
+menu=`echo "\033[36m"` #Blue
+number=`echo "\033[33m"` #yellow
+bgred=`echo "\033[41m"`
+fgred=`echo "\033[31m"`
+red=`echo "\033[91m"`
+bggreen=`echo "\033[1;32m"`
+green=`echo "\033[92m"`
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 1 first build DB files\n
+then select 2-6 to download ${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download the collection from archive.org.\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-6' then hit enter\n\n"
+printf "Option 1) Will Build DB Files\n"
+printf "Option 2) Will Let you download a single game from a list\n"
+printf "Option 3) Will Bulk Download PS2 ISO #-J\n"
+printf "Option 4) Will Bulk Download PS2 ISO K-R\n"
+printf "Option 5) Will Bulk Download PS2 ISO S-Z\n"
+printf "Option 6) Will Exit to Menu\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} ${red}Build PS2 ISO #-Z DB Files ${normal}\n"
+printf "${menu}**${number} 2)${menu} ${green}Download Single PS2 ISO Game${normal}\n"
+printf "${menu}**${number} 3)${menu} Bulk Download PS2 ISO #-J${normal}\n"
+printf "${menu}**${number} 4)${menu} Bulk Download PS2 ISO K-R${normal}\n"
+printf "${menu}**${number} 5)${menu} Bulk Download PS2 ISO S-Z${normal}\n"
+printf "${menu}**${number} 6)${menu} Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter or ${RED_TEXT}enter to exit. ${normal}\n"
+read sub13
+while [ sub13 != '' ]
+do
+if [[ $sub13 = "" ]]; then
+exit;
+else
+case $sub13 in
+
+1) clear;
+  option_picked "Now Building PS2 ISO DB Files";
+    
+    ################# PS2 ISO #-J ###################
+    two="ps2usaredump1/"
+    two1="ps2usaredump1"
+    twoxml="ps2usaredump1_files.xml"
+
+    ################# PS2 ISO K-R ###################
+    two2="ps2usaredump1_20200816_1458/"
+    two12="ps2usaredump2"
+    twoxml2="ps2usaredump1_20200816_1458_files.xml"
+
+    ################# PS2 ISO S-Z ###################
+    two3="httpsarchive.orgdetailsps2usaredump3/"
+    two13="ps2usaredump3"
+    twoxml3="httpsarchive.orgdetailsps2usaredump3_files.xml"
+    
+
+    #PS2_ISO_usa part 1 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$two"ps2usaredump1_files.xml&&sudo grep '\"*.7z\"' ${twoxml} > PS2_ISO_usa.txt&&sudo sed -i 's/.\{14\}//' PS2_ISO_usa.txt&&egrep -o '[^"]*"' PS2_ISO_usa.txt > ps2db.txt&&awk '{gsub("original\"", "");print}' ps2db.txt > PS2_ISO_usa.txt&&awk '{gsub("source=\"", "");print}' PS2_ISO_usa.txt > ps2db.txt&&grep '\S' ps2db.txt > PS2_ISO_usa.txt&&sed -i 's/\"//g' PS2_ISO_usa.txt&&cat PS2_ISO_usa.txt > ps2db.txt&&awk '{printf("%01d %s\n", NR, $0)}' PS2_ISO_usa.txt > ps2db.txt&&sed -i '1 i\#PS2_ISO_usa' ps2db.txt&&sudo cp PS2_ISO_usa.txt ps2dl.txt&&sudo rm -f ${twoxml}&&sudo cp ps2dl.txt ps2single.txt&&cd ..;#&&sudo mkdir ${two1};
+
+    #PS2_ISO_usa part 2 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$two2"ps2usaredump1_20200816_1458_files.xml&&sudo grep '\"*.7z\"' ${twoxml2} > PS2_ISO_usap2.txt&&sudo sed -i 's/.\{14\}//' PS2_ISO_usap2.txt&&egrep -o '[^"]*"' PS2_ISO_usap2.txt > ps2dbp2.txt&&awk '{gsub("original\"", "");print}' ps2dbp2.txt > PS2_ISO_usap2.txt&&awk '{gsub("source=\"", "");print}' PS2_ISO_usap2.txt > ps2dbp2.txt&&grep '\S' ps2dbp2.txt > PS2_ISO_usap2.txt&&sed -i 's/\"//g' PS2_ISO_usap2.txt&&cat PS2_ISO_usap2.txt > ps2dbp2.txt&&awk '{printf("%01d %s\n", NR, $0)}' PS2_ISO_usap2.txt > ps2dbp2.txt&&sed -i '1 i\#PS2_ISO_usap2' ps2dbp2.txt&&sudo cp PS2_ISO_usap2.txt ps2dlp2.txt&&sudo rm -f ${twoxml2}&&sudo cp ps2dlp2.txt ps2singlep2.txt&&cd ..;
+
+    #PS2_ISO_usa part 3 Readable List
+    cd xbarchive/&&sudo wget -N "$ARCH""$two3"httpsarchive.orgdetailsps2usaredump3_files.xml&&sudo grep '\"*.7z\"' ${twoxml3} > PS2_ISO_usap3.txt&&sudo sed -i 's/.\{14\}//' PS2_ISO_usap3.txt&&egrep -o '[^"]*"' PS2_ISO_usap3.txt > ps2dbp3.txt&&awk '{gsub("original\"", "");print}' ps2dbp3.txt > PS2_ISO_usap3.txt&&awk '{gsub("source=\"", "");print}' PS2_ISO_usap3.txt > ps2dbp3.txt&&grep '\S' ps2dbp3.txt > PS2_ISO_usap3.txt&&sed -i 's/\"//g' PS2_ISO_usap3.txt&&cat PS2_ISO_usap3.txt > ps2dbp3.txt&&awk '{printf("%01d %s\n", NR, $0)}' PS2_ISO_usap3.txt > ps2dbp3.txt&&sed -i '1 i\#PS2_ISO_usap3' ps2dbp3.txt&&sudo cp PS2_ISO_usap3.txt ps2dlp3.txt&&sudo rm -f ${twoxml3}&&sudo cp ps2dlp3.txt ps2singlep3.txt&&cd ..;
+
+    
+  sub_menu13;
+  sub_menu_admin;
+;;
+
+2) clear;
+  option_picked "Download Single PS2 ISO";
+  sub_menu14;
+  sub_menu_admin;
+;;
 
 
+3) clear;
+  option_picked "Bulk Download PS2 ISO #-J";
+    awk '{ printf "ps2usaredump1/"; print }' xbarchive/ps2dl.txt > xbarchive/ps2dl2.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/ps2dl2.txt > xbarchive/ps2dl.txt&&sudo rm -f xbarchive/ps2dl2.txt&&sed -i '1 i\ps2usaredump1' xbarchive/ps2dl.txt&&sed -i '2d' xbarchive/ps2dl.txt&&./xbarchive/aria2files.sh xbarchive/ps2dl.txt&&sudo rm -f xbarchive/ps2dl.txt;
+  sub_menu13;
+  sub_menu_admin;
+;;
 
+4) clear;
+  option_picked "Bulk Download PS2 ISO K-R";
+    awk '{ printf "ps2usaredump1_20200816_1458/"; print }' xbarchive/ps2dlp2.txt > xbarchive/ps2dlp22.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/ps2dlp22.txt > xbarchive/ps2dlp2.txt&&sudo rm -f xbarchive/ps2dlp22.txt&&sed -i '1 i\ps2usaredump1_20200816_1458' xbarchive/ps2dlp2.txt&&sed -i '2d' xbarchive/ps2dlp2.txt&&./xbarchive/aria2files.sh xbarchive/ps2dlp2.txt&&sudo rm -f xbarchive/ps2dlp2.txt;
+  sub_menu13;
+  sub_menu_admin;
+;;
+
+5) clear;
+  option_picked "Bulk Download PS2 ISO S-Z";
+    awk '{ printf "httpsarchive.orgdetailsps2usaredump3/"; print }' xbarchive/ps2dlp3.txt > xbarchive/ps2dlp32.txt&&awk '{ printf "https://archive.org/download/"; print }' xbarchive/ps2dlp32.txt > xbarchive/ps2dlp3.txt&&sudo rm -f xbarchive/ps2dlp32.txt&&sed -i '1 i\httpsarchive.orgdetailsps2usaredump3' xbarchive/ps2dlp3.txt&&sed -i '2d' xbarchive/ps2dlp3.txt&&./xbarchive/aria2files.sh xbarchive/ps2dlp3.txt&&sudo rm -f xbarchive/ps2dlp3.txt;
+  sub_menu13;
+  sub_menu_admin;
+;;
+
+
+6) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+option_picked "Pick an option from the menu";
+sub_menu1;
+;;
+esac
+fi
+done
+}
+
+#Single PS2 ISO download
+#PS2 ISO Sub Menu 14
+option_picked() {
+  COLOR='\033[01;31m' # bold red
+  RESET='\033[00;00m' # normal white
+  MESSAGE=${@:-"${RESET}Error: No message passed"}
+  echo "${COLOR}${MESSAGE}${RESET}"
+}
+
+sub_menu14(){
+
+################# PS2 ISO #-J ###################
+    two="ps2usaredump1/"
+    two1="ps2usaredump1"
+    twoxml="ps2usaredump1_files.xml"
+
+################# PS2 ISO K-R ###################
+    two2="ps2usaredump1_20200816_1458/"
+    two12="ps2usaredump2"
+    twoxml2="ps2usaredump1_20200816_1458_files.xml"
+
+################# PS2 ISO S-Z ###################
+    two3="httpsarchive.orgdetailsps2usaredump3/"
+    two13="ps2usaredump3"
+    twoxml3="httpsarchive.orgdetailsps2usaredump3_files.xml"
+
+  normal=`echo "\033[m"`
+  menu=`echo "\033[36m"` #Blue
+  number=`echo "\033[33m"` #yellow
+  bgred=`echo "\033[41m"`
+  fgred=`echo "\033[31m"`
+  red=`echo "\033[91m"`
+  bggreen=`echo "\033[1;32m"`
+  green=`echo "\033[92m"`
+printf "\n"
+printf "\n${menu}***************************************************************************${normal}\n"
+printf "\n"
+printf "                        ${green}Mogi_XBOX_Downloader                       \n\n"
+printf "          ${red}Please select 1 To Return to PS2 ISO Bulk Download\n
+select 2-4 to enter number from the list to download or 5 to exit${normal}\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "This will download single game from archive.org.\n\n"
+printf "\n${menu}***************************************************************************${normal}\n\n"
+printf "Make your selection '1-5' then hit enter\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${menu}**${number} 1)${menu} ${green}Return to PS2 ISO Bulk Download${normal}\n"
+printf "${menu}**${number} 2)${menu} Download Single PS2 ISO #-J From List${normal}\n"
+printf "${menu}**${number} 3)${menu} Download Single PS2 ISO K-R From List${normal}\n"
+printf "${menu}**${number} 4)${menu} Download Single PS2 ISO S-Z From List${normal}\n"
+printf "${menu}**${number} 5)${menu} ${red}Exit To Main Menu ${normal}\n\n"
+printf "${menu}*********************************************${normal}\n"
+printf "${ENTER_LINE}Please enter a menu option and enter ${normal}\n"
+read sub14
+while [ sub14 != '' ]
+do
+if [[ $sub14 = "" ]]; then
+exit;
+else
+case $sub14 in
+
+1) clear;
+  sub_menu13;
+  sub_menu_admin;
+;;
+
+2)  clear;
+  option_picked "Dowload Single PS2 ISO #-J Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/ps2single.txt xbarchive/ps2single2.txt
+    sudo sed -i 's/ /%20/g' xbarchive/ps2single2.txt
+    sudo sed -i 's/(/%28/g' xbarchive/ps2single2.txt
+    sudo sed -i 's/)/%29/g' xbarchive/ps2single2.txt
+    sudo sed -i 's/&amp;/%26/g' xbarchive/ps2single2.txt
+    sudo cat xbarchive/ps2db.txt
+    count="$(wc -l xbarchive/ps2single.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuetwo1="$(sed -n "${n}p" xbarchive/ps2single2.txt)"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d ps2_usa_Singles_#-J https://archive.org/download/$two$valuetwo1
+    echo "The user selected option number $n: '$valuetwo1'"
+  sub_menu14;
+  sub_menu_admin;
+;;
+
+3)  clear;
+  option_picked "Dowload Single PS2 ISO K-R Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/ps2singlep2.txt xbarchive/ps2singlep22.txt;
+    sudo sed -i 's/ /%20/g' xbarchive/ps2singlep22.txt;
+    sudo sed -i 's/(/%28/g' xbarchive/ps2singlep22.txt;
+    sudo sed -i 's/)/%29/g' xbarchive/ps2singlep22.txt;
+    sudo sed -i 's/&amp;/%26/g' xbarchive/ps2singlep22.txt;
+    sudo cat xbarchive/ps2dbp2.txt;
+    count="$(wc -l xbarchive/ps2singlep2.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuetwo2="$(sed -n "${n}p" xbarchive/ps2singlep22.txt)"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d ps2_usa_Singles_F-M https://archive.org/download/$two2$valuetwo2
+    echo "The user selected option number $n: '$valuetwo2'"
+  sub_menu14;
+  sub_menu_admin;
+;;
+
+4)  clear;
+  option_picked "Dowload Single PS2 ISO S-Z Game From List";
+    echo "Enter Game Number From the List";
+    sudo cp xbarchive/ps2singlep3.txt xbarchive/ps2singlep32.txt
+    sudo sed -i 's/ /%20/g' xbarchive/ps2singlep32.txt
+    sudo sed -i 's/(/%28/g' xbarchive/ps2singlep32.txt
+    sudo sed -i 's/)/%29/g' xbarchive/ps2singlep32.txt
+    sudo sed -i 's/&amp;/%26/g' xbarchive/ps2singlep32.txt
+    sudo cat xbarchive/ps2dbp3.txt
+    count="$(wc -l xbarchive/ps2singlep3.txt | cut -f 1 -d' ')"
+    n=""
+    while true; do
+    read -p 'Select option: ' n
+    if [ "$n" -eq "$n" ] && [ "$n" -gt 0 ] && [ "$n" -le "$count" ]; then
+    break
+    fi
+    done
+    valuetwo3="$(sed -n "${n}p" xbarchive/ps2singlep32.txt)"
+    sudo aria2c --file-allocation=none -c -x 10 -s 10 -d ps2_usa_Singles_S-Z https://archive.org/download/$two3$valuetwo3
+    echo "The user selected option number $n: '$valuetwo3'"
+  sub_menu14;
+  sub_menu_admin;
+;;
+
+5) clear;
+  option_picked "Exit To Main Menu";
+  show_menu;
+  sub_menu_admin;
+;;
+
+x) exit;
+;;
+
+\n) exit;
+;;
+
+*) clear;
+  option_picked "Pick an option from the menu";
+  sub_menu1;
+;;
+esac
+fi
+done
+}
 
 
 
